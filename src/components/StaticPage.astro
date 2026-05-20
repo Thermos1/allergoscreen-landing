@@ -1,0 +1,36 @@
+---
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  intro?: string;
+  inProgress?: boolean;
+}
+const { locale, title, intro, inProgress = false } = Astro.props;
+const s = t(locale);
+
+function lp(target: string): string {
+  if (locale === "ru") return target;
+  return `/${locale}${target === "/" ? "" : target}`;
+}
+---
+
+<section class="bg-mist border-b border-rule">
+  <div class="container-x py-12 lg:py-16">
+    <a href={lp("/")} class="text-[13px] text-ink-400 hover:text-brand-700 inline-flex items-center gap-1 mb-6">{s.common.back_home}</a>
+    <h1 class="mb-5 max-w-narrow">{title}</h1>
+    {intro && <p class="lede max-w-prose">{intro}</p>}
+  </div>
+</section>
+
+<section class="container-x py-12 lg:py-20">
+  <div class="max-w-prose space-y-5 text-[16px] leading-[1.7] text-ink-600">
+    {inProgress && (
+      <div class="bg-gold-50 border border-gold-200 rounded-xl p-5 text-[14.5px] text-ink-600">
+        <strong class="text-ink-900">↳</strong> {s.common.page_in_progress}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

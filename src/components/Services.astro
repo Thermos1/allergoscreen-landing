@@ -1,0 +1,181 @@
+---
+import { t, type Locale } from "../i18n/ui";
+import {
+  SECTIONS,
+  formatPrice,
+  getRowName,
+  getSectionTitle,
+  getNotes,
+} from "../data/prices";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale);
+
+function lp(target: string): string {
+  if (locale === "ru") return target;
+  return `/${locale}${target === "/" ? "" : target}`;
+}
+---
+
+<!-- ========== HERO ========== -->
+<section class="bg-mist border-b border-rule">
+  <div class="container-x py-12 lg:py-16">
+    <a href={lp("/")} class="text-[13px] text-ink-400 hover:text-brand-700 inline-flex items-center gap-1 mb-6">{s.common.back_home}</a>
+    <h1 class="mb-5 max-w-narrow">{s.services_page.title}</h1>
+    <p class="lede max-w-prose">{s.services_page.lede}</p>
+  </div>
+</section>
+
+<!-- ========== CATEGORY FILTER (chips) ========== -->
+<section class="sticky top-16 lg:top-[72px] z-30 bg-white/95 backdrop-blur border-b border-rule">
+  <div class="container-x py-3 flex items-center gap-2 overflow-x-auto">
+    <span class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold whitespace-nowrap pr-2 border-r border-rule">{s.services_page.filter_label}</span>
+    {
+      s.services_page.filters.map((f, i) => (
+        <a
+          href={`#cat-${f.id}`}
+          data-cat-link={f.id}
+          class={`whitespace-nowrap px-3 py-1.5 rounded-full text-[13px] font-semibold transition ${i === 0 ? "bg-brand text-white" : "bg-mist text-ink-600 hover:bg-brand-100 hover:text-brand-700"}`}
+        >
+          {f.label}
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<!-- ========== PRICE SECTIONS ========== -->
+<section class="container-x py-12 lg:py-16 space-y-12 lg:space-y-16">
+  {
+    SECTIONS.map((sec) => (
+      <div id={`cat-${sec.category}`} class="reveal">
+        <h2 class="mb-6 lg:mb-8" id={sec.id}>{getSectionTitle(sec, locale)}</h2>
+
+        <div class="card overflow-hidden">
+          <table class="w-full text-[14.5px]">
+            <thead class="bg-mist border-b border-rule">
+              <tr class="text-left text-[12px] uppercase tracking-wider text-ink-400 font-semibold">
+                <th class="px-4 py-3 w-[15%] min-w-[80px]">{s.services_page.table_header.code}</th>
+                <th class="px-4 py-3">{s.services_page.table_header.name}</th>
+                <th class="px-4 py-3 text-right w-[20%] min-w-[120px]">{s.services_page.table_header.price}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                sec.rows.map((row, i) => {
+                  const variance = row.city_variance;
+                  const notes = getNotes(row, locale);
+                  return (
+                    <tr class={i % 2 === 0 ? "" : "bg-mist/50"}>
+                      <td class="px-4 py-3.5 align-top">
+                        <span class="font-mono text-[12.5px] text-brand-700 font-semibold">{row.code}</span>
+                      </td>
+                      <td class="px-4 py-3.5 align-top">
+                        <div class="text-ink-900 font-medium leading-snug">{getRowName(row, locale)}</div>
+                        <div class="flex flex-wrap gap-2 mt-1.5">
+                          {row.osms && (
+                            <span class="inline-flex items-center gap-1 text-[11.5px] text-gold-700 bg-gold-50 px-2 py-0.5 rounded-full font-semibold">
+                              ОСМС
+                            </span>
+                          )}
+                          {notes && (
+                            <span class="text-[12px] text-ink-400">{notes}</span>
+                          )}
+                          {variance && (
+                            <span class="text-[12px] text-ink-400">
+                              Караганда / Темиртау · {formatPrice(variance.karaganda)} {s.services_page.price_unit}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td class="px-4 py-3.5 align-top text-right whitespace-nowrap">
+                        <div class="font-display font-bold text-ink-900 text-[16px] leading-none">
+                          {formatPrice(row.price)} <span class="text-[12px] text-ink-400 font-normal">{s.services_page.price_unit}</span>
+                        </div>
+                        {row.unit === "per_allergen" && (
+                          <div class="text-[11.5px] text-ink-400 mt-0.5">{s.services_page.per_allergen}</div>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<!-- ========== ANESTHETICS ========== -->
+<section class="bg-mist border-y border-rule py-16 lg:py-20">
+  <div class="container-x">
+    <div class="max-w-narrow mb-10 reveal">
+      <div class="eyebrow mb-3">ИмАса · {s.services_page.anesthetic_section_title.toUpperCase()}</div>
+      <h2 class="mb-4">{s.services_page.anesthetic_section_title}</h2>
+      <p class="lede">{s.services_page.anesthetic_section_lede}</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+      {
+        s.services_page.anesthetic_list.map((a) => (
+          <div class="card p-4 reveal">
+            <div class="font-semibold text-[14.5px] text-ink-900 leading-snug">{a.name}</div>
+            <div class="text-[12.5px] text-ink-400 mt-1">{a.brand}</div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-8 p-5 bg-gold-50 border border-gold-200 rounded-xl text-[14px] text-ink-600 reveal">
+      <strong class="text-ink-900">↑</strong> {s.services_page.anesthetic_byo_note}
+    </div>
+  </div>
+</section>
+
+<!-- ========== OSMS CTA ========== -->
+<section class="container-x py-16 lg:py-20">
+  <div class="relative overflow-hidden rounded-3xl bg-ink-900 text-white p-8 sm:p-12 reveal">
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-gold/10 blur-3xl"></div>
+    <div class="relative max-w-narrow">
+      <div class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] font-bold text-gold mb-3">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+        {s.osms_band.eyebrow}
+      </div>
+      <h2 class="text-white mb-4">{s.osms_band.title}</h2>
+      <p class="text-white/70 text-[16px] leading-relaxed mb-6">{s.osms_band.body}</p>
+      <a href={lp("/osms")} class="btn-gold">{s.osms_band.cta}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Highlight active category chip on scroll
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-cat-link]");
+  const sections = document.querySelectorAll<HTMLElement>("[id^=cat-]");
+  if (links.length && sections.length && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id.replace(/^cat-/, "");
+            links.forEach((l) => {
+              const active = l.dataset.catLink === id;
+              l.classList.toggle("bg-brand", active);
+              l.classList.toggle("text-white", active);
+              l.classList.toggle("bg-mist", !active);
+              l.classList.toggle("text-ink-600", !active);
+            });
+            break;
+          }
+        }
+      },
+      { rootMargin: "-30% 0px -50% 0px", threshold: 0 },
+    );
+    sections.forEach((s) => io.observe(s));
+  }
+</script>

@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        PUBLIC_SIPMIND_API_BASE: ${PUBLIC_SIPMIND_API_BASE:-https://sipmind.net}
+        PUBLIC_SIPMIND_API_KEY: ${PUBLIC_SIPMIND_API_KEY}
+        PUBLIC_SITE_URL: ${PUBLIC_SITE_URL:-https://www.allergoscreen.kz}
+    ports:
+      - "4321:4321"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - LEADS_DIR=/data/leads
+    volumes:
+      - leads-data:/data
+    restart: unless-stopped
+
+volumes:
+  leads-data:

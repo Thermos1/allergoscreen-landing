@@ -1,0 +1,131 @@
+---
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale);
+
+function lp(target: string): string {
+  if (locale === "ru") return target;
+  return `/${locale}${target === "/" ? "" : target}`;
+}
+
+// 2GIS / Google Maps links per branch — first address of each city.
+const mapLinks: Record<string, { gis: string; google: string }> = {
+  astana: {
+    gis: "https://2gis.kz/astana/search/%D0%A0%D0%B0%D0%BA%D1%8B%D0%BC%D0%BE%D0%B2%D0%B0%2022",
+    google: "https://www.google.com/maps/search/?api=1&query=Rakymova+22+Astana",
+  },
+  almaty: {
+    gis: "https://2gis.kz/almaty/search/%D0%A1%D0%B5%D0%B9%D1%84%D1%83%D0%BB%D0%BB%D0%B8%D0%BD%D0%B0+553",
+    google: "https://www.google.com/maps/search/?api=1&query=Seifullin+553+Almaty",
+  },
+  karaganda: {
+    gis: "https://2gis.kz/karaganda/search/%D0%A1%D1%82%D0%B5%D0%BF%D0%BD%D0%BE%D0%B9-2+18%2F1",
+    google: "https://www.google.com/maps/search/?api=1&query=Stepnoy+18+Karaganda",
+  },
+  temirtau: {
+    gis: "https://2gis.kz/temirtau/search/%D0%9C%D0%B8%D1%80%D0%B0+114",
+    google: "https://www.google.com/maps/search/?api=1&query=Mira+114+Temirtau",
+  },
+};
+---
+
+<!-- HERO -->
+<section class="bg-mist border-b border-rule">
+  <div class="container-x py-12 lg:py-16">
+    <a href={lp("/")} class="text-[13px] text-ink-400 hover:text-brand-700 inline-flex items-center gap-1 mb-6">{s.common.back_home}</a>
+    <h1 class="mb-5">{s.locations_page.title}</h1>
+    <p class="lede max-w-prose">{s.locations_page.lede}</p>
+  </div>
+</section>
+
+<!-- LOCATIONS DETAILED CARDS -->
+<section class="container-x py-12 lg:py-20 space-y-10 lg:space-y-14">
+  {
+    s.locations_preview.cities.map((c) => (
+      <div id={c.slug} class="reveal scroll-mt-32">
+        <div class="grid lg:grid-cols-[1.5fr_1fr] gap-6 lg:gap-10 bg-white rounded-3xl border border-rule shadow-card overflow-hidden">
+          <!-- Left: text -->
+          <div class="p-8 lg:p-10">
+            <h2 class="mb-1">{c.city}</h2>
+            <div class="text-brand-700 text-[14px] font-semibold mb-6">{c.hours}</div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <div class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_address}</div>
+                <ul class="space-y-2 text-[15px] text-ink-900">
+                  {c.addresses.map((a) => <li>{a}</li>)}
+                </ul>
+                <div class="mt-3 flex gap-3 text-[13px]">
+                  <a href={mapLinks[c.slug].gis} target="_blank" rel="noopener" class="text-brand-700 hover:text-brand-800 underline-offset-2 hover:underline">2GIS →</a>
+                  <a href={mapLinks[c.slug].google} target="_blank" rel="noopener" class="text-brand-700 hover:text-brand-800 underline-offset-2 hover:underline">Google Maps →</a>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_phone}</div>
+                <a href={`tel:${c.phone_label.replace(/[^+\d]/g, "")}`} class="block text-[16px] font-semibold text-ink-900 hover:text-brand-700">{c.phone_label}</a>
+
+                <div class="mt-5 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.blood_draw_label}</div>
+                <ul class="space-y-1 text-[14px] text-ink-600">
+                  <li>{s.locations_page.blood_draw_clinic}</li>
+                  <li>{s.locations_page.blood_draw_home}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-rule">
+              <div class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-3">{s.locations_page.detail_services}</div>
+              <ul class="grid sm:grid-cols-2 gap-y-1.5 gap-x-4 text-[14px] text-ink-600">
+                {
+                  s.locations_page.services_offered.map((svc) => (
+                    <li class="flex items-start gap-2">
+                      <svg class="h-4 w-4 text-brand-500 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {svc}
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right: city placeholder visual -->
+          <div class="bg-gradient-to-br from-brand-50 to-mist relative min-h-[200px] lg:min-h-0 p-8 flex items-center justify-center">
+            <div class="text-center">
+              <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-white shadow-cta">
+                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="font-display font-bold text-[28px] mt-4 text-ink-900">{c.city}</div>
+              <div class="text-[13px] text-ink-400 mt-1">{c.hours}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<!-- CTA -->
+<section class="container-x pb-16 lg:pb-24">
+  <div class="card p-8 lg:p-12 text-center reveal">
+    <h3 class="mb-3">{s.contact_cta.title}</h3>
+    <p class="text-ink-600 mb-6 max-w-prose mx-auto">{s.contact_cta.body}</p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <button type="button" id="loc-chat" class="btn-primary">{s.contact_cta.cta_chat}</button>
+      <a href="tel:+77024786568" class="btn-ghost">{s.contact_cta.cta_call}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("loc-chat")?.addEventListener("click", () => {
+    (document.getElementById("sm-toggle") as HTMLButtonElement | null)?.click();
+  });
+</script>

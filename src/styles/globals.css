@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-feature-settings:
+      "ss01" 1,
+      "kern" 1,
+      "liga" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink-900;
+    letter-spacing: -0.018em;
+  }
+  h1 {
+    @apply text-[34px] sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.05] font-bold;
+    word-break: break-word;
+  }
+  h2 {
+    @apply text-[28px] sm:text-3xl md:text-4xl lg:text-[40px] leading-[1.15] font-semibold;
+    word-break: break-word;
+  }
+  h3 {
+    @apply text-xl md:text-2xl leading-snug font-semibold;
+  }
+  h4 {
+    @apply text-base md:text-lg font-semibold;
+  }
+  p {
+    @apply leading-[1.65];
+  }
+  a {
+    @apply transition-colors;
+  }
+  ::selection {
+    @apply bg-brand/25 text-ink-900;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8;
+  }
+
+  /* CTA buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 text-[15px] font-semibold tracking-tight transition;
+    border-radius: 10px;
+    min-height: 44px;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white shadow-cta hover:bg-brand-600 active:bg-brand-700;
+  }
+  .btn-gold {
+    @apply btn bg-gold text-ink-900 hover:bg-gold-600 hover:text-white;
+  }
+  .btn-ghost {
+    @apply btn border border-ink-200 text-ink-900 hover:border-brand hover:text-brand-700 bg-white;
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-1.5 text-brand-700 hover:text-brand-800 font-medium underline-offset-4 hover:underline;
+  }
+
+  /* Section utilities */
+  .eyebrow {
+    @apply text-[12px] uppercase tracking-[0.16em] font-semibold text-brand-700;
+  }
+  .lede {
+    @apply text-[18px] md:text-[20px] leading-[1.55] text-ink-600 max-w-prose;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl border border-rule shadow-card transition;
+  }
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  /* Reveal-on-scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Soft grid background pattern for hero */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(48, 198, 224, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(48, 198, 224, 0.06) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  .bg-grid-fade {
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* Underline accent (for hero h1 word emphasis) */
+  .accent-underline {
+    background-image: linear-gradient(transparent 64%, rgba(255, 205, 75, 0.55) 64%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 0.1em;
+  }
+}

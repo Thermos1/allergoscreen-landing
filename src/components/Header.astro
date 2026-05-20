@@ -1,0 +1,138 @@
+---
+import { t, type Locale, LOCALES, LOCALE_LABELS, localizedPath } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+const path = Astro.url.pathname;
+
+// Build nav items — paths are locale-prefixed.
+function lp(target: string): string {
+  if (locale === "ru") return target;
+  return `/${locale}${target === "/" ? "" : target}`;
+}
+
+const navItems = [
+  { href: lp("/services"), label: s.nav.services },
+  { href: lp("/locations"), label: s.nav.locations },
+  { href: lp("/about"), label: s.nav.about },
+  { href: lp("/osms"), label: s.nav.osms },
+];
+---
+
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-rule">
+  <div class="container-x flex items-center justify-between h-16 lg:h-[72px]">
+    <!-- Logo -->
+    <a href={lp("/")} class="flex items-center gap-2 group" aria-label="Allergoscreen home">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-white font-display font-extrabold text-lg leading-none">a</span>
+      <span class="font-display font-bold text-[18px] tracking-tight text-ink-900 group-hover:text-brand-700 transition">
+        allergoscreen
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`px-3 py-2 text-[15px] font-medium rounded-md transition ${
+              path === item.href ? "text-brand-700" : "text-ink hover:text-brand-700"
+            }`}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Right side: lang switcher + CTA -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Language switcher -->
+      <div class="hidden sm:flex items-center gap-0.5 bg-mist rounded-md p-0.5">
+        {
+          LOCALES.map((l) => (
+            <a
+              href={localizedPath(path, l)}
+              class={`px-2 py-1 text-[12px] font-semibold rounded transition ${
+                l === locale
+                  ? "bg-white text-ink-900 shadow-sm"
+                  : "text-ink-400 hover:text-ink-900"
+              }`}
+              aria-current={l === locale ? "true" : undefined}
+            >
+              {LOCALE_LABELS[l]}
+            </a>
+          ))
+        }
+      </div>
+
+      <a
+        href="https://allergoscreen.bregis.kz/"
+        target="_blank"
+        rel="noopener"
+        class="btn-gold !py-2 !px-3 !text-[13px] sm:!text-[14px] sm:!px-4 hidden sm:inline-flex"
+      >
+        <span class="hidden md:inline">{s.nav.results_cta}</span>
+        <span class="md:hidden">{s.nav.results_cta_short}</span>
+      </a>
+
+      <!-- Mobile burger -->
+      <button
+        id="nav-burger"
+        type="button"
+        aria-label={s.nav.menu_open}
+        class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-ink-900 hover:bg-mist"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="nav-menu" class="hidden lg:hidden bg-white border-t border-rule">
+    <nav class="container-x py-3 flex flex-col gap-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="px-3 py-3 text-[16px] font-medium text-ink-900 hover:bg-mist rounded-md"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <div class="border-t border-rule mt-2 pt-3 flex items-center justify-between">
+        <div class="flex items-center gap-0.5 bg-mist rounded-md p-0.5">
+          {
+            LOCALES.map((l) => (
+              <a
+                href={localizedPath(path, l)}
+                class={`px-2.5 py-1.5 text-[13px] font-semibold rounded transition ${
+                  l === locale
+                    ? "bg-white text-ink-900 shadow-sm"
+                    : "text-ink-400 hover:text-ink-900"
+                }`}
+              >
+                {LOCALE_LABELS[l]}
+              </a>
+            ))
+          }
+        </div>
+        <a
+          href="https://allergoscreen.bregis.kz/"
+          target="_blank"
+          rel="noopener"
+          class="btn-gold !py-2 !px-3 !text-[13px]"
+        >
+          {s.nav.results_cta_short}
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>

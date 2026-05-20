@@ -1,0 +1,106 @@
+---
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale);
+
+function lp(target: string): string {
+  if (locale === "ru") return target;
+  return `/${locale}${target === "/" ? "" : target}`;
+}
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink-900 text-white/85 mt-24">
+  <div class="container-x py-14 lg:py-16">
+    <!-- Top: brand + tagline -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
+      <div>
+        <a href={lp("/")} class="inline-flex items-center gap-2">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-white font-display font-extrabold text-lg leading-none">a</span>
+          <span class="font-display font-bold text-[20px] tracking-tight text-white">allergoscreen</span>
+        </a>
+        <p class="mt-3 max-w-prose text-white/65 text-[15px] leading-relaxed">{s.footer.tagline}</p>
+      </div>
+      <a
+        href="https://allergoscreen.bregis.kz/"
+        target="_blank"
+        rel="noopener"
+        class="btn-gold inline-flex w-full sm:w-auto justify-center"
+      >
+        {s.nav.results_cta}
+      </a>
+    </div>
+
+    <!-- 4 columns -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <!-- Lab -->
+      <div>
+        <h4 class="text-white font-display font-semibold text-base mb-4">{s.footer.col_company}</h4>
+        <ul class="space-y-2.5 text-[14px]">
+          <li><a href={lp("/services")} class="text-white/65 hover:text-brand-300">{s.footer.links.services}</a></li>
+          <li><a href={lp("/locations")} class="text-white/65 hover:text-brand-300">{s.footer.links.locations}</a></li>
+          <li><a href={lp("/about")} class="text-white/65 hover:text-brand-300">{s.footer.links.about}</a></li>
+          <li><a href={lp("/osms")} class="text-white/65 hover:text-brand-300">{s.footer.links.osms}</a></li>
+        </ul>
+      </div>
+
+      <!-- Patients -->
+      <div>
+        <h4 class="text-white font-display font-semibold text-base mb-4">{s.footer.col_patients}</h4>
+        <ul class="space-y-2.5 text-[14px]">
+          <li><a href="/preparation" class="text-white/65 hover:text-brand-300">{s.footer.links.preparation}</a></li>
+          <li><a href="/offer" class="text-white/65 hover:text-brand-300">{s.footer.links.offer}</a></li>
+          <li><a href="/consent" class="text-white/65 hover:text-brand-300">{s.footer.links.consent}</a></li>
+          <li><a href="/complaints" class="text-white/65 hover:text-brand-300">{s.footer.links.complaints}</a></li>
+          <li><a href="/quality" class="text-white/65 hover:text-brand-300">{s.footer.links.quality}</a></li>
+          <li><a href="/privacy" class="text-white/65 hover:text-brand-300">{s.footer.links.privacy}</a></li>
+        </ul>
+      </div>
+
+      <!-- OSMS -->
+      <div>
+        <h4 class="text-white font-display font-semibold text-base mb-4">{s.footer.col_osms}</h4>
+        <ul class="space-y-2.5 text-[14px]">
+          <li><a href={lp("/osms")} class="text-white/65 hover:text-brand-300">{s.footer.links.osms}</a></li>
+          <li><a href={lp("/osms#tariff")} class="text-white/65 hover:text-brand-300">{s.footer.links.tariff}</a></li>
+          <li>
+            <a href="https://allergoscreen.bregis.kz/" target="_blank" rel="noopener" class="text-white/65 hover:text-brand-300">
+              {s.footer.links.results_portal} →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contacts -->
+      <div>
+        <h4 class="text-white font-display font-semibold text-base mb-4">{s.footer.col_contacts}</h4>
+        <ul class="space-y-2.5 text-[14px]">
+          <li>
+            <div class="text-white/45 text-[12px] uppercase tracking-wider">{s.footer.contacts_label_phone}</div>
+            <a href="tel:+77024786568" class="text-white hover:text-brand-300">+7 702 478 65 68</a>
+          </li>
+          <li>
+            <div class="text-white/45 text-[12px] uppercase tracking-wider">{s.footer.contacts_label_whatsapp}</div>
+            <a href="https://wa.me/77759893287" target="_blank" rel="noopener" class="text-white hover:text-brand-300">+7 775 989 32 87</a>
+          </li>
+          <li>
+            <div class="text-white/45 text-[12px] uppercase tracking-wider">{s.footer.contacts_label_instagram}</div>
+            <a href="https://www.instagram.com/allergoscreen" target="_blank" rel="noopener" class="text-white hover:text-brand-300">@allergoscreen</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom: copyright + license -->
+    <div class="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-[12px] text-white/45 leading-relaxed">
+      <div>{year} {s.footer.copyright}</div>
+      <div class="sm:text-right max-w-md">{s.footer.license_note}</div>
+    </div>
+  </div>
+</footer>

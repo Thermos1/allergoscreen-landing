@@ -1,0 +1,192 @@
+---
+import "../styles/globals.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Widget from "../components/Widget.astro";
+import BregisBanner from "../components/BregisBanner.astro";
+import CookieBanner from "../components/CookieBanner.astro";
+import { getLocaleFromPath, t, type Locale, LOCALES } from "../i18n/ui";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  /** Override locale autodetect from URL (rare; e.g. on /kk/* pages). */
+  locale?: Locale;
+}
+
+const {
+  title: titleProp,
+  description: descriptionProp,
+  ogImage = "/og-image.png",
+  canonical,
+  locale: localeProp,
+} = Astro.props;
+
+const locale: Locale = localeProp ?? getLocaleFromPath(Astro.url.pathname);
+const s = t(locale);
+const title = titleProp ?? s.meta.title;
+const description = descriptionProp ?? s.meta.description;
+
+const _site = Astro.site?.toString().replace(/\/$/, "");
+const _path = Astro.url.pathname;
+const url = canonical ?? (_site ? `${_site}${_path}` : Astro.url.toString());
+const ogImageAbsolute = ogImage.startsWith("http")
+  ? ogImage
+  : _site
+    ? `${_site}${ogImage}`
+    : ogImage;
+
+const ogLocaleMap: Record<Locale, string> = {
+  ru: "ru_RU",
+  kk: "kk_KZ",
+  en: "en_US",
+};
+const htmlLangMap: Record<Locale, string> = {
+  ru: "ru",
+  kk: "kk",
+  en: "en",
+};
+---
+
+<!doctype html>
+<html lang={htmlLangMap[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A1929" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+
+    {
+      LOCALES.map((l) => (
+        <link
+          rel="alternate"
+          hreflang={htmlLangMap[l]}
+          href={
+            _site
+              ? `${_site}${l === "ru" ? "" : "/" + l}${_path.replace(/^\/(kk|en)/, "")}`
+              : ""
+          }
+        />
+      ))
+    }
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocaleMap[locale]} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={s.meta.og_alt} />
+    <meta property="og:url" content={url} />
+    <meta property="og:site_name" content="Allergoscreen" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MedicalOrganization",
+        "name": "Allergoscreen",
+        "alternateName": ["Аллергоскрин", "ТОО Аллергоскрин"],
+        "description": description,
+        "url": _site || "https://www.allergoscreen.kz",
+        "medicalSpecialty": ["Allergology", "Immunology"],
+        "areaServed": { "@type": "Country", "name": "Kazakhstan" },
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Astana",
+            "addressCountry": "KZ",
+            "streetAddress": "Sabyr Rakymov str., 22",
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Almaty",
+            "addressCountry": "KZ",
+            "streetAddress": "Seifullin Ave., 553",
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Karaganda",
+            "addressCountry": "KZ",
+            "streetAddress": "Stepnoy-2 microdistrict, 18/1",
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Temirtau",
+            "addressCountry": "KZ",
+            "streetAddress": "Mira Ave., 114",
+          },
+        ],
+      })}
+    />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <BregisBanner locale={locale} />
+    <Header locale={locale} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <Widget locale={locale} />
+    <CookieBanner locale={locale} />
+
+    <script>
+      // Mobile burger toggle
+      const burger = document.getElementById("nav-burger");
+      const menu = document.getElementById("nav-menu");
+      if (burger && menu) {
+        burger.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+          document.body.classList.toggle("overflow-hidden");
+        });
+        menu.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => {
+            menu.classList.add("hidden");
+            document.body.classList.remove("overflow-hidden");
+          }),
+        );
+      }
+
+      // Scroll-reveal
+      const reveals = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window && reveals.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+        );
+        reveals.forEach((el) => io.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add("is-visible"));
+      }
+    </script>
+  </body>
+</html>

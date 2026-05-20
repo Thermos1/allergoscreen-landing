@@ -1,0 +1,10 @@
+---
+import Base from "../../layouts/Base.astro";
+import Services from "../../components/Services.astro";
+import { t } from "../../i18n/ui";
+const s = t("kk");
+---
+
+<Base locale="kk" title={`${s.services_page.title} — Аллергоскрин`}>
+  <Services locale="kk" />
+</Base>

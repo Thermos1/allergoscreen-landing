@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#054D5C"/>
+      <stop offset="100%" stop-color="#0E8AA3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.6">
+      <stop offset="0%" stop-color="#FFCD4B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFCD4B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(80, 100)">
+    <rect width="80" height="80" rx="18" fill="#30C6E0"/>
+    <text x="40" y="60" font-family="Manrope, Inter, system-ui" font-weight="800" font-size="56" fill="white" text-anchor="middle">a</text>
+    <text x="100" y="55" font-family="Manrope, Inter, system-ui" font-weight="700" font-size="42" fill="white">allergoscreen</text>
+  </g>
+  <text x="80" y="320" font-family="Manrope, Inter, system-ui" font-weight="700" font-size="68" fill="white">Точные ответы на</text>
+  <text x="80" y="396" font-family="Manrope, Inter, system-ui" font-weight="700" font-size="68" fill="#FFCD4B">сложные аллергии</text>
+  <text x="80" y="488" font-family="Inter, system-ui" font-weight="400" font-size="28" fill="rgba(255,255,255,0.75)">ИмАса ИФА · ALEX-300 · аутоиммунные панели</text>
+  <text x="80" y="530" font-family="Inter, system-ui" font-weight="400" font-size="24" fill="rgba(255,255,255,0.55)">Караганда · Астана · Алматы · Темиртау · ОСМС</text>
+</svg>

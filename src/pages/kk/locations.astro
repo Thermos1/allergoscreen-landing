@@ -1,0 +1,10 @@
+---
+import Base from "../../layouts/Base.astro";
+import Locations from "../../components/Locations.astro";
+import { t } from "../../i18n/ui";
+const s = t("kk");
+---
+
+<Base locale="kk" title={`${s.locations_page.title} — Аллергоскрин`}>
+  <Locations locale="kk" />
+</Base>

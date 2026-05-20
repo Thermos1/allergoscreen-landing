@@ -1,0 +1,254 @@
+---
+// SIPmind chat widget — adapted from niise-landing/src/components/Widget.astro.
+// Connects to SIPmind backend via Bearer token. Locale-aware.
+
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const w = t(locale).widget;
+
+const PUBLIC_API_BASE = import.meta.env.PUBLIC_SIPMIND_API_BASE || "https://sipmind.net";
+const PUBLIC_TENANT_KEY = import.meta.env.PUBLIC_SIPMIND_API_KEY || "";
+---
+
+<!-- Teaser bubble (desktop only, after 22s) -->
+<div
+  id="sm-teaser"
+  class="hidden fixed bottom-24 right-6 z-40 max-w-[300px] bg-white border border-rule rounded-xl shadow-card-hover p-4 text-[13px] leading-snug text-ink animate-fade-up"
+  role="status"
+  aria-live="polite"
+>
+  <button
+    id="sm-teaser-close"
+    type="button"
+    aria-label={w.aria_close}
+    class="absolute top-2 right-2 w-7 h-7 inline-flex items-center justify-center rounded-md text-ink-400 hover:text-ink-900 hover:bg-mist"
+  >
+    <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.4">
+      <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+    </svg>
+  </button>
+  <div class="flex items-start gap-3">
+    <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white font-display font-bold text-[13px] leading-none shrink-0">Д</span>
+    <div>
+      <div class="font-display font-semibold text-[14px] text-ink-900 leading-tight mb-1">{w.teaser_title}</div>
+      <p class="text-ink-600">{w.teaser_body}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Toggle FAB -->
+<button
+  id="sm-toggle"
+  type="button"
+  aria-label={w.aria_open}
+  class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 h-14 w-14 rounded-full bg-brand text-white shadow-cta flex items-center justify-center hover:bg-brand-600 transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
+  style="bottom: max(1rem, env(safe-area-inset-bottom)); right: max(1rem, env(safe-area-inset-right));"
+>
+  <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M3 12c0-4.4 3.6-8 8-8h2c4.4 0 8 3.6 8 8v0c0 4.4-3.6 8-8 8H8l-5 4v-4c0-2 0-2 0-8z" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+</button>
+
+<!-- Chat panel -->
+<aside
+  id="sm-panel"
+  class="fixed inset-x-3 bottom-3 sm:inset-x-auto sm:bottom-24 sm:right-6 z-50 sm:w-[380px] sm:max-w-[calc(100vw-3rem)] h-[80vh] sm:h-[560px] sm:max-h-[calc(100vh-8rem)] bg-white rounded-2xl shadow-card-hover border border-rule flex-col hidden overflow-hidden"
+  aria-label={w.title}
+>
+  <header class="flex items-center justify-between p-4 bg-ink-900 text-white">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand text-white font-display font-bold text-sm leading-none">Д</span>
+      <div>
+        <div class="font-display font-semibold text-[15px] leading-tight">{w.title}</div>
+        <div class="text-[11px] text-white/65 leading-tight">{w.subtitle}</div>
+      </div>
+    </div>
+    <button id="sm-close" type="button" aria-label={w.aria_close} class="text-white/70 hover:text-white p-1">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </header>
+  <div id="sm-messages" class="flex-1 overflow-y-auto p-4 space-y-3 text-[14px] bg-mist"></div>
+  <form id="sm-form" class="border-t border-rule p-3 flex gap-2 bg-white">
+    <input
+      id="sm-input"
+      type="text"
+      autocomplete="off"
+      maxlength="1500"
+      placeholder={w.placeholder}
+      class="flex-1 bg-white border border-rule rounded-lg px-3 py-2.5 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 text-[14px]"
+    />
+    <button type="submit" aria-label={w.aria_send} class="px-4 py-2 bg-brand text-white rounded-lg hover:bg-brand-600 transition text-[14px] font-semibold">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </form>
+</aside>
+
+<script
+  define:vars={{ PUBLIC_API_BASE, PUBLIC_TENANT_KEY, W: w, LOCALE: locale }}
+>
+  (function () {
+    const apiBase = PUBLIC_API_BASE.replace(/\/$/, "");
+    const apiKey = PUBLIC_TENANT_KEY;
+    if (!apiKey) {
+      console.warn("[widget] PUBLIC_SIPMIND_API_KEY is not set — chat disabled");
+    }
+
+    const toggle = document.getElementById("sm-toggle");
+    const panel = document.getElementById("sm-panel");
+    const closeBtn = document.getElementById("sm-close");
+    const messagesEl = document.getElementById("sm-messages");
+    const form = document.getElementById("sm-form");
+    const input = document.getElementById("sm-input");
+
+    let sessionId = null;
+    const history = [];
+    let welcomeShown = false;
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+    }
+
+    function appendBubble(role, text, isLoading) {
+      const wrap = document.createElement("div");
+      wrap.className = role === "user" ? "flex justify-end" : "flex justify-start";
+      const bubble = document.createElement("div");
+      bubble.className =
+        role === "user"
+          ? "max-w-[85%] bg-brand text-white rounded-2xl rounded-br-md px-3.5 py-2 leading-snug"
+          : "max-w-[85%] bg-white border border-rule text-ink-900 rounded-2xl rounded-bl-md px-3.5 py-2 leading-snug shadow-sm";
+      if (isLoading) {
+        bubble.innerHTML = '<span class="opacity-50">…</span>';
+      } else {
+        bubble.innerHTML = escapeHtml(text).replace(/\n/g, "<br>");
+      }
+      wrap.appendChild(bubble);
+      messagesEl.appendChild(wrap);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return bubble;
+    }
+
+    async function loadWelcome() {
+      if (welcomeShown || !apiKey) return;
+      welcomeShown = true;
+      try {
+        const res = await fetch(apiBase + "/api/v1/widget/config", {
+          headers: { Authorization: "Bearer " + apiKey },
+        });
+        if (res.ok) {
+          const cfg = await res.json();
+          if (cfg.welcome_message) {
+            appendBubble("assistant", cfg.welcome_message, false);
+          } else {
+            appendBubble("assistant", W.welcome_fallback, false);
+          }
+        } else {
+          appendBubble("assistant", W.welcome_fallback, false);
+        }
+      } catch {
+        appendBubble("assistant", W.welcome_fallback, false);
+      }
+    }
+
+    function openPanel() {
+      panel.classList.remove("hidden");
+      panel.classList.add("flex");
+      loadWelcome();
+      setTimeout(() => input.focus(), 50);
+    }
+    function closePanel() {
+      panel.classList.add("hidden");
+      panel.classList.remove("flex");
+    }
+
+    toggle.addEventListener("click", openPanel);
+    closeBtn.addEventListener("click", closePanel);
+
+    // Proactive teaser — 22s after load, desktop only, sticky-dismiss
+    const teaser = document.getElementById("sm-teaser");
+    const teaserClose = document.getElementById("sm-teaser-close");
+    const TEASER_KEY = "allergoscreen-teaser-dismissed";
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+    const dismissed = localStorage.getItem(TEASER_KEY) === "1";
+
+    function hideTeaser(persist) {
+      if (!teaser) return;
+      teaser.classList.add("hidden");
+      if (persist) {
+        try {
+          localStorage.setItem(TEASER_KEY, "1");
+        } catch {
+          /* private mode etc — ignore */
+        }
+      }
+    }
+
+    if (teaser && !isMobile && !dismissed) {
+      setTimeout(() => {
+        if (panel && !panel.classList.contains("hidden")) return;
+        teaser.classList.remove("hidden");
+        setTimeout(() => hideTeaser(false), 14_000);
+      }, 22_000);
+    }
+
+    teaserClose?.addEventListener("click", () => hideTeaser(true));
+    teaser?.addEventListener("click", (e) => {
+      if (e.target instanceof HTMLElement && e.target.closest("#sm-teaser-close")) return;
+      hideTeaser(true);
+      openPanel();
+    });
+    toggle.addEventListener("click", () => hideTeaser(true));
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = "";
+      appendBubble("user", text, false);
+      history.push({ role: "user", content: text });
+
+      const loading = appendBubble("assistant", "", true);
+
+      try {
+        const res = await fetch(apiBase + "/api/v1/widget/chat", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization: "Bearer " + apiKey,
+          },
+          body: JSON.stringify({
+            message: text,
+            history: history.slice(-20),
+            session_id: sessionId,
+          }),
+        });
+        let data = null;
+        try {
+          data = await res.json();
+        } catch {
+          // not JSON
+        }
+        if (data && typeof data.reply === "string" && data.reply.length > 0) {
+          sessionId = data.session_id || sessionId;
+          loading.innerHTML = escapeHtml(data.reply).replace(/\n/g, "<br>");
+          if (res.ok) {
+            history.push({ role: "assistant", content: data.reply });
+          }
+        } else {
+          loading.textContent = W.error_generic;
+          console.error("[widget] no reply in body, status:", res.status);
+        }
+      } catch (err) {
+        loading.textContent = W.error_network;
+        console.error(err);
+      }
+    });
+  })();
+</script>

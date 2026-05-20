@@ -1,0 +1,44 @@
+---
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const c = t(locale).cookie;
+---
+
+<div
+  id="cookie-banner"
+  class="hidden fixed bottom-4 left-4 right-4 sm:right-auto sm:max-w-md z-30 bg-white border border-rule shadow-card-hover rounded-xl p-4 text-[13px] leading-snug"
+>
+  <p class="text-ink-600 mb-3">{c.text}</p>
+  <div class="flex gap-2 justify-end">
+    <button id="cookie-decline" type="button" class="px-3 py-1.5 text-[13px] text-ink-400 hover:text-ink-900">
+      {c.decline}
+    </button>
+    <button id="cookie-accept" type="button" class="px-3 py-1.5 text-[13px] font-semibold bg-brand text-white rounded-md hover:bg-brand-600">
+      {c.accept}
+    </button>
+  </div>
+</div>
+
+<script>
+  const KEY = "allergoscreen-cookie-decision";
+  const banner = document.getElementById("cookie-banner");
+  const accept = document.getElementById("cookie-accept");
+  const decline = document.getElementById("cookie-decline");
+  if (banner && !localStorage.getItem(KEY)) {
+    setTimeout(() => banner.classList.remove("hidden"), 1200);
+  }
+  function dismiss(value: string) {
+    try {
+      localStorage.setItem(KEY, value);
+    } catch {
+      /* ignore */
+    }
+    banner?.classList.add("hidden");
+  }
+  accept?.addEventListener("click", () => dismiss("accepted"));
+  decline?.addEventListener("click", () => dismiss("declined"));
+</script>

@@ -1,0 +1,32 @@
+---
+// Sticky top banner — legal-mandate link to patient results portal (bregis.allergoscreen.kz).
+// Per Kazakhstan medical-lab regulations, results must be retrieved via a secure portal,
+// NOT via WhatsApp / phone. This banner stays visible site-wide.
+
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale).bregis;
+---
+
+<div class="bg-ink-900 text-white text-[13px] sm:text-sm leading-tight">
+  <div class="container-x py-2 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3 min-w-0">
+      <svg class="h-4 w-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      <span class="truncate"><span class="font-semibold">{s.label}</span> <span class="hidden sm:inline text-white/70">— {s.body}</span></span>
+    </div>
+    <a
+      href="https://allergoscreen.bregis.kz/"
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-1.5 text-gold hover:text-gold-400 font-medium whitespace-nowrap underline-offset-2 hover:underline"
+    >
+      {s.cta}
+    </a>
+  </div>
+</div>

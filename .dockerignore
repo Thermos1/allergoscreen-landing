@@ -1,0 +1,14 @@
+node_modules
+dist
+.astro
+.git
+.env
+.env.local
+.env.production
+*.log
+.DS_Store
+.vscode
+.idea
+README.md
+ASSETS_NEEDED.md
+docs/
