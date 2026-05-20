@@ -11,6 +11,10 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    /* iOS Safari sometimes lets transformed elements escape overflow:hidden
+       parents and trigger horizontal page scroll. `overflow-x: clip` on
+       html/body kills that defensively without breaking sticky positioning. */
+    overflow-x: clip;
   }
   body {
     @apply bg-paper text-ink font-sans;
@@ -18,6 +22,10 @@
       "ss01" 1,
       "kern" 1,
       "liga" 1;
+    overflow-x: clip;
+    /* Account for mobile-Safari URL bar with dvh — fall back to vh on older browsers. */
+    min-height: 100vh;
+    min-height: 100dvh;
   }
   h1,
   h2,

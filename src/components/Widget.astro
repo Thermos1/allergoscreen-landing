@@ -1,6 +1,6 @@
 ---
-// SIPmind chat widget — adapted from niise-landing/src/components/Widget.astro.
-// Connects to SIPmind backend via Bearer token. Locale-aware.
+// SIPmind chat widget — connects to SIPmind via THIS server's proxy (/api/widget/*).
+// API key lives only in server-side process.env.SIPMIND_API_KEY — never reaches the browser.
 
 import { t, type Locale } from "../i18n/ui";
 
@@ -9,9 +9,6 @@ interface Props {
 }
 const { locale } = Astro.props;
 const w = t(locale).widget;
-
-const PUBLIC_API_BASE = import.meta.env.PUBLIC_SIPMIND_API_BASE || "https://sipmind.net";
-const PUBLIC_TENANT_KEY = import.meta.env.PUBLIC_SIPMIND_API_KEY || "";
 ---
 
 <!-- Teaser bubble (desktop only, after 22s) -->
@@ -91,15 +88,11 @@ const PUBLIC_TENANT_KEY = import.meta.env.PUBLIC_SIPMIND_API_KEY || "";
   </form>
 </aside>
 
-<script
-  define:vars={{ PUBLIC_API_BASE, PUBLIC_TENANT_KEY, W: w, LOCALE: locale }}
->
+<script define:vars={{ W: w, LOCALE: locale }}>
   (function () {
-    const apiBase = PUBLIC_API_BASE.replace(/\/$/, "");
-    const apiKey = PUBLIC_TENANT_KEY;
-    if (!apiKey) {
-      console.warn("[widget] PUBLIC_SIPMIND_API_KEY is not set — chat disabled");
-    }
+    // Same-origin proxy — Astro server forwards to SIPmind with its server-side key.
+    const configUrl = "/api/widget/config";
+    const chatUrl = "/api/widget/chat";
 
     const toggle = document.getElementById("sm-toggle");
     const panel = document.getElementById("sm-panel");
@@ -136,12 +129,10 @@ const PUBLIC_TENANT_KEY = import.meta.env.PUBLIC_SIPMIND_API_KEY || "";
     }
 
     async function loadWelcome() {
-      if (welcomeShown || !apiKey) return;
+      if (welcomeShown) return;
       welcomeShown = true;
       try {
-        const res = await fetch(apiBase + "/api/v1/widget/config", {
-          headers: { Authorization: "Bearer " + apiKey },
-        });
+        const res = await fetch(configUrl);
         if (res.ok) {
           const cfg = await res.json();
           if (cfg.welcome_message) {
@@ -217,12 +208,9 @@ const PUBLIC_TENANT_KEY = import.meta.env.PUBLIC_SIPMIND_API_KEY || "";
       const loading = appendBubble("assistant", "", true);
 
       try {
-        const res = await fetch(apiBase + "/api/v1/widget/chat", {
+        const res = await fetch(chatUrl, {
           method: "POST",
-          headers: {
-            "content-type": "application/json",
-            Authorization: "Bearer " + apiKey,
-          },
+          headers: { "content-type": "application/json" },
           body: JSON.stringify({
             message: text,
             history: history.slice(-20),
