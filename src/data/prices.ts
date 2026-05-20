@@ -154,6 +154,7 @@ export const SECTIONS: Section[] = [
       { code: "4.3", name: { ru: "Аутоиммунные заболевания почек", kk: "Бүйректің аутоиммунды аурулары", en: "Autoimmune kidney disease" }, price: 73000 },
       { code: "4.4", name: { ru: "Аутоиммунные заболевания печени", kk: "Бауырдың аутоиммунды аурулары", en: "Autoimmune liver disease" }, price: 62000 },
       { code: "4.5", name: { ru: "Антифосфолипидный синдром", kk: "Антифосфолипидті синдром", en: "Antiphospholipid syndrome" }, price: 27000 },
+      { code: "4.7", name: { ru: "Вторичный антифосфолипидный синдром", kk: "Қайталама антифосфолипидті синдром", en: "Secondary antiphospholipid syndrome" }, price: 45000 },
       { code: "4.8", name: { ru: "Аутоиммунный сахарный диабет I типа", kk: "I типті аутоиммунды диабет", en: "Type-1 autoimmune diabetes" }, price: 47000 },
       { code: "4.9", name: { ru: "Воспалительные заболевания кишечника (НЯК, БК)", kk: "Ішектің қабыну аурулары (НЯК, БК)", en: "Inflammatory bowel disease (UC, CD)" }, price: 48000 },
       { code: "4.10", name: { ru: "Миозиты, склеродермия", kk: "Миозиттер, склеродермия", en: "Myositis, scleroderma" }, price: 39000 },

@@ -94,8 +94,8 @@ const mapLinks: Record<string, { gis: string; google: string }> = {
             </div>
           </div>
 
-          <!-- Right: city placeholder visual -->
-          <div class="bg-gradient-to-br from-brand-50 to-mist relative min-h-[200px] lg:min-h-0 p-8 flex items-center justify-center">
+          <!-- Right: city placeholder visual (desktop only — saves vertical space on mobile) -->
+          <div class="hidden lg:flex bg-gradient-to-br from-brand-50 to-mist relative p-8 items-center justify-center">
             <div class="text-center">
               <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-white shadow-cta">
                 <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">

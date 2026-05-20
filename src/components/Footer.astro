@@ -44,8 +44,8 @@ const year = new Date().getFullYear();
       </a>
     </div>
 
-    <!-- 4 columns -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <!-- 4 columns (1 col on tiny phones, 2 on small, 4 on desktop) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <!-- Lab -->
       <div>
         <h4 class="text-white font-display font-semibold text-base mb-4">{s.footer.col_company}</h4>
