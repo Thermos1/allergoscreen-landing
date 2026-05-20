@@ -21,11 +21,18 @@ const year = new Date().getFullYear();
     <!-- Top: brand + tagline -->
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
       <div>
-        <a href={lp("/")} class="inline-flex items-center gap-2">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-white font-display font-extrabold text-lg leading-none">a</span>
-          <span class="font-display font-bold text-[20px] tracking-tight text-white">allergoscreen</span>
+        <a href={lp("/")} class="inline-flex items-center gap-3">
+          <img
+            src="/brand/logo-mark-256.png"
+            srcset="/brand/logo-mark-256.png 1x, /brand/logo-mark-512.png 2x"
+            alt="Allergoscreen"
+            width="80"
+            height="43"
+            class="h-12 w-auto bg-white rounded-lg p-1.5 shadow-sm"
+          />
+          <span class="font-display font-bold text-[22px] tracking-tight text-white uppercase">Аллергоскрин</span>
         </a>
-        <p class="mt-3 max-w-prose text-white/65 text-[15px] leading-relaxed">{s.footer.tagline}</p>
+        <p class="mt-4 max-w-prose text-white/65 text-[15px] leading-relaxed">{s.footer.tagline}</p>
       </div>
       <a
         href="https://allergoscreen.bregis.kz/"

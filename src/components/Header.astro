@@ -26,10 +26,17 @@ const navItems = [
 <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-rule">
   <div class="container-x flex items-center justify-between h-16 lg:h-[72px]">
     <!-- Logo -->
-    <a href={lp("/")} class="flex items-center gap-2 group" aria-label="Allergoscreen home">
-      <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand text-white font-display font-extrabold text-lg leading-none">a</span>
-      <span class="font-display font-bold text-[18px] tracking-tight text-ink-900 group-hover:text-brand-700 transition">
-        allergoscreen
+    <a href={lp("/")} class="flex items-center gap-2.5 group" aria-label="Allergoscreen home">
+      <img
+        src="/brand/logo-mark-96.png"
+        srcset="/brand/logo-mark-96.png 1x, /brand/logo-mark-256.png 2x"
+        alt="Allergoscreen"
+        width="48"
+        height="26"
+        class="h-9 w-auto select-none"
+      />
+      <span class="font-display font-bold text-[17px] sm:text-[18px] tracking-tight text-brand-700 group-hover:text-brand-800 transition leading-none uppercase">
+        Аллергоскрин
       </span>
     </a>
 

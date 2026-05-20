@@ -44,6 +44,17 @@ export default {
           600: "#E5A623",
           700: "#B8821A",
         },
+        // Logo red — used sparingly for brand accents (logo, "+" badge,
+        // rare emphasis). NOT used for warning/error UI.
+        crimson: {
+          DEFAULT: "#E11D26",
+          50: "#FEECEC",
+          100: "#FBD1D3",
+          400: "#EC4047",
+          500: "#E11D26",
+          600: "#B81620",
+          700: "#8C111A",
+        },
         rule: "#E2E8EC",
       },
       fontFamily: {
