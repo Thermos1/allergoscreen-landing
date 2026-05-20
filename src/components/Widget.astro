@@ -131,21 +131,21 @@ const w = t(locale).widget;
     async function loadWelcome() {
       if (welcomeShown) return;
       welcomeShown = true;
+      let welcomeText = W.welcome_fallback;
       try {
         const res = await fetch(configUrl);
         if (res.ok) {
           const cfg = await res.json();
-          if (cfg.welcome_message) {
-            appendBubble("assistant", cfg.welcome_message, false);
-          } else {
-            appendBubble("assistant", W.welcome_fallback, false);
-          }
-        } else {
-          appendBubble("assistant", W.welcome_fallback, false);
+          if (cfg.welcome_message) welcomeText = cfg.welcome_message;
         }
       } catch {
-        appendBubble("assistant", W.welcome_fallback, false);
+        // network/upstream — use fallback
       }
+      appendBubble("assistant", welcomeText, false);
+      // CRITICAL: push welcome into history so the next user turn is seen
+      // by the model as a follow-up — otherwise Дима's "greet-first" rule
+      // re-fires and he ignores the user's actual question.
+      history.push({ role: "assistant", content: welcomeText });
     }
 
     function openPanel() {
