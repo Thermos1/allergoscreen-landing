@@ -260,6 +260,23 @@ type Strings = {
     back_home: string;
     page_in_progress: string;
   };
+
+  // ---- Video testimonials ----
+  testimonials: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    consent_note: string;
+    play_label: string;
+  };
+
+  // ---- Accreditation block ----
+  accreditation: {
+    title: string;
+    body: string;
+    download_ru: string;
+    download_kk: string;
+  };
 };
 
 const ru: Strings = {
@@ -665,6 +682,19 @@ const ru: Strings = {
   common: {
     back_home: "← На главную",
     page_in_progress: "Страница готовится. Обновим в ближайшие дни.",
+  },
+  testimonials: {
+    eyebrow: "Отзывы пациентов",
+    title: "Что говорят наши пациенты",
+    lede: "Реальные истории людей, которые пришли к нам со сложным запросом и получили ответ. Все видео опубликованы с согласия пациентов.",
+    consent_note: "Видео размещены с письменного согласия пациентов в соответствии со ст. 273 Кодекса РК «О здоровье народа».",
+    play_label: "Воспроизвести",
+  },
+  accreditation: {
+    title: "Аккредитация лаборатории",
+    body: "Лаборатория «Аллергоскрин» прошла государственную аккредитацию Министерства здравоохранения Республики Казахстан и работает в системе обязательного социального медицинского страхования (ФСМС / ОСМС).",
+    download_ru: "Аттестат аккредитации (рус)",
+    download_kk: "Аккредитация аттестаты (қаз)",
   },
 };
 
@@ -1073,6 +1103,19 @@ const kk: Strings = {
     back_home: "← Басты бетке",
     page_in_progress: "Бет дайындалуда. Жақын күндерде жаңартамыз.",
   },
+  testimonials: {
+    eyebrow: "Пациент пікірлері",
+    title: "Біздің пациенттер не дейді",
+    lede: "Бізге күрделі сұранысымен келіп, жауап тапқан адамдардың нақты әңгімелері. Барлық бейне пациенттердің келісімімен жарияланған.",
+    consent_note: "Бейнелер ҚР «Халық денсаулығы туралы» Кодексінің 273-бабына сәйкес пациенттердің жазбаша келісімімен орналастырылған.",
+    play_label: "Ойнату",
+  },
+  accreditation: {
+    title: "Зертхана аккредитациясы",
+    body: "«Аллергоскрин» зертханасы Қазақстан Республикасы Денсаулық сақтау министрлігінің мемлекеттік аккредитациясынан өтіп, міндетті әлеуметтік медициналық сақтандыру (ӘМСҚ / МӘМС) жүйесінде жұмыс істейді.",
+    download_ru: "Аккредитация аттестаты (орыс)",
+    download_kk: "Аккредитация аттестаты (қаз)",
+  },
 };
 
 const en: Strings = {
@@ -1474,6 +1517,19 @@ const en: Strings = {
   common: {
     back_home: "← Back to home",
     page_in_progress: "Page in progress. Will be updated in the coming days.",
+  },
+  testimonials: {
+    eyebrow: "Patient testimonials",
+    title: "What our patients say",
+    lede: "Real stories from people who came to us with complex requests and got answers. All videos are published with patient consent.",
+    consent_note: "Videos are published with patients' written consent per Article 273 of Kazakhstan's Public Health Code.",
+    play_label: "Play",
+  },
+  accreditation: {
+    title: "Laboratory accreditation",
+    body: "Allergoscreen Laboratory is accredited by the Ministry of Health of the Republic of Kazakhstan and operates within the state mandatory medical insurance system (OSMS).",
+    download_ru: "Accreditation certificate (Russian, PDF)",
+    download_kk: "Accreditation certificate (Kazakh, PDF)",
   },
 };
 

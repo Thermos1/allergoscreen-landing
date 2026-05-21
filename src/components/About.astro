@@ -59,20 +59,35 @@ function lp(target: string): string {
 <section class="container-x py-16 lg:py-20">
   <div class="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16">
     <div class="reveal">
-      <div class="eyebrow mb-3">{s.about_page.accreditation_title.toUpperCase()}</div>
-      <h2 class="mb-0">{s.about_page.accreditation_title}</h2>
+      <div class="eyebrow mb-3">{s.accreditation.title.toUpperCase()}</div>
+      <h2 class="mb-0">{s.accreditation.title}</h2>
     </div>
     <div class="reveal">
-      <p class="text-[16.5px] text-ink-600 leading-relaxed mb-6">{s.about_page.accreditation_body}</p>
-      <!-- Placeholder badge row — replace with real ISO/ministry SVG logos when received -->
-      <div class="flex flex-wrap gap-3">
-        {
-          ["ISO 13485", "ISO 15189", "Минздрав РК", "ФСМС"].map((b) => (
-            <div class="px-4 py-3 bg-mist border border-rule rounded-lg text-[12.5px] font-semibold text-ink-400">{b}</div>
-          ))
-        }
+      <p class="text-[16.5px] text-ink-600 leading-relaxed mb-6">{s.accreditation.body}</p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="/docs/accreditation-ru.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-5 py-4 bg-white border border-rule rounded-xl hover:border-brand transition group">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 group-hover:bg-brand group-hover:text-white transition">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/>
+            </svg>
+          </span>
+          <span>
+            <span class="block font-display font-semibold text-[14.5px] text-ink-900">{s.accreditation.download_ru}</span>
+            <span class="block text-[12px] text-ink-400">PDF · 557 KB</span>
+          </span>
+        </a>
+        <a href="/docs/accreditation-kk.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-5 py-4 bg-white border border-rule rounded-xl hover:border-brand transition group">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 group-hover:bg-brand group-hover:text-white transition">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/>
+            </svg>
+          </span>
+          <span>
+            <span class="block font-display font-semibold text-[14.5px] text-ink-900">{s.accreditation.download_kk}</span>
+            <span class="block text-[12px] text-ink-400">PDF · 254 KB</span>
+          </span>
+        </a>
       </div>
-      <p class="text-[12px] text-ink-400 mt-3">Боевые сертификаты заменим на присланные.</p>
     </div>
   </div>
 </section>

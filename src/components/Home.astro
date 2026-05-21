@@ -1,6 +1,7 @@
 ---
 // Homepage sections shared across all 3 locales.
 import { t, type Locale } from "../i18n/ui";
+import VideoTestimonials from "./VideoTestimonials.astro";
 
 interface Props {
   locale: Locale;
@@ -263,6 +264,11 @@ const serviceIconKeys = [
     <a href={lp("/locations")} class="btn-ghost">{s.locations_preview.cta}</a>
   </div>
 </section>
+
+<!-- ========================================================================== -->
+<!-- VIDEO TESTIMONIALS -->
+<!-- ========================================================================== -->
+<VideoTestimonials locale={locale} />
 
 <!-- ========================================================================== -->
 <!-- CONTACT CTA -->
