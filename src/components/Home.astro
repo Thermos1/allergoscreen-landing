@@ -236,27 +236,44 @@ const serviceIconKeys = [
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
     {
-      s.locations_preview.cities.map((c) => (
-        <a href={lp(`/locations#${c.slug}`)} class="card-hover p-6 group flex flex-col reveal">
-          <div class="h-10 w-10 rounded-lg bg-mist text-brand-700 inline-flex items-center justify-center mb-4">
-            <span class="inline-flex h-5 w-5" set:html={icons.pin} />
-          </div>
-          <h3 class="text-[20px] mb-3 text-ink-900">{c.city}</h3>
-          <ul class="space-y-1.5 text-[13.5px] text-ink-600 mb-4">
-            {c.addresses.map((a) => <li>{a}</li>)}
-          </ul>
-          <div class="mt-auto space-y-2 pt-4 border-t border-rule">
-            <div class="text-[13px] text-ink-400 inline-flex items-center gap-2">
-              <span class="inline-flex h-4 w-4" set:html={icons.clock} />
-              {c.hours}
+      s.locations_preview.cities.map((c) => {
+        const photoMap: Record<string, { src: string; src2x: string }> = {
+          astana: { src: "/photos/astana-baitursynova-600.jpg", src2x: "/photos/astana-baitursynova-1200.jpg" },
+          almaty: { src: "/photos/almaty-kabanbay-600.jpg", src2x: "/photos/almaty-kabanbay-1200.jpg" },
+          karaganda: { src: "/photos/karaganda-stepnoy-600.jpg", src2x: "/photos/karaganda-stepnoy-1200.jpg" },
+          temirtau: { src: "/photos/temirtau-mira-600.jpg", src2x: "/photos/temirtau-mira-1200.jpg" },
+        };
+        const p = photoMap[c.slug];
+        return (
+          <a href={lp(`/locations#${c.slug}`)} class="card-hover group flex flex-col reveal overflow-hidden">
+            <div class="aspect-[4/3] bg-ink-900 relative overflow-hidden">
+              <img
+                src={p.src}
+                srcset={`${p.src} 1x, ${p.src2x} 2x`}
+                alt={`Филиал Аллергоскрин в ${c.city}`}
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
             </div>
-            <div class="text-[13.5px] font-semibold text-brand-700 inline-flex items-center gap-2">
-              <span class="inline-flex h-4 w-4" set:html={icons.phone} />
-              {c.phone_label}
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-[20px] mb-3 text-ink-900">{c.city}</h3>
+              <ul class="space-y-1.5 text-[13.5px] text-ink-600 mb-4">
+                {c.addresses.map((a) => <li>{a}</li>)}
+              </ul>
+              <div class="mt-auto space-y-2 pt-4 border-t border-rule">
+                <div class="text-[13px] text-ink-400 inline-flex items-center gap-2">
+                  <span class="inline-flex h-4 w-4" set:html={icons.clock} />
+                  {c.hours}
+                </div>
+                <div class="text-[13.5px] font-semibold text-brand-700 inline-flex items-center gap-2">
+                  <span class="inline-flex h-4 w-4" set:html={icons.phone} />
+                  {c.phone_label}
+                </div>
+              </div>
             </div>
-          </div>
-        </a>
-      ))
+          </a>
+        );
+      })
     }
   </div>
 

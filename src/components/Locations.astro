@@ -12,15 +12,16 @@ function lp(target: string): string {
   return `/${locale}${target === "/" ? "" : target}`;
 }
 
-// 2GIS / Google Maps links per branch — first address of each city.
+// 2GIS / Google Maps links per branch.
+// Almaty: map link points to Kabanbay Batyra 111 (main/Neuromed), not old Seifullin.
 const mapLinks: Record<string, { gis: string; google: string }> = {
   astana: {
-    gis: "https://2gis.kz/astana/search/%D0%A0%D0%B0%D0%BA%D1%8B%D0%BC%D0%BE%D0%B2%D0%B0%2022",
-    google: "https://www.google.com/maps/search/?api=1&query=Rakymova+22+Astana",
+    gis: "https://2gis.kz/astana/search/%D0%91%D0%B0%D0%B9%D1%82%D1%83%D1%80%D1%81%D1%8B%D0%BD%D0%BE%D0%B2%D0%B0+6",
+    google: "https://www.google.com/maps/search/?api=1&query=Baitursynova+6+Astana",
   },
   almaty: {
-    gis: "https://2gis.kz/almaty/search/%D0%A1%D0%B5%D0%B9%D1%84%D1%83%D0%BB%D0%BB%D0%B8%D0%BD%D0%B0+553",
-    google: "https://www.google.com/maps/search/?api=1&query=Seifullin+553+Almaty",
+    gis: "https://2gis.kz/almaty/search/%D0%9A%D0%B0%D0%B1%D0%B0%D0%BD%D0%B1%D0%B0%D0%B9+%D0%91%D0%B0%D1%82%D1%8B%D1%80%D0%B0+111",
+    google: "https://www.google.com/maps/search/?api=1&query=Kabanbay+Batyra+111+Almaty",
   },
   karaganda: {
     gis: "https://2gis.kz/karaganda/search/%D0%A1%D1%82%D0%B5%D0%BF%D0%BD%D0%BE%D0%B9-2+18%2F1",
@@ -29,6 +30,30 @@ const mapLinks: Record<string, { gis: string; google: string }> = {
   temirtau: {
     gis: "https://2gis.kz/temirtau/search/%D0%9C%D0%B8%D1%80%D0%B0+114",
     google: "https://www.google.com/maps/search/?api=1&query=Mira+114+Temirtau",
+  },
+};
+
+// Real branch facade photos per city. Each has 2 sizes for retina.
+const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
+  astana: {
+    src: "/photos/astana-baitursynova-600.jpg",
+    src2x: "/photos/astana-baitursynova-1200.jpg",
+    alt: "Филиал Аллергоскрин в Астане, ул. Байтурсынова 6",
+  },
+  almaty: {
+    src: "/photos/almaty-kabanbay-600.jpg",
+    src2x: "/photos/almaty-kabanbay-1200.jpg",
+    alt: "Филиал Аллергоскрин в Алматы, ул. Кабанбай Батыра 111 (здание Neuromed)",
+  },
+  karaganda: {
+    src: "/photos/karaganda-stepnoy-600.jpg",
+    src2x: "/photos/karaganda-stepnoy-1200.jpg",
+    alt: "Филиал Аллергоскрин в Караганде, мкр. Степной-2 18/1",
+  },
+  temirtau: {
+    src: "/photos/temirtau-mira-600.jpg",
+    src2x: "/photos/temirtau-mira-1200.jpg",
+    alt: "Филиал Аллергоскрин в Темиртау, пр. Мира 114",
   },
 };
 ---
@@ -94,30 +119,16 @@ const mapLinks: Record<string, { gis: string; google: string }> = {
             </div>
           </div>
 
-          <!-- Right: real facade photo if available, else gradient placeholder (desktop only) -->
-          {c.slug === "karaganda" ? (
-            <div class="hidden lg:block relative">
-              <img
-                src="/photos/karaganda-facade-600.jpg"
-                srcset="/photos/karaganda-facade-600.jpg 1x, /photos/karaganda-facade-1200.jpg 2x"
-                alt="Фасад филиала Аллергоскрин в Караганде"
-                class="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          ) : (
-            <div class="hidden lg:flex bg-gradient-to-br from-brand-50 to-mist relative p-8 items-center justify-center">
-              <div class="text-center">
-                <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-white shadow-cta">
-                  <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
-                  </svg>
-                </div>
-                <div class="font-display font-bold text-[28px] mt-4 text-ink-900">{c.city}</div>
-                <div class="text-[13px] text-ink-400 mt-1">{c.hours}</div>
-              </div>
-            </div>
-          )}
+          <!-- Right: real facade photo per city (desktop only — saves vertical space on mobile) -->
+          <div class="hidden lg:block relative bg-ink-900">
+            <img
+              src={cityPhoto[c.slug].src}
+              srcset={`${cityPhoto[c.slug].src} 1x, ${cityPhoto[c.slug].src2x} 2x`}
+              alt={cityPhoto[c.slug].alt}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     ))
