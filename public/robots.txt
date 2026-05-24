@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Disallow API endpoints from crawling — they are not content
+Disallow: /api/
+
 Sitemap: https://www.allergoscreen.kz/sitemap.xml
