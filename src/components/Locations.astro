@@ -119,8 +119,8 @@ const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
             </div>
           </div>
 
-          <!-- Right: real facade photo per city (desktop only — saves vertical space on mobile) -->
-          <div class="hidden lg:block relative bg-ink-900">
+          <!-- Real facade photo. Mobile: 16:9 ratio above text. Desktop: full-height right column. -->
+          <div class="relative bg-ink-900 aspect-[4/3] lg:aspect-auto order-first lg:order-none">
             <img
               src={cityPhoto[c.slug].src}
               srcset={`${cityPhoto[c.slug].src} 1x, ${cityPhoto[c.slug].src2x} 2x`}
