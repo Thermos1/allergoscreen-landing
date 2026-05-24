@@ -463,15 +463,15 @@ const ru: Strings = {
       {
         slug: "almaty",
         city: "Алматы",
-        addresses: ["ул. Кабанбай батыра, 111", "ул. Прокофьева, 16"],
+        addresses: ["ул. Кабанбай Батыра, 111 (здание Neuromed)", "ул. Прокофьева, 16 (здание МЦ ИФС)"],
         hours: "Пн–Пт 08:00–13:00 · Сб 09:00–13:00",
         phone_label: "+7 775 226 65 30",
       },
       {
         slug: "karaganda",
         city: "Караганда",
-        addresses: ["мкр. Степной-2, 18/1"],
-        hours: "Пн–Сб 08:00–14:00",
+        addresses: ["мкр. Степной-2, 18/1", "ул. Абая, 3"],
+        hours: "Пн–Пт 08:00–14:00 · Сб 08:00–12:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -592,7 +592,7 @@ const ru: Strings = {
       "ALEX-300 (молекулярная панель)",
       "Аутоиммунные панели (нРИФ, иммуноблот, ИФА)",
       "Гормоны, онкомаркеры, общеклинические",
-      "Консультация аллерголога-иммунолога",
+      "Консультация аллерголога-иммунолога (только Астана)",
     ],
   },
   osms_page: {
@@ -909,15 +909,15 @@ const kk: Strings = {
       {
         slug: "almaty",
         city: "Алматы",
-        addresses: ["Қабанбай батыр к-сі, 111", "Прокофьев к-сі, 16"],
+        addresses: ["Қабанбай Батыр к-сі, 111 (Neuromed ғимараты)", "Прокофьев к-сі, 16 (МЦ ИФС ғимараты)"],
         hours: "Дс–Жм 08:00–13:00 · Сб 09:00–13:00",
         phone_label: "+7 775 226 65 30",
       },
       {
         slug: "karaganda",
         city: "Қарағанды",
-        addresses: ["Степной-2 ы/а, 18/1"],
-        hours: "Дс–Сб 08:00–14:00",
+        addresses: ["Степной-2 ы/а, 18/1", "Абай к-сі, 3"],
+        hours: "Дс–Жм 08:00–14:00 · Сб 08:00–12:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1038,7 +1038,7 @@ const kk: Strings = {
       "ALEX-300 (молекулалық панель)",
       "Аутоиммунды панельдер (нРИФ, иммуноблот, ИФА)",
       "Гормондар, онкомаркерлер, жалпы клиникалық",
-      "Аллерголог-иммунологтың кеңесі",
+      "Аллерголог-иммунологтың кеңесі (тек Астана)",
     ],
   },
   osms_page: {
@@ -1350,15 +1350,15 @@ const en: Strings = {
       {
         slug: "almaty",
         city: "Almaty",
-        addresses: ["Kabanbay Batyr str., 111", "Prokofiev str., 16"],
+        addresses: ["Kabanbay Batyr str., 111 (Neuromed building)", "Prokofiev str., 16 (MC IFS building)"],
         hours: "Mon–Fri 08:00–13:00 · Sat 09:00–13:00",
         phone_label: "+7 775 226 65 30",
       },
       {
         slug: "karaganda",
         city: "Karaganda",
-        addresses: ["Stepnoy-2 microdistrict, 18/1"],
-        hours: "Mon–Sat 08:00–14:00",
+        addresses: ["Stepnoy-2 microdistrict, 18/1", "Abay str., 3"],
+        hours: "Mon–Fri 08:00–14:00 · Sat 08:00–12:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1479,7 +1479,7 @@ const en: Strings = {
       "ALEX-300 (molecular panel)",
       "Autoimmune panels (IIF, immunoblot, ELISA)",
       "Hormones, oncology markers, general lab",
-      "Consultation with allergist-immunologist",
+      "Consultation with allergist-immunologist (Astana only)",
     ],
   },
   osms_page: {
