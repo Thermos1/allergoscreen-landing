@@ -98,6 +98,7 @@ export const SECTIONS: Section[] = [
         code: "Забор крови выезд",
         name: { ru: "Забор крови на дому (выезд)", kk: "Қан алу үйде (шығу)", en: "Blood draw (home visit)" },
         price: 10000,
+        notes: { ru: "только Астана", kk: "тек Астана", en: "Astana only" },
       },
     ],
   },

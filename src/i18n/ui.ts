@@ -450,20 +450,20 @@ const ru: Strings = {
     eyebrow: "Где сдать",
     title: "4 филиала в Казахстане",
     lede:
-      "Сдача без записи, в порядке живой очереди. Забор крови — 1 000 ₸ в клинике, 10 000 ₸ с выездом на дом.",
+      "Сдача без записи, в порядке живой очереди. Забор крови — 1 000 ₸ в клинике. Выезд на дом — только в Астане (10 000 ₸).",
     days_short: { mon_sat: "Пн–Сб", mon_fri: "Пн–Пт", sat: "Сб", sun_off: "Вс выходной" },
     cities: [
       {
         slug: "astana",
         city: "Астана",
         addresses: ["ул. Сабыра Ракымова, 22", "ул. Ахмета Байтурсынова, 6"],
-        hours: "Пн–Сб 08:00–15:00",
+        hours: "Пн–Сб 08:00–14:00",
         phone_label: "+7 702 478 65 68",
       },
       {
         slug: "almaty",
         city: "Алматы",
-        addresses: ["пр. Сейфуллина, 553", "ул. Прокофьева, 16"],
+        addresses: ["ул. Кабанбай батыра, 111", "ул. Прокофьева, 16"],
         hours: "Пн–Пт 08:00–13:00 · Сб 09:00–13:00",
         phone_label: "+7 775 226 65 30",
       },
@@ -471,7 +471,7 @@ const ru: Strings = {
         slug: "karaganda",
         city: "Караганда",
         addresses: ["мкр. Степной-2, 18/1"],
-        hours: "Пн–Сб 08:00–15:00",
+        hours: "Пн–Сб 08:00–14:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -584,7 +584,7 @@ const ru: Strings = {
     detail_directions: "Как добраться",
     blood_draw_label: "Забор крови",
     blood_draw_clinic: "1 000 ₸ — в клинике",
-    blood_draw_home: "10 000 ₸ — с выездом на дом",
+    blood_draw_home: "10 000 ₸ — выезд на дом (только Астана)",
     services_offered: [
       "imasa ИФА (приносите свой материал)",
       "Специфический IgE (стандартные аллергены)",
@@ -896,20 +896,20 @@ const kk: Strings = {
     eyebrow: "Қайда тапсыруға болады",
     title: "Қазақстандағы 4 филиал",
     lede:
-      "Жазылусыз, тірі кезек тәртібімен тапсыру. Қан алу — клиникада 1 000 ₸, үйге шығу 10 000 ₸.",
+      "Жазылусыз, тірі кезек тәртібімен тапсыру. Қан алу — клиникада 1 000 ₸. Үйге шығу қызметі тек Астанада (10 000 ₸).",
     days_short: { mon_sat: "Дс–Сб", mon_fri: "Дс–Жм", sat: "Сб", sun_off: "Жс демалыс" },
     cities: [
       {
         slug: "astana",
         city: "Астана",
         addresses: ["Сабыр Рақымов к-сі, 22", "Ахмет Байтұрсынов к-сі, 6"],
-        hours: "Дс–Сб 08:00–15:00",
+        hours: "Дс–Сб 08:00–14:00",
         phone_label: "+7 702 478 65 68",
       },
       {
         slug: "almaty",
         city: "Алматы",
-        addresses: ["Сейфуллин даң., 553", "Прокофьев к-сі, 16"],
+        addresses: ["Қабанбай батыр к-сі, 111", "Прокофьев к-сі, 16"],
         hours: "Дс–Жм 08:00–13:00 · Сб 09:00–13:00",
         phone_label: "+7 775 226 65 30",
       },
@@ -917,7 +917,7 @@ const kk: Strings = {
         slug: "karaganda",
         city: "Қарағанды",
         addresses: ["Степной-2 ы/а, 18/1"],
-        hours: "Дс–Сб 08:00–15:00",
+        hours: "Дс–Сб 08:00–14:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1030,7 +1030,7 @@ const kk: Strings = {
     detail_directions: "Жолды қалай табу керек",
     blood_draw_label: "Қан алу",
     blood_draw_clinic: "1 000 ₸ — клиникада",
-    blood_draw_home: "10 000 ₸ — үйге шығу",
+    blood_draw_home: "10 000 ₸ — үйге шығу (тек Астана)",
     services_offered: [
       "imasa ИФА (өз материалыңызды әкеліңіз)",
       "Спецификалық IgE (стандартты аллергендер)",
@@ -1337,20 +1337,20 @@ const en: Strings = {
     eyebrow: "Where to come",
     title: "4 locations in Kazakhstan",
     lede:
-      "Walk-in, first-come-first-served. Blood draw — 1,000 KZT at the clinic, 10,000 KZT for home visits.",
+      "Walk-in, first-come-first-served. Blood draw — 1,000 KZT at the clinic. Home visits only in Astana (10,000 KZT).",
     days_short: { mon_sat: "Mon–Sat", mon_fri: "Mon–Fri", sat: "Sat", sun_off: "Sun off" },
     cities: [
       {
         slug: "astana",
         city: "Astana",
         addresses: ["Sabyr Rakymov str., 22", "Akhmet Baitursynov str., 6"],
-        hours: "Mon–Sat 08:00–15:00",
+        hours: "Mon–Sat 08:00–14:00",
         phone_label: "+7 702 478 65 68",
       },
       {
         slug: "almaty",
         city: "Almaty",
-        addresses: ["Seifullin Ave., 553", "Prokofiev str., 16"],
+        addresses: ["Kabanbay Batyr str., 111", "Prokofiev str., 16"],
         hours: "Mon–Fri 08:00–13:00 · Sat 09:00–13:00",
         phone_label: "+7 775 226 65 30",
       },
@@ -1358,7 +1358,7 @@ const en: Strings = {
         slug: "karaganda",
         city: "Karaganda",
         addresses: ["Stepnoy-2 microdistrict, 18/1"],
-        hours: "Mon–Sat 08:00–15:00",
+        hours: "Mon–Sat 08:00–14:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1471,7 +1471,7 @@ const en: Strings = {
     detail_directions: "How to get there",
     blood_draw_label: "Blood draw",
     blood_draw_clinic: "1,000 KZT — at the clinic",
-    blood_draw_home: "10,000 KZT — home visit",
+    blood_draw_home: "10,000 KZT — home visit (Astana only)",
     services_offered: [
       "imasa ELISA (bring your own substance)",
       "Specific IgE (standard allergens)",

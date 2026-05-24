@@ -72,7 +72,7 @@ const mapLinks: Record<string, { gis: string; google: string }> = {
                 <div class="mt-5 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.blood_draw_label}</div>
                 <ul class="space-y-1 text-[14px] text-ink-600">
                   <li>{s.locations_page.blood_draw_clinic}</li>
-                  <li>{s.locations_page.blood_draw_home}</li>
+                  {c.slug === "astana" && <li>{s.locations_page.blood_draw_home}</li>}
                 </ul>
               </div>
             </div>
