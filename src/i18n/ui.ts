@@ -471,7 +471,7 @@ const ru: Strings = {
         slug: "karaganda",
         city: "Караганда",
         addresses: ["мкр. Степной-2, 18/1", "ул. Абая, 3"],
-        hours: "Пн–Пт 08:00–14:00 · Сб 08:00–12:00",
+        hours: "Пн–Сб 08:00–14:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -917,7 +917,7 @@ const kk: Strings = {
         slug: "karaganda",
         city: "Қарағанды",
         addresses: ["Степной-2 ы/а, 18/1", "Абай к-сі, 3"],
-        hours: "Дс–Жм 08:00–14:00 · Сб 08:00–12:00",
+        hours: "Дс–Сб 08:00–14:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1358,7 +1358,7 @@ const en: Strings = {
         slug: "karaganda",
         city: "Karaganda",
         addresses: ["Stepnoy-2 microdistrict, 18/1", "Abay str., 3"],
-        hours: "Mon–Fri 08:00–14:00 · Sat 08:00–12:00",
+        hours: "Mon–Sat 08:00–14:00",
         phone_label: "+7 778 941 60 36",
       },
       {
