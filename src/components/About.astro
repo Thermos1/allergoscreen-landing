@@ -28,13 +28,22 @@ function lp(target: string): string {
     <div class="reveal">
       <div class="eyebrow mb-3">{s.about_page.story_title.toUpperCase()}</div>
       <h2 class="mb-6 lg:mb-8">{s.about_page.story_title}</h2>
-      <img
-        src="/photos/interior-lobby-600.jpg"
-        srcset="/photos/interior-lobby-600.jpg 1x, /photos/interior-lobby-1200.jpg 2x"
-        alt="Холл лаборатории Аллергоскрин"
-        class="hidden lg:block rounded-2xl shadow-card w-full h-auto"
-        loading="lazy"
-      />
+      <div class="hidden lg:block space-y-4">
+        <img
+          src="/photos/interior-lobby-600.jpg"
+          srcset="/photos/interior-lobby-600.jpg 1x, /photos/interior-lobby-1200.jpg 2x"
+          alt="Холл лаборатории Аллергоскрин"
+          class="rounded-2xl shadow-card w-full h-auto"
+          loading="lazy"
+        />
+        <img
+          src="/photos/building-neyromed-600.jpg"
+          srcset="/photos/building-neyromed-600.jpg 1x, /photos/building-neyromed-1200.jpg 2x"
+          alt="Современный медицинский центр, в котором располагается лаборатория"
+          class="rounded-2xl shadow-card w-full h-auto"
+          loading="lazy"
+        />
+      </div>
     </div>
     <div class="reveal space-y-4 text-[16.5px] text-ink-600 leading-relaxed">
       {s.about_page.story_body.map((p) => <p>{p}</p>)}
@@ -167,20 +176,22 @@ function lp(target: string): string {
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-      <!-- Real doctor photo (name pending from client) -->
+      <!-- Real doctor photo: head of laboratory (name withheld per client) -->
       <div class="card overflow-hidden reveal">
         <div class="aspect-[4/5] bg-ink-900 relative overflow-hidden">
           <img
             src="/photos/doctor-1-400.jpg"
             srcset="/photos/doctor-1-400.jpg 1x, /photos/doctor-1-800.jpg 2x"
-            alt="Врач лаборатории Аллергоскрин"
+            alt="Заведующий лабораторией"
             class="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
         </div>
         <div class="p-4">
-          <div class="font-display font-semibold text-[16px] text-ink-900">Имя уточняется</div>
-          <div class="text-[13px] text-ink-400 mt-0.5">Врач лаборатории</div>
+          <div class="font-display font-semibold text-[16px] text-ink-900">
+            {locale === "kk" ? "Зертхана меңгерушісі" : locale === "en" ? "Head of laboratory" : "Заведующий лабораторией"}
+          </div>
+          <div class="text-[13px] text-ink-400 mt-0.5">imasa ИФА</div>
         </div>
       </div>
       <!-- 3 remaining placeholder slots -->
