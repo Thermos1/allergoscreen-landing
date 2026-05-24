@@ -94,18 +94,30 @@ const mapLinks: Record<string, { gis: string; google: string }> = {
             </div>
           </div>
 
-          <!-- Right: city placeholder visual (desktop only — saves vertical space on mobile) -->
-          <div class="hidden lg:flex bg-gradient-to-br from-brand-50 to-mist relative p-8 items-center justify-center">
-            <div class="text-center">
-              <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-white shadow-cta">
-                <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
-                </svg>
-              </div>
-              <div class="font-display font-bold text-[28px] mt-4 text-ink-900">{c.city}</div>
-              <div class="text-[13px] text-ink-400 mt-1">{c.hours}</div>
+          <!-- Right: real facade photo if available, else gradient placeholder (desktop only) -->
+          {c.slug === "karaganda" ? (
+            <div class="hidden lg:block relative">
+              <img
+                src="/photos/karaganda-facade-600.jpg"
+                srcset="/photos/karaganda-facade-600.jpg 1x, /photos/karaganda-facade-1200.jpg 2x"
+                alt="Фасад филиала Аллергоскрин в Караганде"
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
-          </div>
+          ) : (
+            <div class="hidden lg:flex bg-gradient-to-br from-brand-50 to-mist relative p-8 items-center justify-center">
+              <div class="text-center">
+                <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-white shadow-cta">
+                  <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 7-8 13-8 13s-8-6-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div class="font-display font-bold text-[28px] mt-4 text-ink-900">{c.city}</div>
+                <div class="text-[13px] text-ink-400 mt-1">{c.hours}</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     ))

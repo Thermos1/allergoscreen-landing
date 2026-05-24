@@ -24,10 +24,17 @@ function lp(target: string): string {
 
 <!-- STORY -->
 <section class="container-x py-16 lg:py-20">
-  <div class="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16">
+  <div class="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 items-start">
     <div class="reveal">
       <div class="eyebrow mb-3">{s.about_page.story_title.toUpperCase()}</div>
-      <h2 class="mb-0">{s.about_page.story_title}</h2>
+      <h2 class="mb-6 lg:mb-8">{s.about_page.story_title}</h2>
+      <img
+        src="/photos/interior-lobby-600.jpg"
+        srcset="/photos/interior-lobby-600.jpg 1x, /photos/interior-lobby-1200.jpg 2x"
+        alt="Холл лаборатории Аллергоскрин"
+        class="hidden lg:block rounded-2xl shadow-card w-full h-auto"
+        loading="lazy"
+      />
     </div>
     <div class="reveal space-y-4 text-[16.5px] text-ink-600 leading-relaxed">
       {s.about_page.story_body.map((p) => <p>{p}</p>)}
@@ -51,6 +58,64 @@ function lp(target: string): string {
           </div>
         ))
       }
+    </div>
+  </div>
+</section>
+
+<!-- PATENT & EXCLUSIVE DISTRIBUTOR (flagship trust signal) -->
+<section class="relative bg-ink-900 text-white overflow-hidden py-16 lg:py-24">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-crimson-500/8 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-brand/8 blur-3xl pointer-events-none"></div>
+  <div class="container-x relative">
+    <div class="max-w-narrow mb-10 lg:mb-14 reveal">
+      <div class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] font-bold text-crimson-400 mb-4">
+        <span class="h-1.5 w-1.5 rounded-full bg-crimson-500"></span>
+        {s.patent.eyebrow}
+      </div>
+      <h2 class="text-white mb-5">{s.patent.title}</h2>
+      <p class="text-white/75 text-[17px] md:text-[18px] leading-relaxed">{s.patent.lede}</p>
+    </div>
+
+    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-8 lg:gap-12 items-start">
+      <div class="space-y-4 lg:space-y-5 reveal">
+        {
+          s.patent.points.map((p, i) => (
+            <div class="p-6 lg:p-7 bg-white/[0.04] border border-white/10 rounded-2xl">
+              <div class="text-[11px] uppercase tracking-[0.16em] font-bold text-crimson-400 mb-2">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 class="text-white text-[17px] lg:text-[19px] mb-2">{p.title}</h3>
+              <p class="text-white/70 text-[14.5px] leading-relaxed">{p.body}</p>
+            </div>
+          ))
+        }
+        <a href="/docs/distributor-certificate.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-5 py-4 bg-white text-ink-900 rounded-xl hover:bg-mist transition group">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-crimson-50 text-crimson-600 group-hover:bg-crimson-500 group-hover:text-white transition">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/>
+            </svg>
+          </span>
+          <span>
+            <span class="block font-display font-semibold text-[14.5px]">{s.patent.download_label}</span>
+            <span class="block text-[12px] text-ink-400">{s.patent.download_meta}</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="reveal">
+        <img
+          src="/photos/certificates-triple-800.jpg"
+          srcset="/photos/certificates-triple-800.jpg 1x, /photos/certificates-triple-1600.jpg 2x"
+          alt="imasa ИФА — патент РК + Евразийский патент + сертификат эксклюзивного дистрибьютера"
+          width="800"
+          height="293"
+          class="w-full h-auto rounded-2xl shadow-card-hover bg-white p-2"
+          loading="lazy"
+        />
+        <p class="mt-3 text-[12px] text-white/45 text-center">
+          Сертификат дистрибьютера · Патент РК № 2632 · Евразийский патент № 05122
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -102,8 +167,25 @@ function lp(target: string): string {
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+      <!-- Real doctor photo (name pending from client) -->
+      <div class="card overflow-hidden reveal">
+        <div class="aspect-[4/5] bg-ink-900 relative overflow-hidden">
+          <img
+            src="/photos/doctor-1-400.jpg"
+            srcset="/photos/doctor-1-400.jpg 1x, /photos/doctor-1-800.jpg 2x"
+            alt="Врач лаборатории Аллергоскрин"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="p-4">
+          <div class="font-display font-semibold text-[16px] text-ink-900">Имя уточняется</div>
+          <div class="text-[13px] text-ink-400 mt-0.5">Врач лаборатории</div>
+        </div>
+      </div>
+      <!-- 3 remaining placeholder slots -->
       {
-        Array.from({ length: 4 }).map(() => (
+        Array.from({ length: 3 }).map(() => (
           <div class="card overflow-hidden reveal">
             <div class="aspect-[4/5] bg-gradient-to-br from-brand-50 to-mist relative">
               <div class="absolute inset-0 flex items-center justify-center">

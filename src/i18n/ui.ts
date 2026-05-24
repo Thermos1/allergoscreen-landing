@@ -277,6 +277,16 @@ type Strings = {
     download_ru: string;
     download_kk: string;
   };
+
+  // ---- Patent & exclusive-distributor (flagship trust signal) ----
+  patent: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    points: { title: string; body: string }[];
+    download_label: string;
+    download_meta: string;
+  };
 };
 
 const ru: Strings = {
@@ -695,6 +705,31 @@ const ru: Strings = {
     body: "Лаборатория «Аллергоскрин» прошла государственную аккредитацию Министерства здравоохранения Республики Казахстан и работает в системе обязательного социального медицинского страхования (ФСМС / ОСМС).",
     download_ru: "Аттестат аккредитации (рус)",
     download_kk: "Аккредитация аттестаты (қаз)",
+  },
+  patent: {
+    eyebrow: "Запатентованный метод",
+    title: "imasa ИФА — собственная разработка под патентом",
+    lede:
+      "Метод imasa ИФА (исследование иммуноглобулина E специфического к нестандартным аллергенам — нативным веществам, лекарственным препаратам в любой форме) изобретён и запатентован. ТОО «Аллергоскрин» — единственный эксклюзивный дистрибьютер метода в Евразийском регионе.",
+    points: [
+      {
+        title: "Патент Республики Казахстан № 2632",
+        body:
+          "Способ подготовки проб для иммуноферментного анализа на определение специфического иммуноглобулина E в плазме крови. Дата приоритета: 21.01.2022.",
+      },
+      {
+        title: "Евразийский патент № 05122",
+        body:
+          "Действует на территории Армении, Беларуси, Казахстана, Кыргызстана, России, Таджикистана, Туркменистана. Изобретатель и правообладатель: Кусаинова Д.",
+      },
+      {
+        title: "Эксклюзивная дистрибуция",
+        body:
+          "ТОО «Аллергоскрин» — единственный официальный дистрибьютер метода imasa ИФА. Других лабораторий в Евразийском регионе, проводящих этот анализ, нет.",
+      },
+    ],
+    download_label: "Сертификат дистрибьютера",
+    download_meta: "PDF · подлинник на территории государств — участников Евразийской патентной конвенции",
   },
 };
 
@@ -1116,6 +1151,31 @@ const kk: Strings = {
     download_ru: "Аккредитация аттестаты (орыс)",
     download_kk: "Аккредитация аттестаты (қаз)",
   },
+  patent: {
+    eyebrow: "Патенттелген әдіс",
+    title: "imasa ИФА — патентпен қорғалған меншікті әзірлеме",
+    lede:
+      "imasa ИФА әдісі (стандартты емес аллергендерге — нативті заттарға, кез келген түрдегі дәрілік препараттарға арналған спецификалық E иммуноглобулинін зерттеу) ойлап табылған және патенттелген. «Аллергоскрин» ЖШС — Еуразиялық аймақтағы әдістің жалғыз эксклюзивті дистрибьюторы.",
+    points: [
+      {
+        title: "Қазақстан Республикасының № 2632 патенті",
+        body:
+          "Қан плазмасында спецификалық E иммуноглобулинін анықтауға арналған иммуноферменттік талдау үшін үлгілерді дайындау әдісі. Басымдық күні: 21.01.2022.",
+      },
+      {
+        title: "Еуразиялық патент № 05122",
+        body:
+          "Армения, Беларусь, Қазақстан, Қырғызстан, Ресей, Тәжікстан, Түрікменстан аумағында әрекет етеді. Өнертапқыш және құқық иеленуші: Құсайынова Д.",
+      },
+      {
+        title: "Эксклюзивті дистрибьюция",
+        body:
+          "«Аллергоскрин» ЖШС — imasa ИФА әдісінің жалғыз ресми дистрибьюторы. Еуразиялық аймақта бұл талдауды жүргізетін басқа зертханалар жоқ.",
+      },
+    ],
+    download_label: "Дистрибьютор сертификаты",
+    download_meta: "PDF · Еуразиялық патенттік конвенцияға қатысушы мемлекеттер аумағында түпнұсқа",
+  },
 };
 
 const en: Strings = {
@@ -1530,6 +1590,31 @@ const en: Strings = {
     body: "Allergoscreen Laboratory is accredited by the Ministry of Health of the Republic of Kazakhstan and operates within the state mandatory medical insurance system (OSMS).",
     download_ru: "Accreditation certificate (Russian, PDF)",
     download_kk: "Accreditation certificate (Kazakh, PDF)",
+  },
+  patent: {
+    eyebrow: "Patented method",
+    title: "imasa ELISA — proprietary patented technology",
+    lede:
+      "The imasa ELISA method (testing for IgE specific to non-standard allergens — native substances and medications in any form) is invented and patented. Allergoscreen LLP is the sole exclusive distributor of the method across the Eurasian region.",
+    points: [
+      {
+        title: "Republic of Kazakhstan Patent No. 2632",
+        body:
+          "Method for sample preparation for enzyme-linked immunosorbent assay for the determination of specific immunoglobulin E in blood plasma. Priority date: 21.01.2022.",
+      },
+      {
+        title: "Eurasian Patent No. 05122",
+        body:
+          "Valid in Armenia, Belarus, Kazakhstan, Kyrgyzstan, Russia, Tajikistan, Turkmenistan. Inventor and rights holder: D. Kussainova.",
+      },
+      {
+        title: "Exclusive distribution",
+        body:
+          "Allergoscreen LLP is the only official distributor of the imasa ELISA method. No other laboratory in the Eurasian region offers this test.",
+      },
+    ],
+    download_label: "Distributor certificate",
+    download_meta: "PDF · original on the territory of Eurasian Patent Convention member states",
   },
 };
 
