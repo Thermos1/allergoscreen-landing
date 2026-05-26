@@ -276,6 +276,8 @@ type Strings = {
     body: string;
     download_ru: string;
     download_kk: string;
+    download_license: string;
+    license_meta: string;
   };
 
   // ---- Patent & exclusive-distributor (flagship trust signal) ----
@@ -705,6 +707,8 @@ const ru: Strings = {
     body: "Лаборатория «Аллергоскрин» прошла государственную аккредитацию Министерства здравоохранения Республики Казахстан и работает в системе обязательного социального медицинского страхования (ФСМС / ОСМС).",
     download_ru: "Аттестат аккредитации (рус)",
     download_kk: "Аккредитация аттестаты (қаз)",
+    download_license: "Лицензия Минздрава РК № 17017427",
+    license_meta: "PDF · выдана 10.10.2017 · неотчуждаемая, класс 1",
   },
   patent: {
     eyebrow: "Запатентованный метод",
@@ -1150,6 +1154,8 @@ const kk: Strings = {
     body: "«Аллергоскрин» зертханасы Қазақстан Республикасы Денсаулық сақтау министрлігінің мемлекеттік аккредитациясынан өтіп, міндетті әлеуметтік медициналық сақтандыру (ӘМСҚ / МӘМС) жүйесінде жұмыс істейді.",
     download_ru: "Аккредитация аттестаты (орыс)",
     download_kk: "Аккредитация аттестаты (қаз)",
+    download_license: "ҚР Денсаулық сақтау министрлігінің лицензиясы № 17017427",
+    license_meta: "PDF · 10.10.2017 берілген · ажыратылмайтын, 1-сынып",
   },
   patent: {
     eyebrow: "Патенттелген әдіс",
@@ -1590,6 +1596,8 @@ const en: Strings = {
     body: "Allergoscreen Laboratory is accredited by the Ministry of Health of the Republic of Kazakhstan and operates within the state mandatory medical insurance system (OSMS).",
     download_ru: "Accreditation certificate (Russian, PDF)",
     download_kk: "Accreditation certificate (Kazakh, PDF)",
+    download_license: "Medical license No. 17017427 (Ministry of Health, RK)",
+    license_meta: "PDF · issued 10.10.2017 · non-transferable, class 1",
   },
   patent: {
     eyebrow: "Patented method",
