@@ -17,6 +17,7 @@ const PAGES: { path: string; locales: ("ru" | "kk" | "en")[]; priority: number; 
   { path: "/locations", locales: ["ru", "kk", "en"], priority: 0.9, changefreq: "monthly" },
   { path: "/about", locales: ["ru", "kk", "en"], priority: 0.8, changefreq: "monthly" },
   { path: "/osms", locales: ["ru", "kk", "en"], priority: 0.8, changefreq: "monthly" },
+  { path: "/clinics", locales: ["ru"], priority: 0.7, changefreq: "monthly" },
   { path: "/preparation", locales: ["ru", "kk"], priority: 0.7, changefreq: "yearly" },
   { path: "/offer", locales: ["ru", "kk"], priority: 0.4, changefreq: "yearly" },
   { path: "/consent", locales: ["ru", "kk"], priority: 0.4, changefreq: "yearly" },
