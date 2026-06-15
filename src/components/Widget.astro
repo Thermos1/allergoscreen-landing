@@ -8,7 +8,9 @@ interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
-const w = t(locale).widget;
+const s = t(locale);
+const w = s.widget;
+const privacyHref = locale === "ru" ? "/privacy" : `/${locale}/privacy`;
 ---
 
 <!-- Teaser bubble (desktop only, after 22s) -->
@@ -87,6 +89,10 @@ const w = t(locale).widget;
       </svg>
     </button>
   </form>
+  <p class="px-3 pb-2.5 pt-0 text-[10.5px] leading-snug text-ink-400 bg-white">
+    {w.consent_note}{" "}
+    <a href={privacyHref} class="text-brand-700 hover:underline">{s.footer.links.privacy}</a>
+  </p>
 </aside>
 
 <script define:vars={{ W: w, LOCALE: locale }}>

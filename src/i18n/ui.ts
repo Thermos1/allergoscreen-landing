@@ -187,6 +187,7 @@ type Strings = {
     aria_open: string;
     aria_close: string;
     aria_send: string;
+    consent_note: string;
   };
 
   // ---- Cookie banner ----
@@ -535,6 +536,8 @@ const ru: Strings = {
     aria_open: "Открыть чат",
     aria_close: "Закрыть чат",
     aria_send: "Отправить сообщение",
+    consent_note:
+      "Сообщения обрабатываются ИИ-ассистентом и облачным сервисом привлекаемого партнёра, возможна трансграничная передача данных. Не вводите чувствительные данные.",
   },
   cookie: {
     text:
@@ -983,6 +986,8 @@ const kk: Strings = {
     aria_open: "Чатты ашу",
     aria_close: "Чатты жабу",
     aria_send: "Хабарлама жіберу",
+    consent_note:
+      "Хабарламалар ЖИ-ассистент пен тартылатын серіктестің бұлттық сервисінде өңделеді, деректердің трансшекаралық берілуі мүмкін. Құпия деректерді енгізбеңіз.",
   },
   cookie: {
     text:
@@ -1426,6 +1431,8 @@ const en: Strings = {
     aria_open: "Open chat",
     aria_close: "Close chat",
     aria_send: "Send message",
+    consent_note:
+      "Messages are processed by an AI assistant and a cloud service of an engaged partner; cross-border data transfer may occur. Do not enter sensitive data.",
   },
   cookie: {
     text:

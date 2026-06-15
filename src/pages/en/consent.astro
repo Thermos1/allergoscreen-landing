@@ -1,0 +1,71 @@
+---
+import Base from "../../layouts/Base.astro";
+import StaticPage from "../../components/StaticPage.astro";
+---
+
+<Base locale="en" title="Patient informed consent — Allergoscreen">
+  <StaticPage
+    locale="en"
+    title="Patient informed consent for undergoing laboratory tests"
+    intro="Form Ф-01-ДП-ПП-ИС-10. Signed in person by the patient or their legal representative at registration in any Allergoscreen LLP branch. The binding version is signed at the branch in Russian or Kazakh."
+  >
+    <p class="text-[12.5px] text-ink-400 mb-6">
+      <a href="/consent" class="text-brand-700 hover:underline">Русская версия →</a>
+      <span class="mx-2 text-ink-300">·</span>
+      <a href="/kk/consent" class="text-brand-700 hover:underline">Қазақша нұсқа →</a>
+    </p>
+
+    <p>I, <em class="text-ink-400">[full name of the citizen / parent / legal representative],</em> <em class="text-ink-400">[date of birth]</em>, residing at <em class="text-ink-400">[address]</em>, IIN <em class="text-ink-400">[number]</em>, on the basis of <strong>Article 87 of the Code of the RK “On the Health of the People and the Healthcare System”</strong>, give my informed voluntary consent for Allergoscreen LLP to perform the following laboratory tests:</p>
+
+    <ol class="list-decimal pl-6 space-y-1.5 my-4">
+      <li>Survey activities (questionnaire).</li>
+      <li>Laboratory examination.</li>
+      <li>Collection of biological material in accordance with the requirements of the performed laboratory tests.</li>
+    </ol>
+
+    <p>I consent to the following person(s) undergoing laboratory tests: <em class="text-ink-400">[FULL NAME IN CAPITALS, date of birth, contact phone]</em>.</p>
+
+    <h2 class="!text-[24px] !mt-8 !mb-3">What was explained to me before sampling</h2>
+    <p>I discussed with the staff of the medical organisation: the nature of the procedure, the preparation stages, the testing methodology, the place of sampling, the procedure for collecting biological material and the details of test performance. I received all the necessary information.</p>
+    <p>I understand that if health indicators deviate from the norm, additional examination may be required.</p>
+    <p>I understand that, due to method limitations, the test may not be carried out (I will be notified of this) or the results may be inaccurate. I discussed all related risks with the doctor.</p>
+
+    <h2 class="!text-[24px] !mt-8 !mb-3">Disclosure of health status</h2>
+    <p>I informed the medical staff about all health problems and particularities (mark those applicable):</p>
+    <ul class="list-disc pl-6 space-y-1.5">
+      <li>pregnancy (term ____ weeks);</li>
+      <li>hereditary factors;</li>
+      <li>allergic manifestations;</li>
+      <li>intolerance to medicines / foods;</li>
+      <li>tobacco use;</li>
+      <li>alcohol abuse;</li>
+      <li>use of narcotic substances;</li>
+      <li>past injuries, surgeries, diseases, anaesthesia;</li>
+      <li>occupational / environmental factors affecting me;</li>
+      <li>medicines currently being taken.</li>
+    </ul>
+
+    <h2 class="!text-[24px] !mt-8 !mb-3">Patient rights</h2>
+    <p>I understand the purposes and nature of the diagnostic and treatment procedures, the possible side effects, the unintended harm to health and the actions required during the procedures.</p>
+    <p>I have the right to withdraw this informed consent at any time while it remains in effect, or to refuse one or all procedures before the medical procedures begin. The consequences of refusal have been explained to me.</p>
+    <p>I fully understand the text set out above and have no complaints against the specialist / medical worker regarding the availability or volume of the information provided.</p>
+
+    <h2 class="!text-[24px] !mt-8 !mb-3">Consent to the processing of personal data</h2>
+    <p>I consent to the processing of my personal data, including its cross-border transfer and processing using automated (AI) and cloud services of engaged partners. This consent may be withdrawn.</p>
+    <p class="text-[14px] text-ink-400">More about the processing, the list of engaged partners and the withdrawal procedure — in the <a href="/en/privacy" class="text-brand-700 hover:underline">Privacy policy</a>.</p>
+
+    <h2 class="!text-[24px] !mt-8 !mb-3">Validity</h2>
+    <p>This informed consent is valid from the date of its signing for the entire period of laboratory testing at Allergoscreen LLP.</p>
+
+    <p class="text-[14px] text-ink-400 mt-8">The meaning of the document was explained in accordance with <strong class="text-ink-900">Articles 77, 134, 162 of the Code of the RK “On the Health of the People and the Healthcare System”</strong>.</p>
+
+    <div class="mt-10 p-5 bg-mist border border-rule rounded-xl text-[14.5px]">
+      <p class="font-semibold text-ink-900 mb-2">Where and how to sign</p>
+      <p class="text-ink-600 leading-relaxed">
+        This document is signed in person by the patient or their legal representative at registration in any of our branches:
+        <a href="/en/locations" class="text-brand-700 hover:underline">Astana / Almaty / Karaganda / Temirtau</a>.
+        The form is provided on site; a sample is available on request from the call centre: <a href="tel:+77024786568" class="text-brand-700 hover:underline">+7 702 478 65 68</a>.
+      </p>
+    </div>
+  </StaticPage>
+</Base>

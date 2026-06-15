@@ -13,6 +13,21 @@ function lp(target: string): string {
   return `/${locale}${target === "/" ? "" : target}`;
 }
 
+// Legal pages don't all exist in every locale yet. Link to the localized
+// version when it exists, otherwise fall back to the RU page (avoids 404s).
+const LEGAL_LOCALES: Record<string, ("ru" | "kk" | "en")[]> = {
+  "/preparation": ["ru", "kk"],
+  "/offer": ["ru", "kk"],
+  "/consent": ["ru", "kk", "en"],
+  "/complaints": ["ru"],
+  "/quality": ["ru"],
+  "/privacy": ["ru", "kk", "en"],
+};
+function legalHref(target: string): string {
+  const locales = LEGAL_LOCALES[target] ?? ["ru"];
+  return locales.includes(locale) ? lp(target) : target;
+}
+
 const year = new Date().getFullYear();
 ---
 
@@ -61,12 +76,12 @@ const year = new Date().getFullYear();
       <div>
         <h4 class="text-white font-display font-semibold text-base mb-4">{s.footer.col_patients}</h4>
         <ul class="space-y-2.5 text-[14px]">
-          <li><a href="/preparation" class="text-white/65 hover:text-brand-300">{s.footer.links.preparation}</a></li>
-          <li><a href="/offer" class="text-white/65 hover:text-brand-300">{s.footer.links.offer}</a></li>
-          <li><a href="/consent" class="text-white/65 hover:text-brand-300">{s.footer.links.consent}</a></li>
-          <li><a href="/complaints" class="text-white/65 hover:text-brand-300">{s.footer.links.complaints}</a></li>
-          <li><a href="/quality" class="text-white/65 hover:text-brand-300">{s.footer.links.quality}</a></li>
-          <li><a href="/privacy" class="text-white/65 hover:text-brand-300">{s.footer.links.privacy}</a></li>
+          <li><a href={legalHref("/preparation")} class="text-white/65 hover:text-brand-300">{s.footer.links.preparation}</a></li>
+          <li><a href={legalHref("/offer")} class="text-white/65 hover:text-brand-300">{s.footer.links.offer}</a></li>
+          <li><a href={legalHref("/consent")} class="text-white/65 hover:text-brand-300">{s.footer.links.consent}</a></li>
+          <li><a href={legalHref("/complaints")} class="text-white/65 hover:text-brand-300">{s.footer.links.complaints}</a></li>
+          <li><a href={legalHref("/quality")} class="text-white/65 hover:text-brand-300">{s.footer.links.quality}</a></li>
+          <li><a href={legalHref("/privacy")} class="text-white/65 hover:text-brand-300">{s.footer.links.privacy}</a></li>
         </ul>
       </div>
 

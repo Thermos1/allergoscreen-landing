@@ -20,8 +20,8 @@ const PAGES: { path: string; locales: ("ru" | "kk" | "en")[]; priority: number; 
   { path: "/clinics", locales: ["ru"], priority: 0.7, changefreq: "monthly" },
   { path: "/preparation", locales: ["ru", "kk"], priority: 0.7, changefreq: "yearly" },
   { path: "/offer", locales: ["ru", "kk"], priority: 0.4, changefreq: "yearly" },
-  { path: "/consent", locales: ["ru", "kk"], priority: 0.4, changefreq: "yearly" },
-  { path: "/privacy", locales: ["ru"], priority: 0.3, changefreq: "yearly" },
+  { path: "/consent", locales: ["ru", "kk", "en"], priority: 0.4, changefreq: "yearly" },
+  { path: "/privacy", locales: ["ru", "kk", "en"], priority: 0.3, changefreq: "yearly" },
   { path: "/complaints", locales: ["ru"], priority: 0.3, changefreq: "yearly" },
   { path: "/quality", locales: ["ru"], priority: 0.3, changefreq: "yearly" },
 ];
