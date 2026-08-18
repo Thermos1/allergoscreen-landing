@@ -70,6 +70,20 @@ type Strings = {
     label: string;
     body: string;
     cta: string;
+    cta_short: string;
+  };
+
+  // ---- Results band (homepage) — how to get results from the patient portal ----
+  results: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    steps: { title: string; body: string }[];
+    cta: string;
+    note: string;
+    help_label: string;
+    help_body: string;
+    help_cta: string;
   };
 
   // ---- Hero section ----
@@ -315,6 +329,33 @@ const ru: Strings = {
     label: "Результаты анализов",
     body: "Войдите в личный кабинет пациента — это защищённый канал получения результатов согласно требованиям РК.",
     cta: "Войти в личный кабинет →",
+    cta_short: "Войти",
+  },
+  results: {
+    eyebrow: "Личный кабинет пациента",
+    title: "Результаты анализов — онлайн",
+    lede:
+      "Готовые результаты доступны в защищённом личном кабинете на портале Bregis: результат можно посмотреть на экране и скачать в PDF.",
+    steps: [
+      {
+        title: "Откройте личный кабинет",
+        body: "Кнопка «Получить результаты» есть вверху каждой страницы сайта.",
+      },
+      {
+        title: "Войдите по ИИН, телефону или e-mail",
+        body: "Второе поле — код пациента, который выдают в филиале при сдаче анализа.",
+      },
+      {
+        title: "Смотрите и скачивайте PDF",
+        body: "Готовое исследование можно открыть или сохранить в PDF. Пока анализ в работе — виден его статус.",
+      },
+    ],
+    cta: "Открыть личный кабинет",
+    note:
+      "Результаты передаются только через личный кабинет — это защищённый канал согласно требованиям РК. Мы не отправляем результаты в WhatsApp, Telegram или на e-mail и не сообщаем их по телефону.",
+    help_label: "Нет кода пациента?",
+    help_body: "Позвоните в свой филиал — мы подскажем.",
+    help_cta: "Контакты филиалов",
   },
   hero: {
     eyebrow: "Медицинская лаборатория аллергологии и иммунологии",
@@ -767,6 +808,33 @@ const kk: Strings = {
     body:
       "Пациенттің жеке кабинетіне кіріңіз — нәтижелерді алудың қорғалған арнасы (ҚР заңнамасы талаптарына сәйкес).",
     cta: "Жеке кабинетке кіру →",
+    cta_short: "Кіру",
+  },
+  results: {
+    eyebrow: "Пациенттің жеке кабинеті",
+    title: "Талдау нәтижелері — онлайн",
+    lede:
+      "Дайын нәтижелер Bregis порталындағы қорғалған жеке кабинетте қолжетімді: нәтижені экраннан көруге және PDF түрінде жүктеп алуға болады.",
+    steps: [
+      {
+        title: "Жеке кабинетті ашыңыз",
+        body: "«Нәтижелерді алу» түймесі сайттың әр бетінің жоғарғы жағында тұр.",
+      },
+      {
+        title: "ЖСН, телефон немесе e-mail арқылы кіріңіз",
+        body: "Екінші өріс — талдау тапсырғанда филиалда берілетін пациент коды.",
+      },
+      {
+        title: "Нәтижені көріңіз және PDF жүктеңіз",
+        body: "Дайын зерттеуді ашуға немесе PDF түрінде сақтауға болады. Талдау орындалу үстінде болса, оның мәртебесі көрінеді.",
+      },
+    ],
+    cta: "Жеке кабинетті ашу",
+    note:
+      "Нәтижелер тек жеке кабинет арқылы жіберіледі — бұл ҚР талаптарына сай қорғалған арна. Біз нәтижелерді WhatsApp, Telegram немесе e-mail арқылы жібермейміз және телефон арқылы хабарламаймыз.",
+    help_label: "Пациент коды жоқ па?",
+    help_body: "Өз филиалыңызға қоңырау шалыңыз — көмектесеміз.",
+    help_cta: "Филиалдар байланысы",
   },
   hero: {
     eyebrow: "Аллергология және иммунология медициналық зертханасы",
@@ -1213,6 +1281,33 @@ const en: Strings = {
     body:
       "Log in to the patient portal — the secure channel for receiving results, per Kazakhstan health regulations.",
     cta: "Open patient portal →",
+    cta_short: "Sign in",
+  },
+  results: {
+    eyebrow: "Patient portal",
+    title: "Test results online",
+    lede:
+      "Ready results are available in the secure patient portal on Bregis: view a result on screen or download it as a PDF.",
+    steps: [
+      {
+        title: "Open the patient portal",
+        body: "The “Get results” button sits at the top of every page of this site.",
+      },
+      {
+        title: "Sign in with IIN, phone or e-mail",
+        body: "The second field is the patient code issued at the branch when you give your sample.",
+      },
+      {
+        title: "View and download the PDF",
+        body: "A completed test opens on screen or saves as a PDF. While a test is still running you see its status.",
+      },
+    ],
+    cta: "Open patient portal",
+    note:
+      "Results are delivered through the patient portal only — a secure channel required by Kazakhstan regulations. We never send results via WhatsApp, Telegram or e-mail, and never give them over the phone.",
+    help_label: "No patient code?",
+    help_body: "Call your branch — we will help.",
+    help_cta: "Branch contacts",
   },
   hero: {
     eyebrow: "Allergy & immunology medical laboratory",
