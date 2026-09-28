@@ -310,7 +310,7 @@ const ru: Strings = {
   meta: {
     title: "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии в Казахстане",
     description:
-      "Точные ответы на сложные аллергии. imasa ИФА — проверим реакцию на любое вещество, которое вы принесёте. Анализы IgE, ALEX-300, аутоиммунные панели. Караганда, Астана, Алматы, Темиртау. ОСМС.",
+      "Точные ответы на сложные аллергии. imasa ИФА — проверим реакцию на любое вещество, которое вы принесёте. Анализы IgE, ALEX-300, аутоиммунные панели. Караганда, Астана, Алматы, Темиртау, Шымкент. ОСМС.",
     og_alt: "Аллергоскрин — медицинская лаборатория",
   },
   nav: {
@@ -488,11 +488,11 @@ const ru: Strings = {
       "Общий IgE — первичная диагностика",
     ],
     cta: "Как получить направление →",
-    note: "Тарификатор 2026. ОСМС работает во всех 4 филиалах.",
+    note: "Тарификатор 2026. ОСМС работает во всех филиалах.",
   },
   locations_preview: {
     eyebrow: "Где сдать",
-    title: "4 филиала в Казахстане",
+    title: "5 городов Казахстана",
     lede:
       "Сдача без записи, в порядке живой очереди. Забор крови — 1 000 ₸ в клинике. Выезд на дом — только в Астане (10 000 ₸).",
     days_short: { mon_sat: "Пн–Сб", mon_fri: "Пн–Пт", sat: "Сб", sun_off: "Вс выходной" },
@@ -515,7 +515,7 @@ const ru: Strings = {
         slug: "karaganda",
         city: "Караганда",
         addresses: ["мкр. Степной-2, 18/1"],
-        hours: "Пн–Сб 08:00–14:00",
+        hours: "Пн–Пт 08:00–14:00 · Сб 08:00–12:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -524,6 +524,13 @@ const ru: Strings = {
         addresses: ["пр. Мира, 114"],
         hours: "Пн–Сб 08:00–12:00",
         phone_label: "+7 778 941 60 36",
+      },
+      {
+        slug: "shymkent",
+        city: "Шымкент",
+        addresses: ["ул. Акпан батыра, 42, 1 этаж", "просп. Кабанбай батыра, 26 (Park Health)", "просп. Байдибек би, 125 (Асем)", "ул. Толеметова, 69/30"],
+        hours: "Пн–Сб 08:00–13:00",
+        phone_label: "+7 775 226 65 30",
       },
     ],
     cta: "Подробнее о филиалах →",
@@ -589,7 +596,7 @@ const ru: Strings = {
   services_page: {
     title: "Анализы и цены",
     lede:
-      "Полный перечень исследований с актуальными ценами по городам. Цены в Караганде и Темиртау немного ниже, чем в Астане и Алматы. ОСМС покрывает imasa ИФА, специфический IgE и общий IgE.",
+      "Полный перечень исследований с актуальными ценами по городам. Цены в Караганде и Темиртау немного ниже, чем в Астане и Алматы, в Шымкенте — немного выше. ОСМС покрывает imasa ИФА, специфический IgE и общий IgE.",
     filter_label: "Категория",
     filters: [
       { id: "allergy", label: "Аллергология" },
@@ -622,7 +629,7 @@ const ru: Strings = {
   locations_page: {
     title: "Филиалы",
     lede:
-      "Четыре города, без записи, в порядке живой очереди. Принимаем все формы оплаты, включая ОСМС по электронному направлению.",
+      "Пять городов, без записи, в порядке живой очереди. Оплата наличными или картой в регистратуре, по ОСМС — по электронному направлению.",
     detail_address: "Адреса",
     detail_hours: "Часы работы",
     detail_phone: "Колл-центр",
@@ -701,7 +708,7 @@ const ru: Strings = {
   about_page: {
     title: "О лаборатории",
     lede:
-      "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии. Работаем с 2015 года, четыре филиала по Казахстану, собственная методика imasa.",
+      "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии. Работаем с 2015 года, филиалы в пяти городах Казахстана, собственная методика imasa.",
     story_title: "Зачем мы здесь",
     story_body: [
       "Большинство аллергологических лабораторий в Казахстане работают только со стандартными панелями IgE — пыльца, основные продукты, эпителий животных. Если у пациента реакция на конкретное лекарство, материал или анестетик — таких лабораторий просто нет.",
@@ -788,7 +795,7 @@ const kk: Strings = {
     title:
       "Аллергоскрин — Қазақстандағы аллергология және иммунология медициналық зертханасы",
     description:
-      "Күрделі аллергияларға дәл жауап. imasa ИФА — өзіңіз әкелген кез келген затқа реакцияны тексереміз. IgE, ALEX-300, аутоиммунды панельдер. Қарағанды, Астана, Алматы, Теміртау. МӘМС.",
+      "Күрделі аллергияларға дәл жауап. imasa ИФА — өзіңіз әкелген кез келген затқа реакцияны тексереміз. IgE, ALEX-300, аутоиммунды панельдер. Қарағанды, Астана, Алматы, Теміртау, Шымкент. МӘМС.",
     og_alt: "Аллергоскрин — медициналық зертхана",
   },
   nav: {
@@ -965,11 +972,11 @@ const kk: Strings = {
       "Жалпы IgE — алғашқы диагностика",
     ],
     cta: "Жолдаманы қалай алу керек →",
-    note: "2026 тарификаторы. МӘМС барлық 4 филиалда жұмыс істейді.",
+    note: "2026 тарификаторы. МӘМС барлық филиалда жұмыс істейді.",
   },
   locations_preview: {
     eyebrow: "Қайда тапсыруға болады",
-    title: "Қазақстандағы 4 филиал",
+    title: "Қазақстанның 5 қаласы",
     lede:
       "Жазылусыз, тірі кезек тәртібімен тапсыру. Қан алу — клиникада 1 000 ₸. Үйге шығу қызметі тек Астанада (10 000 ₸).",
     days_short: { mon_sat: "Дс–Сб", mon_fri: "Дс–Жм", sat: "Сб", sun_off: "Жс демалыс" },
@@ -992,7 +999,7 @@ const kk: Strings = {
         slug: "karaganda",
         city: "Қарағанды",
         addresses: ["Степной-2 ы/а, 18/1"],
-        hours: "Дс–Сб 08:00–14:00",
+        hours: "Дс–Жм 08:00–14:00 · Сб 08:00–12:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1001,6 +1008,13 @@ const kk: Strings = {
         addresses: ["Бейбітшілік даң., 114"],
         hours: "Дс–Сб 08:00–12:00",
         phone_label: "+7 778 941 60 36",
+      },
+      {
+        slug: "shymkent",
+        city: "Шымкент",
+        addresses: ["Ақпан батыр к-сі, 42, 1-қабат", "Қабанбай батыр даң., 26 (Park Health)", "Байдібек би даң., 125 (Асем)", "Төлеметов к-сі, 69/30"],
+        hours: "Дс–Сб 08:00–13:00",
+        phone_label: "+7 775 226 65 30",
       },
     ],
     cta: "Филиалдар туралы толығырақ →",
@@ -1066,7 +1080,7 @@ const kk: Strings = {
   services_page: {
     title: "Талдаулар мен бағалар",
     lede:
-      "Қалалар бойынша өзекті бағалармен зерттеулердің толық тізімі. Қарағанды мен Теміртау бағалары Астана мен Алматыдан сәл төмен. МӘМС imasa ИФА, спецификалық IgE және жалпы IgE жабады.",
+      "Қалалар бойынша өзекті бағалармен зерттеулердің толық тізімі. Қарағанды мен Теміртау бағалары Астана мен Алматыдан сәл төмен, Шымкентте — сәл жоғары. МӘМС imasa ИФА, спецификалық IgE және жалпы IgE жабады.",
     filter_label: "Санат",
     filters: [
       { id: "allergy", label: "Аллергология" },
@@ -1099,7 +1113,7 @@ const kk: Strings = {
   locations_page: {
     title: "Филиалдар",
     lede:
-      "Төрт қала, жазылусыз, тірі кезек тәртібімен. Төлемнің барлық түрлерін, оның ішінде МӘМС электронды жолдама бойынша қабылдаймыз.",
+      "Бес қала, жазылусыз, тірі кезек тәртібімен. Тіркеу орнында қолма-қол ақшамен немесе картамен төлеуге болады, МӘМС бойынша — электронды жолдамамен.",
     detail_address: "Мекенжайлар",
     detail_hours: "Жұмыс уақыты",
     detail_phone: "Колл-орталық",
@@ -1177,7 +1191,7 @@ const kk: Strings = {
   about_page: {
     title: "Зертхана туралы",
     lede:
-      "Аллергоскрин — аллергология және иммунология медициналық зертханасы. 2015 жылдан бері жұмыс істейміз, Қазақстан бойынша төрт филиал, меншікті imasa әдістемесі.",
+      "Аллергоскрин — аллергология және иммунология медициналық зертханасы. 2015 жылдан бері жұмыс істейміз, Қазақстанның бес қаласында филиал, меншікті imasa әдістемесі.",
     story_title: "Біз неге осындамыз",
     story_body: [
       "Қазақстандағы аллергологиялық зертханалардың көпшілігі тек стандартты IgE панельдерімен ғана жұмыс істейді — тозаң, негізгі тағамдар, жануарлар эпителиі. Егер пациентте нақты дәріге, материалға немесе анестетикке реакция болса — мұндай зертханалар жоқ.",
@@ -1261,7 +1275,7 @@ const en: Strings = {
   meta: {
     title: "Allergoscreen — Allergy & Immunology Laboratory in Kazakhstan",
     description:
-      "Precise answers for complex allergies. imasa ELISA — we test your reaction to any substance you bring. IgE, ALEX-300, autoimmune panels. Karaganda, Astana, Almaty, Temirtau.",
+      "Precise answers for complex allergies. imasa ELISA — we test your reaction to any substance you bring. IgE, ALEX-300, autoimmune panels. Karaganda, Astana, Almaty, Temirtau, Shymkent.",
     og_alt: "Allergoscreen — medical laboratory",
   },
   nav: {
@@ -1437,11 +1451,11 @@ const en: Strings = {
       "General IgE — initial diagnostics",
     ],
     cta: "How to get a referral →",
-    note: "2026 tariff. OSMS works at all 4 locations.",
+    note: "2026 tariff. OSMS works at every location.",
   },
   locations_preview: {
     eyebrow: "Where to come",
-    title: "4 locations in Kazakhstan",
+    title: "5 cities in Kazakhstan",
     lede:
       "Walk-in, first-come-first-served. Blood draw — 1,000 KZT at the clinic. Home visits only in Astana (10,000 KZT).",
     days_short: { mon_sat: "Mon–Sat", mon_fri: "Mon–Fri", sat: "Sat", sun_off: "Sun off" },
@@ -1464,7 +1478,7 @@ const en: Strings = {
         slug: "karaganda",
         city: "Karaganda",
         addresses: ["Stepnoy-2 microdistrict, 18/1"],
-        hours: "Mon–Sat 08:00–14:00",
+        hours: "Mon–Fri 08:00–14:00 · Sat 08:00–12:00",
         phone_label: "+7 778 941 60 36",
       },
       {
@@ -1473,6 +1487,13 @@ const en: Strings = {
         addresses: ["Mira Ave., 114"],
         hours: "Mon–Sat 08:00–12:00",
         phone_label: "+7 778 941 60 36",
+      },
+      {
+        slug: "shymkent",
+        city: "Shymkent",
+        addresses: ["Akpan Batyr str., 42, 1st floor", "Kabanbay Batyr Ave., 26 (Park Health)", "Baidibek Bi Ave., 125 (Asem)", "Tolemetov str., 69/30"],
+        hours: "Mon–Sat 08:00–13:00",
+        phone_label: "+7 775 226 65 30",
       },
     ],
     cta: "More about locations →",
@@ -1538,7 +1559,7 @@ const en: Strings = {
   services_page: {
     title: "Tests & pricing",
     lede:
-      "Full list of tests with current prices by city. Karaganda and Temirtau prices are slightly lower than Astana and Almaty. Kazakhstan OSMS insurance covers imasa ELISA, specific IgE and general IgE.",
+      "Full list of tests with current prices by city. Karaganda and Temirtau prices are slightly lower than Astana and Almaty, Shymkent's slightly higher. Kazakhstan OSMS insurance covers imasa ELISA, specific IgE and general IgE.",
     filter_label: "Category",
     filters: [
       { id: "allergy", label: "Allergology" },
@@ -1571,7 +1592,7 @@ const en: Strings = {
   locations_page: {
     title: "Locations",
     lede:
-      "Four cities, walk-in, first-come-first-served. We accept all payment methods, including OSMS with an electronic referral.",
+      "Five cities, walk-in, first-come-first-served. Pay in cash or by card at the front desk, or under OSMS with an electronic referral.",
     detail_address: "Addresses",
     detail_hours: "Working hours",
     detail_phone: "Call centre",
@@ -1649,7 +1670,7 @@ const en: Strings = {
   about_page: {
     title: "About the lab",
     lede:
-      "Allergoscreen — allergy and immunology medical laboratory. Operating since 2015, four locations across Kazakhstan, proprietary imasa methodology.",
+      "Allergoscreen — allergy and immunology medical laboratory. Operating since 2015, locations in five cities across Kazakhstan, proprietary imasa methodology.",
     story_title: "Why we exist",
     story_body: [
       "Most allergy labs in Kazakhstan work only with standard IgE panels — pollen, common foods, animal epithelium. If a patient reacts to a specific drug, material or anaesthetic — such labs simply don't exist.",

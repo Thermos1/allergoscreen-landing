@@ -14,6 +14,13 @@ interface Props {
 const { locale } = Astro.props;
 const s = t(locale);
 
+// City names for the per-city price notes under a row.
+const varianceCities = {
+  ru: { low: "Караганда / Темиртау", high: "Шымкент" },
+  kk: { low: "Қарағанды / Теміртау", high: "Шымкент" },
+  en: { low: "Karaganda / Temirtau", high: "Shymkent" },
+};
+
 function lp(target: string): string {
   if (locale === "ru") return target;
   return `/${locale}${target === "/" ? "" : target}`;
@@ -86,7 +93,12 @@ function lp(target: string): string {
                           )}
                           {variance && (
                             <span class="text-[12px] text-ink-400">
-                              Караганда / Темиртау · {formatPrice(variance.karaganda)} {s.services_page.price_unit}
+                              {varianceCities[locale].low} · {formatPrice(variance.karaganda)} {s.services_page.price_unit}
+                            </span>
+                          )}
+                          {variance && (
+                            <span class="text-[12px] text-ink-400">
+                              {varianceCities[locale].high} · {formatPrice(variance.shymkent)} {s.services_page.price_unit}
                             </span>
                           )}
                         </div>

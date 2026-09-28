@@ -31,9 +31,14 @@ const mapLinks: Record<string, { gis: string; google: string }> = {
     gis: "https://2gis.kz/temirtau/search/%D0%9C%D0%B8%D1%80%D0%B0+114",
     google: "https://www.google.com/maps/search/?api=1&query=Mira+114+Temirtau",
   },
+  shymkent: {
+    gis: "https://2gis.kz/shymkent/search/%D0%90%D0%BA%D0%BF%D0%B0%D0%BD+%D0%B1%D0%B0%D1%82%D1%8B%D1%80%D0%B0+42",
+    google: "https://www.google.com/maps/search/?api=1&query=Akpan+Batyr+42+Shymkent",
+  },
 };
 
 // Real branch facade photos per city. Each has 2 sizes for retina.
+// A city without a real photo (Shymkent) gets a plain panel, never a stock image.
 const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
   astana: {
     src: "/photos/astana-baitursynova-600.jpg",
@@ -121,13 +126,22 @@ const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
 
           <!-- Real facade photo. Mobile: 16:9 ratio above text. Desktop: full-height right column. -->
           <div class="relative bg-ink-900 aspect-[4/3] lg:aspect-auto order-first lg:order-none">
-            <img
-              src={cityPhoto[c.slug].src}
-              srcset={`${cityPhoto[c.slug].src} 1x, ${cityPhoto[c.slug].src2x} 2x`}
-              alt={cityPhoto[c.slug].alt}
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
+            {cityPhoto[c.slug] ? (
+              <img
+                src={cityPhoto[c.slug].src}
+                srcset={`${cityPhoto[c.slug].src} 1x, ${cityPhoto[c.slug].src2x} 2x`}
+                alt={cityPhoto[c.slug].alt}
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand-700 to-ink-900 text-white">
+                <svg class="h-10 w-10 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
+                </svg>
+                <div class="font-display font-bold text-[28px]">{c.city}</div>
+              </div>
+            )}
           </div>
         </div>
       </div>

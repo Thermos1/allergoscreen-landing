@@ -9,7 +9,7 @@ interface PriceRow {
   name: { ru: string; kk: string; en: string };
   price: number;
   unit?: string; // "₸/аллерген" etc.
-  city_variance?: { karaganda: number; temirtau: number };
+  city_variance?: { karaganda: number; temirtau: number; shymkent: number };
   osms?: boolean;
   notes?: { ru: string; kk: string; en: string };
 }
@@ -37,7 +37,7 @@ export const SECTIONS: Section[] = [
         },
         price: 6500,
         unit: "per_allergen",
-        city_variance: { karaganda: 6000, temirtau: 6000 },
+        city_variance: { karaganda: 6000, temirtau: 6000, shymkent: 7000 },
         osms: true,
       },
       {
@@ -49,7 +49,7 @@ export const SECTIONS: Section[] = [
         },
         price: 6500,
         unit: "per_allergen",
-        city_variance: { karaganda: 6000, temirtau: 6000 },
+        city_variance: { karaganda: 6000, temirtau: 6000, shymkent: 7000 },
         osms: true,
       },
       {
