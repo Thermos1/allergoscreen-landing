@@ -74,14 +74,12 @@ const serviceIconKeys = [
           </svg>
         </a>
 
-        <div class="eyebrow mb-5 inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-brand-100">
-          <span class="h-1.5 w-1.5 rounded-full bg-brand"></span>
+        <!-- The client removed the big headline (26.10); the lab's name line is the page's h1. -->
+        <h1 class="eyebrow mb-5 inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-brand-100 !text-[12px] !leading-snug !tracking-[0.16em]">
+          <span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand"></span>
           {s.hero.eyebrow}
-        </div>
-        <h1 class="break-words">
-          {s.hero.h1_lead} <span class="text-crimson-500">{s.hero.h1_accent}</span><span class="text-ink-400 font-medium block mt-1 text-[22px] sm:text-3xl md:text-4xl lg:text-[44px] leading-snug" style="letter-spacing: -0.01em;">— {s.hero.h1_tail}</span>
         </h1>
-        <p class="lede mt-6">{s.hero.lede}</p>
+        <p class="lede">{s.hero.lede}</p>
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={lp("/services")} class="btn-primary">
@@ -105,8 +103,8 @@ const serviceIconKeys = [
       <!-- Right: metrics -->
       <div class="grid grid-cols-2 gap-3 sm:gap-4 reveal">
         {
-          s.hero.metrics.map((m) => (
-            <div class="card p-5 sm:p-6">
+          s.hero.metrics.map((m, i) => (
+            <div class={`card p-5 sm:p-6 ${i === 2 ? "col-span-2" : ""}`}>
               <div class="font-display font-bold text-3xl sm:text-4xl text-ink-900 leading-none">{m.value}</div>
               <div class="mt-2 text-[13px] sm:text-[14px] text-ink-400 leading-snug">{m.label}</div>
             </div>

@@ -92,9 +92,6 @@ type Strings = {
   // ---- Hero section ----
   hero: {
     eyebrow: string;
-    h1_lead: string;
-    h1_accent: string;
-    h1_tail: string;
     lede: string;
     cta_primary: string;
     cta_secondary: string;
@@ -312,7 +309,7 @@ const ru: Strings = {
   meta: {
     title: "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии в Казахстане",
     description:
-      "Точные ответы на сложные аллергии. IMASA ИФА — проверим реакцию на любое вещество, которое вы принесёте. Анализы IgE, ALEX-300, аутоиммунные панели. Караганда, Астана, Алматы, Темиртау, Шымкент. ОСМС.",
+      "IMASA ИФА — проверим реакцию на любое вещество, которое вы принесёте. Анализы IgE, ALEX-300, аутоиммунные панели. Караганда, Астана, Алматы, Темиртау, Шымкент. ОСМС.",
     og_alt: "Аллергоскрин — медицинская лаборатория",
   },
   nav: {
@@ -361,17 +358,13 @@ const ru: Strings = {
   },
   hero: {
     eyebrow: "Медицинская лаборатория аллергологии и иммунологии",
-    h1_lead: "Точные ответы на",
-    h1_accent: "сложные аллергии",
-    h1_tail: "когда стандартные тесты не дают результата",
     lede:
-      "Проверим вашу реакцию на ЛЮБОЕ вещество — от анестетиков и лекарств до пыли, продуктов и косметики. IMASA ИФА — собственная методика лаборатории, точность 95%.",
+      "Проверим вашу реакцию на ЛЮБОЕ вещество — от анестетиков и лекарств до пыли, продуктов и косметики. IMASA ИФА — собственная методика лаборатории.",
     cta_primary: "Перечень анализов и цены",
     cta_secondary: "Спросить ассистента",
     no_appointment_note: "Без записи. Приходите в порядке очереди.",
     metrics: [
       { value: "2017", label: "год основания" },
-      { value: "95%", label: "точность IMASA" },
       { value: "300", label: "аллергенов в ALEX" },
       { value: "10 000+", label: "аллергенов IgE в базе" },
     ],
@@ -461,7 +454,7 @@ const ru: Strings = {
       "Большинство аллергологических лабораторий работают только по стандартным панелям IgE. Мы добавляем собственную методику IMASA и молекулярную панель ALEX — поэтому к нам приходят пациенты со «сложными» случаями.",
     imasa: {
       title: "IMASA ИФА",
-      tagline: "Собственная методика — точность 95%",
+      tagline: "Реакция на ваше вещество",
       body:
         "Interact Modeling of Allergen-Specific Antibody. Тестируем вашу сыворотку крови на ЛЮБОЕ вещество, которое вы приносите: лекарство, анестетик, ткань, образец материала. Так находим аллерген, которого нет в стандартных базах. 6 000–6 500 ₸ за аллерген.",
     },
@@ -720,7 +713,7 @@ const ru: Strings = {
       {
         title: "IMASA ИФА",
         body:
-          "Interact Modeling of Allergen-Specific Antibody — собственная модификация ИФА. Точность 95% на нестандартных аллергенах.",
+          "Interact Modeling of Allergen-Specific Antibody — собственная модификация ИФА для нестандартных аллергенов.",
       },
       {
         title: "ALEX-300 (MADx)",
@@ -795,7 +788,7 @@ const kk: Strings = {
     title:
       "Аллергоскрин — Қазақстандағы аллергология және иммунология медициналық зертханасы",
     description:
-      "Күрделі аллергияларға дәл жауап. IMASA ИФА — өзіңіз әкелген кез келген затқа реакцияны тексереміз. IgE, ALEX-300, аутоиммунды панельдер. Қарағанды, Астана, Алматы, Теміртау, Шымкент. МӘМС.",
+      "IMASA ИФА — өзіңіз әкелген кез келген затқа реакцияны тексереміз. IgE, ALEX-300, аутоиммунды панельдер. Қарағанды, Астана, Алматы, Теміртау, Шымкент. МӘМС.",
     og_alt: "Аллергоскрин — медициналық зертхана",
   },
   nav: {
@@ -845,17 +838,13 @@ const kk: Strings = {
   },
   hero: {
     eyebrow: "Аллергология және иммунология медициналық зертханасы",
-    h1_lead: "Күрделі аллергияларға",
-    h1_accent: "дәл жауап",
-    h1_tail: "стандартты тесттер нәтиже бермегенде",
     lede:
-      "Кез келген затқа реакцияңызды тексереміз — анестетиктер мен дәрі-дәрмектерден шаң, тағам мен косметикаға дейін. IMASA ИФА — зертхананың меншікті әдістемесі, дәлдігі 95%.",
+      "Кез келген затқа реакцияңызды тексереміз — анестетиктер мен дәрі-дәрмектерден шаң, тағам мен косметикаға дейін. IMASA ИФА — зертхананың меншікті әдістемесі.",
     cta_primary: "Талдаулар тізімі және бағалар",
     cta_secondary: "Ассистенттен сұрау",
     no_appointment_note: "Жазылусыз. Кезек тәртібімен келіңіз.",
     metrics: [
       { value: "2017", label: "құрылған жылы" },
-      { value: "95%", label: "IMASA дәлдігі" },
       { value: "300", label: "ALEX аллергендері" },
       { value: "10 000+", label: "IgE базасындағы аллергендер" },
     ],
@@ -944,7 +933,7 @@ const kk: Strings = {
       "Аллергологиялық зертханалардың көпшілігі тек стандартты IgE панельдерімен жұмыс істейді. Біз меншікті IMASA әдісі мен ALEX молекулалық панелін қосамыз — сондықтан бізге «күрделі» жағдайлары бар пациенттер келеді.",
     imasa: {
       title: "IMASA ИФА",
-      tagline: "Меншікті әдістеме — дәлдігі 95%",
+      tagline: "Сіздің затыңызға реакция",
       body:
         "Interact Modeling of Allergen-Specific Antibody. Сіз әкелген КЕЗ КЕЛГЕН затқа қан сарысуыңыздағы реакцияны тексереміз: дәрі, анестетик, мата, материал үлгісі. Осылайша стандартты базаларда жоқ аллергенді табамыз. Аллерген үшін 6 000–6 500 ₸.",
     },
@@ -1201,7 +1190,7 @@ const kk: Strings = {
       {
         title: "IMASA ИФА",
         body:
-          "Interact Modeling of Allergen-Specific Antibody — ИФА-ның меншікті модификациясы. Стандартты емес аллергендерде дәлдігі 95%.",
+          "Interact Modeling of Allergen-Specific Antibody — стандартты емес аллергендерге арналған ИФА-ның меншікті модификациясы.",
       },
       {
         title: "ALEX-300 (MADx)",
@@ -1273,7 +1262,7 @@ const en: Strings = {
   meta: {
     title: "Allergoscreen — Allergy & Immunology Laboratory in Kazakhstan",
     description:
-      "Precise answers for complex allergies. IMASA ELISA — we test your reaction to any substance you bring. IgE, ALEX-300, autoimmune panels. Karaganda, Astana, Almaty, Temirtau, Shymkent.",
+      "IMASA ELISA — we test your reaction to any substance you bring. IgE, ALEX-300, autoimmune panels. Karaganda, Astana, Almaty, Temirtau, Shymkent.",
     og_alt: "Allergoscreen — medical laboratory",
   },
   nav: {
@@ -1323,17 +1312,13 @@ const en: Strings = {
   },
   hero: {
     eyebrow: "Allergy & immunology medical laboratory",
-    h1_lead: "Precise answers for",
-    h1_accent: "complex allergies",
-    h1_tail: "when standard tests give no result",
     lede:
-      "We test your reaction to ANY substance — from anaesthetics and medications to dust, food and cosmetics. IMASA ELISA — our proprietary methodology, 95% accuracy.",
+      "We test your reaction to ANY substance — from anaesthetics and medications to dust, food and cosmetics. IMASA ELISA — our proprietary methodology.",
     cta_primary: "Tests & pricing",
     cta_secondary: "Ask the assistant",
     no_appointment_note: "No booking. Walk-in, first-come-first-served.",
     metrics: [
       { value: "2017", label: "founded" },
-      { value: "95%", label: "IMASA accuracy" },
       { value: "300", label: "ALEX allergens" },
       { value: "10,000+", label: "IgE allergens in database" },
     ],
@@ -1420,7 +1405,7 @@ const en: Strings = {
       "Most allergy labs work only with standard IgE panels. We add our proprietary IMASA methodology and the ALEX molecular panel — which is why patients with complex cases come to us.",
     imasa: {
       title: "IMASA ELISA",
-      tagline: "Proprietary methodology — 95% accuracy",
+      tagline: "Reaction to your own substance",
       body:
         "Interact Modeling of Allergen-Specific Antibody. We test your blood serum against ANY substance you bring: medication, anaesthetic, material, sample. This finds allergens not present in standard databases. 6,000–6,500 KZT per allergen.",
     },
@@ -1678,7 +1663,7 @@ const en: Strings = {
       {
         title: "IMASA ELISA",
         body:
-          "Interact Modeling of Allergen-Specific Antibody — our proprietary ELISA modification. 95% accuracy on non-standard allergens.",
+          "Interact Modeling of Allergen-Specific Antibody — our proprietary ELISA modification for non-standard allergens.",
       },
       {
         title: "ALEX-300 (MADx)",
