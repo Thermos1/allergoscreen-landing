@@ -29,11 +29,11 @@ export const SECTIONS: Section[] = [
     title: { ru: "Аллергологические анализы", kk: "Аллергологиялық талдаулар", en: "Allergy tests" },
     rows: [
       {
-        code: "imasa ИФА",
+        code: "IMASA ИФА",
         name: {
-          ru: "imasa ИФА — реакция на ваше вещество",
-          kk: "imasa ИФА — сіздің затыңызға реакция",
-          en: "imasa ELISA — reaction to your substance",
+          ru: "IMASA ИФА — реакция на ваше вещество",
+          kk: "IMASA ИФА — сіздің затыңызға реакция",
+          en: "IMASA ELISA — reaction to your substance",
         },
         price: 6500,
         unit: "per_allergen",

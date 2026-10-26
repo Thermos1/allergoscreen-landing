@@ -14,23 +14,22 @@ function lp(target: string): string {
 ---
 
 <!-- HERO -->
-<section class="relative bg-ink-900 text-white overflow-hidden">
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl"></div>
-  <div class="container-x py-16 lg:py-24 relative">
-    <a href={lp("/")} class="text-[13px] text-white/55 hover:text-gold inline-flex items-center gap-1 mb-6">{s.common.back_home}</a>
-    <div class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] font-bold text-gold mb-4">
-      <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+<section class="bg-gold-50 border-b border-gold-200">
+  <div class="container-x py-16 lg:py-24">
+    <a href={lp("/")} class="text-[13px] text-ink-400 hover:text-brand-700 flex w-fit items-center gap-1 mb-6">{s.common.back_home}</a>
+    <div class="eyebrow mb-4 inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-gold-200">
+      <span class="h-1.5 w-1.5 rounded-full bg-gold-600"></span>
       {s.osms_band.eyebrow}
     </div>
-    <h1 class="text-white mb-5 max-w-narrow">{s.osms_page.title}</h1>
-    <p class="text-white/75 text-[18px] md:text-[20px] leading-relaxed max-w-prose">{s.osms_page.lede}</p>
+    <h1 class="mb-5 max-w-narrow">{s.osms_page.title}</h1>
+    <p class="lede max-w-prose">{s.osms_page.lede}</p>
   </div>
 </section>
 
 <!-- COVERED -->
 <section class="container-x py-16 lg:py-20">
   <h2 class="mb-10 lg:mb-12 max-w-narrow reveal">{s.osms_page.covered_title}</h2>
-  <div class="grid md:grid-cols-3 gap-4 lg:gap-6">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
     {
       s.osms_page.covered_items.map((it, i) => (
         <div class="reveal card p-6 lg:p-8 relative overflow-hidden">
@@ -61,7 +60,7 @@ function lp(target: string): string {
             </div>
             <div>
               <h3 class="text-[18px] lg:text-[20px] mb-2">{step.title}</h3>
-              <p class="text-ink-600 text-[15px] leading-relaxed">{step.body}</p>
+              {step.body && <p class="text-ink-600 text-[15px] leading-relaxed">{step.body}</p>}
             </div>
           </div>
         ))

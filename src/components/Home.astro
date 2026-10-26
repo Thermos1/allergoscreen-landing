@@ -1,6 +1,6 @@
 ---
 // Homepage sections shared across all 3 locales.
-import { t, type Locale } from "../i18n/ui";
+import { t, type Locale, VOICE_ASSISTANT_PHONE } from "../i18n/ui";
 import VideoTestimonials from "./VideoTestimonials.astro";
 
 interface Props {
@@ -213,7 +213,6 @@ const serviceIconKeys = [
 <section class="bg-mist py-16 lg:py-24">
   <div class="container-x">
     <div class="max-w-narrow mb-10 lg:mb-14 reveal">
-      <div class="eyebrow mb-3">{s.services_preview.eyebrow}</div>
       <h2 class="mb-4">{s.services_preview.title}</h2>
       <p class="lede">{s.services_preview.lede}</p>
     </div>
@@ -271,22 +270,24 @@ const serviceIconKeys = [
 <!-- ========================================================================== -->
 <!-- OSMS BAND -->
 <!-- ========================================================================== -->
-<section class="relative bg-ink-900 text-white overflow-hidden">
-  <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-gold/10 blur-3xl"></div>
-  <div class="container-x py-16 lg:py-20 relative">
-    <div class="grid lg:grid-cols-[1.4fr_1fr] gap-10 items-center">
+<section class="bg-gold-50 border-y border-gold-200">
+  <div class="container-x py-16 lg:py-20">
+    <div class="grid lg:grid-cols-[1fr_1.1fr] gap-8 lg:gap-14 items-start">
       <div class="reveal">
-        <div class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] font-bold text-gold mb-4">
-          <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+        <div class="eyebrow mb-4 inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-gold-200">
+          <span class="h-1.5 w-1.5 rounded-full bg-gold-600"></span>
           {s.osms_band.eyebrow}
         </div>
-        <h2 class="text-white mb-4">{s.osms_band.title}</h2>
-        <p class="text-white/70 text-[17px] leading-relaxed mb-6 max-w-prose">{s.osms_band.body}</p>
-        <ul class="space-y-2.5 mb-6">
+        <h2 class="mb-4">{s.osms_band.title}</h2>
+        <p class="text-ink-600 text-[17px] leading-relaxed max-w-prose">{s.osms_band.body}</p>
+      </div>
+
+      <div class="reveal">
+        <ul class="space-y-3 mb-6">
           {
             s.osms_band.items.map((item) => (
-              <li class="flex items-start gap-3 text-[15px]">
-                <svg class="h-5 w-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <li class="flex items-start gap-3 rounded-xl bg-white border border-gold-200 px-4 py-3 text-[15px] text-ink-900">
+                <svg class="h-5 w-5 text-gold-600 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
                   <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 {item}
@@ -295,16 +296,7 @@ const serviceIconKeys = [
           }
         </ul>
         <a href={lp("/osms")} class="btn-gold">{s.osms_band.cta}</a>
-        <p class="mt-4 text-white/45 text-[13px]">{s.osms_band.note}</p>
-      </div>
-
-      <div class="reveal hidden lg:block">
-        <div class="aspect-square rounded-2xl bg-gradient-to-br from-gold/20 to-brand/20 border border-white/10 p-8 flex items-center justify-center">
-          <div class="text-center">
-            <div class="font-display font-extrabold text-[120px] leading-none text-gold">3</div>
-            <div class="mt-2 text-white/70 uppercase tracking-wider text-sm">{s.osms_band.eyebrow}</div>
-          </div>
-        </div>
+        <p class="mt-4 text-ink-400 text-[13px]">{s.osms_band.note}</p>
       </div>
     </div>
   </div>
@@ -359,9 +351,16 @@ const serviceIconKeys = [
                   <span class="inline-flex h-4 w-4 flex-shrink-0 mt-0.5" set:html={icons.clock} />
                   {c.hours}
                 </div>
-                <div class="text-[13.5px] font-semibold text-brand-700 inline-flex items-center gap-2">
-                  <span class="inline-flex h-4 w-4" set:html={icons.phone} />
+                <div class="text-[13.5px] font-semibold text-brand-700 flex items-start gap-2">
+                  <span class="inline-flex h-4 w-4 flex-shrink-0 mt-0.5" set:html={icons.phone} />
+                  <span>
+                    {VOICE_ASSISTANT_PHONE}
+                    <span class="block text-[12px] font-normal text-ink-400">{s.locations_page.detail_voice}</span>
+                  </span>
+                </div>
+                <div class="text-[13px] text-ink-600 pl-6">
                   {c.phone_label}
+                  <span class="block text-[12px] text-ink-400">{s.locations_page.detail_phone}</span>
                 </div>
               </div>
             </div>

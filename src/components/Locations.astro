@@ -1,5 +1,5 @@
 ---
-import { t, type Locale } from "../i18n/ui";
+import { t, type Locale, VOICE_ASSISTANT_PHONE } from "../i18n/ui";
 
 interface Props {
   locale: Locale;
@@ -12,28 +12,23 @@ function lp(target: string): string {
   return `/${locale}${target === "/" ? "" : target}`;
 }
 
-// 2GIS / Google Maps links per branch.
+// 2GIS link per branch (Google Maps removed at the client's request, 2026-10-26).
 // Almaty: map link points to Kabanbay Batyra 111 (main/Neuromed), not old Seifullin.
-const mapLinks: Record<string, { gis: string; google: string }> = {
+const mapLinks: Record<string, { gis: string }> = {
   astana: {
     gis: "https://2gis.kz/astana/search/%D0%91%D0%B0%D0%B9%D1%82%D1%83%D1%80%D1%81%D1%8B%D0%BD%D0%BE%D0%B2%D0%B0+6",
-    google: "https://www.google.com/maps/search/?api=1&query=Baitursynova+6+Astana",
   },
   almaty: {
     gis: "https://2gis.kz/almaty/search/%D0%9A%D0%B0%D0%B1%D0%B0%D0%BD%D0%B1%D0%B0%D0%B9+%D0%91%D0%B0%D1%82%D1%8B%D1%80%D0%B0+111",
-    google: "https://www.google.com/maps/search/?api=1&query=Kabanbay+Batyra+111+Almaty",
   },
   karaganda: {
     gis: "https://2gis.kz/karaganda/search/%D0%A1%D1%82%D0%B5%D0%BF%D0%BD%D0%BE%D0%B9-2+18%2F1",
-    google: "https://www.google.com/maps/search/?api=1&query=Stepnoy+18+Karaganda",
   },
   temirtau: {
     gis: "https://2gis.kz/temirtau/search/%D0%9C%D0%B8%D1%80%D0%B0+114",
-    google: "https://www.google.com/maps/search/?api=1&query=Mira+114+Temirtau",
   },
   shymkent: {
     gis: "https://2gis.kz/shymkent/search/%D0%90%D0%BA%D0%BF%D0%B0%D0%BD+%D0%B1%D0%B0%D1%82%D1%8B%D1%80%D0%B0+42",
-    google: "https://www.google.com/maps/search/?api=1&query=Akpan+Batyr+42+Shymkent",
   },
 };
 
@@ -91,13 +86,15 @@ const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
                 </ul>
                 <div class="mt-3 flex gap-3 text-[13px]">
                   <a href={mapLinks[c.slug].gis} target="_blank" rel="noopener" class="text-brand-700 hover:text-brand-800 underline-offset-2 hover:underline">2GIS →</a>
-                  <a href={mapLinks[c.slug].google} target="_blank" rel="noopener" class="text-brand-700 hover:text-brand-800 underline-offset-2 hover:underline">Google Maps →</a>
                 </div>
               </div>
 
               <div>
-                <div class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_phone}</div>
-                <a href={`tel:${c.phone_label.replace(/[^+\d]/g, "")}`} class="block text-[16px] font-semibold text-ink-900 hover:text-brand-700">{c.phone_label}</a>
+                <div class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_voice}</div>
+                <a href={`tel:${VOICE_ASSISTANT_PHONE.replace(/[^+\d]/g, "")}`} class="block text-[16px] font-semibold text-ink-900 hover:text-brand-700">{VOICE_ASSISTANT_PHONE}</a>
+
+                <div class="mt-4 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_phone}</div>
+                <a href={`tel:${c.phone_label.replace(/[^+\d]/g, "")}`} class="block text-[15px] font-semibold text-ink-600 hover:text-brand-700">{c.phone_label}</a>
 
                 <div class="mt-5 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.blood_draw_label}</div>
                 <ul class="space-y-1 text-[14px] text-ink-600">

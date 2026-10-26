@@ -127,9 +127,8 @@ function lp(target: string): string {
 <section class="bg-mist border-y border-rule py-16 lg:py-20">
   <div class="container-x">
     <div class="max-w-narrow mb-10 reveal">
-      <div class="eyebrow mb-3">imasa · {s.services_page.anesthetic_section_title.toUpperCase()}</div>
-      <h2 class="mb-4">{s.services_page.anesthetic_section_title}</h2>
-      <p class="lede">{s.services_page.anesthetic_section_lede}</p>
+      <div class="eyebrow mb-3">IMASA · {s.services_page.anesthetic_section_title.toUpperCase()}</div>
+      <h2 class="mb-0">{s.services_page.anesthetic_section_title}</h2>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
@@ -151,15 +150,14 @@ function lp(target: string): string {
 
 <!-- ========== OSMS CTA ========== -->
 <section class="container-x py-16 lg:py-20">
-  <div class="relative overflow-hidden rounded-3xl bg-ink-900 text-white p-8 sm:p-12 reveal">
-    <div class="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-gold/10 blur-3xl"></div>
-    <div class="relative max-w-narrow">
-      <div class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] font-bold text-gold mb-3">
-        <span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+  <div class="rounded-3xl bg-gold-50 border border-gold-200 p-8 sm:p-12 reveal">
+    <div class="max-w-narrow">
+      <div class="eyebrow mb-3 inline-flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-gold-200">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold-600"></span>
         {s.osms_band.eyebrow}
       </div>
-      <h2 class="text-white mb-4">{s.osms_band.title}</h2>
-      <p class="text-white/70 text-[16px] leading-relaxed mb-6">{s.osms_band.body}</p>
+      <h2 class="mb-4">{s.osms_band.title}</h2>
+      <p class="text-ink-600 text-[16px] leading-relaxed mb-6">{s.osms_band.body}</p>
       <a href={lp("/osms")} class="btn-gold">{s.osms_band.cta}</a>
     </div>
   </div>

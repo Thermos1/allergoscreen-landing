@@ -8,6 +8,9 @@
 export const LOCALES = ["ru", "kk", "en"] as const;
 export type Locale = (typeof LOCALES)[number];
 
+// The AI voice assistant line — shown on every branch, the branch call centre stays as the second number.
+export const VOICE_ASSISTANT_PHONE = "+7 700 428 65 68";
+
 export const LOCALE_LABELS: Record<Locale, string> = {
   ru: "Рус",
   kk: "Қаз",
@@ -107,7 +110,6 @@ type Strings = {
 
   // ---- Services preview ----
   services_preview: {
-    eyebrow: string;
     title: string;
     lede: string;
     items: { title: string; body: string }[];
@@ -222,7 +224,6 @@ type Strings = {
     per_allergen: string;
     osms_note: string;
     anesthetic_section_title: string;
-    anesthetic_section_lede: string;
     anesthetic_list: { name: string; brand: string }[];
     anesthetic_byo_note: string;
   };
@@ -234,6 +235,7 @@ type Strings = {
     detail_address: string;
     detail_hours: string;
     detail_phone: string;
+    detail_voice: string;
     detail_services: string;
     detail_directions: string;
     blood_draw_label: string;
@@ -249,7 +251,7 @@ type Strings = {
     covered_title: string;
     covered_items: { code: string; name: string; description: string }[];
     flow_title: string;
-    flow_steps: { n: string; title: string; body: string }[];
+    flow_steps: { n: string; title: string; body?: string }[];
     not_covered_title: string;
     not_covered_body: string;
     cta: string;
@@ -310,7 +312,7 @@ const ru: Strings = {
   meta: {
     title: "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии в Казахстане",
     description:
-      "Точные ответы на сложные аллергии. imasa ИФА — проверим реакцию на любое вещество, которое вы принесёте. Анализы IgE, ALEX-300, аутоиммунные панели. Караганда, Астана, Алматы, Темиртау, Шымкент. ОСМС.",
+      "Точные ответы на сложные аллергии. IMASA ИФА — проверим реакцию на любое вещество, которое вы принесёте. Анализы IgE, ALEX-300, аутоиммунные панели. Караганда, Астана, Алматы, Темиртау, Шымкент. ОСМС.",
     og_alt: "Аллергоскрин — медицинская лаборатория",
   },
   nav: {
@@ -352,7 +354,7 @@ const ru: Strings = {
     ],
     cta: "Открыть личный кабинет",
     note:
-      "Результаты передаются только через личный кабинет — это защищённый канал согласно требованиям РК. Мы не отправляем результаты в WhatsApp, Telegram или на e-mail и не сообщаем их по телефону.",
+      "Результаты передаются только через личный кабинет — это защищённый канал согласно требованиям РК.",
     help_label: "Нет кода пациента?",
     help_body: "Позвоните в свой филиал — мы подскажем.",
     help_cta: "Контакты филиалов",
@@ -363,13 +365,13 @@ const ru: Strings = {
     h1_accent: "сложные аллергии",
     h1_tail: "когда стандартные тесты не дают результата",
     lede:
-      "Проверим вашу реакцию на ЛЮБОЕ вещество — от анестетиков и лекарств до пыли, продуктов и косметики. imasa ИФА — собственная методика лаборатории, точность 95%.",
+      "Проверим вашу реакцию на ЛЮБОЕ вещество — от анестетиков и лекарств до пыли, продуктов и косметики. IMASA ИФА — собственная методика лаборатории, точность 95%.",
     cta_primary: "Перечень анализов и цены",
     cta_secondary: "Спросить ассистента",
     no_appointment_note: "Без записи. Приходите в порядке очереди.",
     metrics: [
-      { value: "10+", label: "лет на рынке" },
-      { value: "95%", label: "точность imasa" },
+      { value: "2017", label: "год основания" },
+      { value: "95%", label: "точность IMASA" },
       { value: "300", label: "аллергенов в ALEX" },
       { value: "10 000+", label: "аллергенов IgE в базе" },
     ],
@@ -380,7 +382,7 @@ const ru: Strings = {
       {
         title: "Тестируем ЛЮБОЕ вещество",
         body:
-          "Принесите свой анестетик, лекарство, материал или образец — проверим реакцию по методике imasa ИФА. Других лабораторий в РК с такой технологией нет.",
+          "Принесите свой анестетик, лекарство, материал или образец — проверим реакцию по методике IMASA ИФА. Других лабораторий в РК с такой технологией нет.",
       },
       {
         title: "База 10 000+ аллергенов",
@@ -388,9 +390,9 @@ const ru: Strings = {
           "Специфический IgE на стандартные аллергены: пыльца, продукты, лекарства, плесень, эпителий животных. Молекулярная панель ALEX — сразу 300 компонентов.",
       },
       {
-        title: "ОСМС: 3 анализа бесплатно",
+        title: "Бесплатно по ОСМС",
         body:
-          "imasa ИФА, специфический IgE и общий IgE покрыты ОСМС по электронному направлению из поликлиники (КМИС / DamuMed).",
+          "IMASA ИФА, специфический IgE, общий IgE и аутоиммунная диагностика — по электронному направлению из поликлиники (КМИС / DamuMed).",
       },
       {
         title: "Аутоиммунная диагностика",
@@ -400,8 +402,7 @@ const ru: Strings = {
     ],
   },
   services_preview: {
-    eyebrow: "Что мы тестируем",
-    title: "9 направлений диагностики",
+    title: "Что мы тестируем",
     lede:
       "От лекарственной аллергии у стоматологического пациента до аутоиммунного панели при подозрении на красную волчанку — закрываем сложные случаи, которые не берут общие лаборатории.",
     items: [
@@ -443,7 +444,7 @@ const ru: Strings = {
       {
         title: "Аллергены животных",
         body:
-          "Эпителий кошки, собаки, лошади, шерсть, перо птицы. Реакции у владельцев и медработников.",
+          "Эпителий кошки, собаки, лошади, шерсть, перо птицы.",
       },
       {
         title: "Аутоиммунные заболевания",
@@ -455,11 +456,11 @@ const ru: Strings = {
   },
   tech: {
     eyebrow: "Технологии лаборатории",
-    title: "Три ключевых метода — закрываем 95% запросов",
+    title: "Три ключевых метода",
     lede:
-      "Большинство аллергологических лабораторий работают только по стандартным панелям IgE. Мы добавляем собственную методику imasa и молекулярную панель ALEX — поэтому к нам приходят пациенты со «сложными» случаями.",
+      "Большинство аллергологических лабораторий работают только по стандартным панелям IgE. Мы добавляем собственную методику IMASA и молекулярную панель ALEX — поэтому к нам приходят пациенты со «сложными» случаями.",
     imasa: {
-      title: "imasa ИФА",
+      title: "IMASA ИФА",
       tagline: "Собственная методика — точность 95%",
       body:
         "Interact Modeling of Allergen-Specific Antibody. Тестируем вашу сыворотку крови на ЛЮБОЕ вещество, которое вы приносите: лекарство, анестетик, ткань, образец материала. Так находим аллерген, которого нет в стандартных базах. 6 000–6 500 ₸ за аллерген.",
@@ -479,13 +480,14 @@ const ru: Strings = {
   },
   osms_band: {
     eyebrow: "Бесплатно по ОСМС",
-    title: "Три анализа покрыты обязательным медстрахованием",
+    title: "Что покрывает обязательное медстрахование",
     body:
       "Если у вас есть электронное направление из поликлиники (через КМИС или DamuMed), вы сдаёте без оплаты:",
     items: [
-      "imasa ИФА — реакция на ваше вещество",
+      "IMASA ИФА — реакция на ваше вещество",
       "Специфический IgE — стандартные аллергены",
       "Общий IgE — первичная диагностика",
+      "Аутоиммунная диагностика — нРИФ, иммуноблот",
     ],
     cta: "Как получить направление →",
     note: "Тарификатор 2026. ОСМС работает во всех филиалах.",
@@ -544,7 +546,7 @@ const ru: Strings = {
     cta_call: "Позвонить в колл-центр",
   },
   footer: {
-    tagline: "Аллергология и иммунология высшего уровня. С 2015 года.",
+    tagline: "Аллергология и иммунология высшего уровня. С 2017 года.",
     col_company: "Лаборатория",
     col_patients: "Пациентам",
     col_osms: "ОСМС",
@@ -596,22 +598,17 @@ const ru: Strings = {
   services_page: {
     title: "Анализы и цены",
     lede:
-      "Полный перечень исследований с актуальными ценами по городам. Цены в Караганде и Темиртау немного ниже, чем в Астане и Алматы, в Шымкенте — немного выше. ОСМС покрывает imasa ИФА, специфический IgE и общий IgE.",
+      "Полный перечень исследований с актуальными ценами по городам. Цены в Караганде и Темиртау немного ниже, чем в Астане и Алматы, в Шымкенте — немного выше. ОСМС покрывает IMASA ИФА, специфический IgE, общий IgE и аутоиммунную диагностику.",
     filter_label: "Категория",
     filters: [
       { id: "allergy", label: "Аллергология" },
       { id: "autoimmune", label: "Аутоиммунные" },
-      { id: "hormones", label: "Гормоны" },
-      { id: "oncology", label: "Онкомаркеры" },
-      { id: "general", label: "Общеклинические" },
     ],
     table_header: { code: "Код", name: "Название", price: "Цена" },
     price_unit: "₸",
     per_allergen: "за аллерген",
     osms_note: "Покрывается ОСМС по электронному направлению",
     anesthetic_section_title: "Анестетики в наличии",
-    anesthetic_section_lede:
-      "Эти анестетики у нас в лаборатории — можете приехать без своего препарата. Также принимаем ваш анестетик любого производителя.",
     anesthetic_list: [
       { name: "Артикаин 4% с эпинефрином 1:100 000", brand: "Inibsa Dental · Испания" },
       { name: "Артикаина гидрохлорид 4% с эпинефрином", brand: "Huons Co. Ltd. · Корея" },
@@ -624,7 +621,7 @@ const ru: Strings = {
       { name: "Лидокаин 1% и 2% (ампулы)", brand: "Santo Химфарм / БЗМП · Казахстан/Беларусь" },
     ],
     anesthetic_byo_note:
-      "Не нашли свой препарат в списке? Приносите — протестируем по методике imasa ИФА. Стандартная цена 6 000–6 500 ₸ за аллерген.",
+      "Не нашли свой препарат в списке? Приносите — протестируем по методике IMASA ИФА. Стандартная цена 6 000–6 500 ₸ за аллерген.",
   },
   locations_page: {
     title: "Филиалы",
@@ -633,29 +630,29 @@ const ru: Strings = {
     detail_address: "Адреса",
     detail_hours: "Часы работы",
     detail_phone: "Колл-центр",
+    detail_voice: "Голосовой помощник · 24/7",
     detail_services: "Что доступно в этом филиале",
     detail_directions: "Как добраться",
     blood_draw_label: "Забор крови",
     blood_draw_clinic: "1 000 ₸ — в клинике",
     blood_draw_home: "10 000 ₸ — выезд на дом (только Астана)",
     services_offered: [
-      "imasa ИФА (приносите свой материал)",
+      "IMASA ИФА (приносите свой материал)",
       "Специфический IgE (стандартные аллергены)",
       "Общий IgE",
       "ALEX-300 (молекулярная панель)",
       "Аутоиммунные панели (нРИФ, иммуноблот, ИФА)",
-      "Гормоны, онкомаркеры, общеклинические",
       "Консультация аллерголога-иммунолога (только Астана)",
     ],
   },
   osms_page: {
     title: "ОСМС — обязательное медстрахование",
     lede:
-      "Три ключевых аллергологических анализа покрыты государственной страховкой. Вам нужно только электронное направление из вашей поликлиники.",
+      "Ключевые аллергологические анализы и диагностика аутоиммунных заболеваний покрыты государственной страховкой. Вам нужно только электронное направление из вашей поликлиники.",
     covered_title: "Что покрывает ОСМС в Аллергоскрин",
     covered_items: [
       {
-        code: "imasa ИФА",
+        code: "IMASA ИФА",
         name: "Реакция на ваше вещество",
         description:
           "Принесите свой анестетик / лекарство / материал — протестируем на аллергическую реакцию. Без оплаты для пациентов ОСМС.",
@@ -672,14 +669,18 @@ const ru: Strings = {
         description:
           "Общий уровень иммуноглобулина E — первый шаг при подозрении на аллергию.",
       },
+      {
+        code: "нРИФ · Иммуноблот",
+        name: "Аутоиммунные заболевания",
+        description:
+          "Скрининг нРИФ и подтверждающий иммуноблот — диагностика аутоиммунных заболеваний по электронному направлению из поликлиники.",
+      },
     ],
     flow_title: "Как получить направление",
     flow_steps: [
       {
         n: "01",
         title: "Запишитесь к терапевту или аллергологу в вашей поликлинике",
-        body:
-          "По вашему КМИС / DamuMed. Поликлиника должна быть прикреплена и иметь договор с ФСМС.",
       },
       {
         n: "02",
@@ -691,7 +692,7 @@ const ru: Strings = {
         n: "03",
         title: "Приходите в любой наш филиал",
         body:
-          "Без записи, в порядке очереди. С собой — удостоверение личности (для пациентов до 18 лет — паспорт родителя).",
+          "Без записи, в порядке очереди. С собой — удостоверение личности (для пациентов до 18 лет — требуется сопровождение родителей или законных представителей).",
       },
       {
         n: "04",
@@ -702,23 +703,22 @@ const ru: Strings = {
     ],
     not_covered_title: "Что не покрывает ОСМС",
     not_covered_body:
-      "ALEX-300, аутоиммунные панели, гормоны, онкомаркеры, общеклинические — это коммерческие услуги, оплачиваются отдельно. Полный прайс — на странице «Анализы и цены».",
+      "ALEX-300 и анализы без электронного направления оплачиваются по прайсу. Полный прайс — на странице «Анализы и цены».",
     cta: "Смотреть полный перечень и цены →",
   },
   about_page: {
     title: "О лаборатории",
     lede:
-      "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии. Работаем с 2015 года, филиалы в пяти городах Казахстана, собственная методика imasa.",
+      "Аллергоскрин — медицинская лаборатория аллергологии и иммунологии. Работаем с 2017 года, филиалы в пяти городах Казахстана, собственная методика IMASA.",
     story_title: "Зачем мы здесь",
     story_body: [
-      "Большинство аллергологических лабораторий в Казахстане работают только со стандартными панелями IgE — пыльца, основные продукты, эпителий животных. Если у пациента реакция на конкретное лекарство, материал или анестетик — таких лабораторий просто нет.",
-      "Мы основали Аллергоскрин, чтобы закрыть этот пробел. Методика imasa ИФА проверяет реакцию вашего организма на ЛЮБОЕ вещество, которое вы приносите. Дальше добавили молекулярную панель ALEX-300 и блок аутоиммунной диагностики (нРИФ, иммуноблот) — чтобы пациент мог пройти полный путь в одном месте.",
-      "Принимаем ОСМС, работаем без записи, в порядке очереди. Результаты — через защищённый личный кабинет.",
+      "Большинство аллергологических лабораторий в Казахстане работают только со стандартными панелями IgE. Методика IMASA ИФА проверяет реакцию вашего организма на ЛЮБОЕ вещество. Мы добавили молекулярную панель ALEX-300, стандартную панель и аутоиммунную диагностику (нРИФ, иммуноблот) — чтобы пациент мог пройти полный путь в одном месте.",
+      "Принимаем по ОСМС, работаем без записи, в порядке очереди. Результаты — через защищённый личный кабинет.",
     ],
     tech_title: "Технологии",
     methods: [
       {
-        title: "imasa ИФА",
+        title: "IMASA ИФА",
         body:
           "Interact Modeling of Allergen-Specific Antibody — собственная модификация ИФА. Точность 95% на нестандартных аллергенах.",
       },
@@ -763,9 +763,9 @@ const ru: Strings = {
   },
   patent: {
     eyebrow: "Запатентованный метод",
-    title: "imasa ИФА — собственная разработка под патентом",
+    title: "IMASA ИФА — собственная разработка под патентом",
     lede:
-      "Метод imasa ИФА (исследование иммуноглобулина E специфического к нестандартным аллергенам — нативным веществам, лекарственным препаратам в любой форме) изобретён и запатентован. ТОО «Аллергоскрин» — единственный эксклюзивный дистрибьютер метода в Евразийском регионе.",
+      "Метод IMASA ИФА (исследование иммуноглобулина E специфического к нестандартным аллергенам — нативным веществам, лекарственным препаратам в любой форме) изобретён и запатентован. ТОО «Аллергоскрин» — единственный эксклюзивный дистрибьютер метода в Евразийском регионе.",
     points: [
       {
         title: "Патент Республики Казахстан № 2632",
@@ -780,7 +780,7 @@ const ru: Strings = {
       {
         title: "Эксклюзивная дистрибуция",
         body:
-          "ТОО «Аллергоскрин» — единственный официальный дистрибьютер метода imasa ИФА. Других лабораторий в Евразийском регионе, проводящих этот анализ, нет.",
+          "ТОО «Аллергоскрин» — единственный официальный дистрибьютер метода IMASA ИФА. Других лабораторий в Евразийском регионе, проводящих этот анализ, нет.",
       },
     ],
     download_label: "Сертификат дистрибьютера",
@@ -795,7 +795,7 @@ const kk: Strings = {
     title:
       "Аллергоскрин — Қазақстандағы аллергология және иммунология медициналық зертханасы",
     description:
-      "Күрделі аллергияларға дәл жауап. imasa ИФА — өзіңіз әкелген кез келген затқа реакцияны тексереміз. IgE, ALEX-300, аутоиммунды панельдер. Қарағанды, Астана, Алматы, Теміртау, Шымкент. МӘМС.",
+      "Күрделі аллергияларға дәл жауап. IMASA ИФА — өзіңіз әкелген кез келген затқа реакцияны тексереміз. IgE, ALEX-300, аутоиммунды панельдер. Қарағанды, Астана, Алматы, Теміртау, Шымкент. МӘМС.",
     og_alt: "Аллергоскрин — медициналық зертхана",
   },
   nav: {
@@ -838,7 +838,7 @@ const kk: Strings = {
     ],
     cta: "Жеке кабинетті ашу",
     note:
-      "Нәтижелер тек жеке кабинет арқылы жіберіледі — бұл ҚР талаптарына сай қорғалған арна. Біз нәтижелерді WhatsApp, Telegram немесе e-mail арқылы жібермейміз және телефон арқылы хабарламаймыз.",
+      "Нәтижелер тек жеке кабинет арқылы жіберіледі — бұл ҚР талаптарына сай қорғалған арна.",
     help_label: "Пациент коды жоқ па?",
     help_body: "Өз филиалыңызға қоңырау шалыңыз — көмектесеміз.",
     help_cta: "Филиалдар байланысы",
@@ -849,13 +849,13 @@ const kk: Strings = {
     h1_accent: "дәл жауап",
     h1_tail: "стандартты тесттер нәтиже бермегенде",
     lede:
-      "Кез келген затқа реакцияңызды тексереміз — анестетиктер мен дәрі-дәрмектерден шаң, тағам мен косметикаға дейін. imasa ИФА — зертхананың меншікті әдістемесі, дәлдігі 95%.",
+      "Кез келген затқа реакцияңызды тексереміз — анестетиктер мен дәрі-дәрмектерден шаң, тағам мен косметикаға дейін. IMASA ИФА — зертхананың меншікті әдістемесі, дәлдігі 95%.",
     cta_primary: "Талдаулар тізімі және бағалар",
     cta_secondary: "Ассистенттен сұрау",
     no_appointment_note: "Жазылусыз. Кезек тәртібімен келіңіз.",
     metrics: [
-      { value: "10+", label: "жыл нарықта" },
-      { value: "95%", label: "imasa дәлдігі" },
+      { value: "2017", label: "құрылған жылы" },
+      { value: "95%", label: "IMASA дәлдігі" },
       { value: "300", label: "ALEX аллергендері" },
       { value: "10 000+", label: "IgE базасындағы аллергендер" },
     ],
@@ -866,7 +866,7 @@ const kk: Strings = {
       {
         title: "КЕЗ КЕЛГЕН затты тексереміз",
         body:
-          "Өз анестетигіңізді, дәріңізді, материалыңызды әкеліңіз — imasa ИФА әдісі бойынша реакцияны тексереміз. ҚР-да мұндай технологиясы бар басқа зертхана жоқ.",
+          "Өз анестетигіңізді, дәріңізді, материалыңызды әкеліңіз — IMASA ИФА әдісі бойынша реакцияны тексереміз. ҚР-да мұндай технологиясы бар басқа зертхана жоқ.",
       },
       {
         title: "10 000+ аллерген базасы",
@@ -874,9 +874,9 @@ const kk: Strings = {
           "Стандартты аллергендерге спецификалық IgE: тозаң, тағам, дәрі, зең, жануарлар эпителиі. ALEX молекулалық панелі — бір реттегі 300 компонент.",
       },
       {
-        title: "МӘМС: 3 талдау тегін",
+        title: "МӘМС бойынша тегін",
         body:
-          "imasa ИФА, спецификалық IgE және жалпы IgE емханадан электронды жолдама бойынша МӘМС қаражатынан өтеледі (ҚМАЖ / DamuMed).",
+          "IMASA ИФА, спецификалық IgE, жалпы IgE және аутоиммунды диагностика — емханадан электронды жолдама бойынша (ҚМАЖ / DamuMed).",
       },
       {
         title: "Аутоиммунды диагностика",
@@ -886,8 +886,7 @@ const kk: Strings = {
     ],
   },
   services_preview: {
-    eyebrow: "Не тексереміз",
-    title: "Диагностиканың 9 бағыты",
+    title: "Не тексереміз",
     lede:
       "Стоматологиялық пациенттегі дәрі-дәрмек аллергиясынан Қызыл жегідегі күдікке арналған аутоиммунды панельге дейін — жалпы зертханалар алмайтын күрделі жағдайларды жабамыз.",
     items: [
@@ -928,7 +927,7 @@ const kk: Strings = {
       {
         title: "Жануар аллергендері",
         body:
-          "Мысықтың, иттің, жылқының эпителиі, жүн, құс қанаты. Иелер мен медициналық қызметкерлердегі реакциялар.",
+          "Мысықтың, иттің, жылқының эпителиі, жүн, құс қанаты.",
       },
       {
         title: "Аутоиммунды аурулар",
@@ -940,11 +939,11 @@ const kk: Strings = {
   },
   tech: {
     eyebrow: "Зертхана технологиялары",
-    title: "Үш негізгі әдіс — сұраулардың 95%-ын жабамыз",
+    title: "Үш негізгі әдіс",
     lede:
-      "Аллергологиялық зертханалардың көпшілігі тек стандартты IgE панельдерімен жұмыс істейді. Біз меншікті imasa әдісі мен ALEX молекулалық панелін қосамыз — сондықтан бізге «күрделі» жағдайлары бар пациенттер келеді.",
+      "Аллергологиялық зертханалардың көпшілігі тек стандартты IgE панельдерімен жұмыс істейді. Біз меншікті IMASA әдісі мен ALEX молекулалық панелін қосамыз — сондықтан бізге «күрделі» жағдайлары бар пациенттер келеді.",
     imasa: {
-      title: "imasa ИФА",
+      title: "IMASA ИФА",
       tagline: "Меншікті әдістеме — дәлдігі 95%",
       body:
         "Interact Modeling of Allergen-Specific Antibody. Сіз әкелген КЕЗ КЕЛГЕН затқа қан сарысуыңыздағы реакцияны тексереміз: дәрі, анестетик, мата, материал үлгісі. Осылайша стандартты базаларда жоқ аллергенді табамыз. Аллерген үшін 6 000–6 500 ₸.",
@@ -964,12 +963,13 @@ const kk: Strings = {
   },
   osms_band: {
     eyebrow: "МӘМС бойынша тегін",
-    title: "Үш талдау міндетті медициналық сақтандырумен жабылады",
+    title: "Міндетті медициналық сақтандыру нені жабады",
     body: "Емханадан электронды жолдамаңыз болса (ҚМАЖ немесе DamuMed арқылы), төлемсіз тапсырасыз:",
     items: [
-      "imasa ИФА — өз затыңызға реакция",
+      "IMASA ИФА — өз затыңызға реакция",
       "Спецификалық IgE — стандартты аллергендер",
       "Жалпы IgE — алғашқы диагностика",
+      "Аутоиммунды диагностика — нРИФ, иммуноблот",
     ],
     cta: "Жолдаманы қалай алу керек →",
     note: "2026 тарификаторы. МӘМС барлық филиалда жұмыс істейді.",
@@ -1028,7 +1028,7 @@ const kk: Strings = {
     cta_call: "Қоңырау шалу",
   },
   footer: {
-    tagline: "Жоғары деңгейлі аллергология және иммунология. 2015 жылдан бері.",
+    tagline: "Жоғары деңгейлі аллергология және иммунология. 2017 жылдан бері.",
     col_company: "Зертхана",
     col_patients: "Пациенттерге",
     col_osms: "МӘМС",
@@ -1080,22 +1080,17 @@ const kk: Strings = {
   services_page: {
     title: "Талдаулар мен бағалар",
     lede:
-      "Қалалар бойынша өзекті бағалармен зерттеулердің толық тізімі. Қарағанды мен Теміртау бағалары Астана мен Алматыдан сәл төмен, Шымкентте — сәл жоғары. МӘМС imasa ИФА, спецификалық IgE және жалпы IgE жабады.",
+      "Қалалар бойынша өзекті бағалармен зерттеулердің толық тізімі. Қарағанды мен Теміртау бағалары Астана мен Алматыдан сәл төмен, Шымкентте — сәл жоғары. МӘМС IMASA ИФА, спецификалық IgE, жалпы IgE және аутоиммунды диагностиканы жабады.",
     filter_label: "Санат",
     filters: [
       { id: "allergy", label: "Аллергология" },
       { id: "autoimmune", label: "Аутоиммунды" },
-      { id: "hormones", label: "Гормондар" },
-      { id: "oncology", label: "Онкомаркерлер" },
-      { id: "general", label: "Жалпы клиникалық" },
     ],
     table_header: { code: "Код", name: "Атауы", price: "Бағасы" },
     price_unit: "₸",
     per_allergen: "аллерген үшін",
     osms_note: "Электронды жолдама бойынша МӘМС жабады",
     anesthetic_section_title: "Қолда бар анестетиктер",
-    anesthetic_section_lede:
-      "Бұл анестетиктер зертханамызда — өз препаратыңызсыз келе аласыз. Кез келген өндірушінің анестетигін де қабылдаймыз.",
     anesthetic_list: [
       { name: "Артикаин 4% эпинефринмен 1:100 000", brand: "Inibsa Dental · Испания" },
       { name: "Артикаин гидрохлориді 4% эпинефринмен", brand: "Huons Co. Ltd. · Корея" },
@@ -1108,7 +1103,7 @@ const kk: Strings = {
       { name: "Лидокаин 1% және 2% (ампулалар)", brand: "Santo Химфарм / БЗМП · Қазақстан/Беларусь" },
     ],
     anesthetic_byo_note:
-      "Тізімде өз препаратыңызды таппадыңыз ба? Әкеліңіз — imasa ИФА әдісі бойынша тексереміз. Стандартты бағасы — аллерген үшін 6 000–6 500 ₸.",
+      "Тізімде өз препаратыңызды таппадыңыз ба? Әкеліңіз — IMASA ИФА әдісі бойынша тексереміз. Стандартты бағасы — аллерген үшін 6 000–6 500 ₸.",
   },
   locations_page: {
     title: "Филиалдар",
@@ -1117,29 +1112,29 @@ const kk: Strings = {
     detail_address: "Мекенжайлар",
     detail_hours: "Жұмыс уақыты",
     detail_phone: "Колл-орталық",
+    detail_voice: "Дауыстық көмекші · 24/7",
     detail_services: "Бұл филиалда не қол жетімді",
     detail_directions: "Жолды қалай табу керек",
     blood_draw_label: "Қан алу",
     blood_draw_clinic: "1 000 ₸ — клиникада",
     blood_draw_home: "10 000 ₸ — үйге шығу (тек Астана)",
     services_offered: [
-      "imasa ИФА (өз материалыңызды әкеліңіз)",
+      "IMASA ИФА (өз материалыңызды әкеліңіз)",
       "Спецификалық IgE (стандартты аллергендер)",
       "Жалпы IgE",
       "ALEX-300 (молекулалық панель)",
       "Аутоиммунды панельдер (нРИФ, иммуноблот, ИФА)",
-      "Гормондар, онкомаркерлер, жалпы клиникалық",
       "Аллерголог-иммунологтың кеңесі (тек Астана)",
     ],
   },
   osms_page: {
     title: "МӘМС — міндетті медициналық сақтандыру",
     lede:
-      "Үш негізгі аллергологиялық талдау мемлекеттік сақтандырумен жабылады. Сізге емханаңыздан электронды жолдама ғана қажет.",
+      "Негізгі аллергологиялық талдаулар мен аутоиммунды ауруларды диагностикалау мемлекеттік сақтандырумен жабылады. Сізге емханаңыздан электронды жолдама ғана қажет.",
     covered_title: "МӘМС Аллергоскринде нені жабады",
     covered_items: [
       {
-        code: "imasa ИФА",
+        code: "IMASA ИФА",
         name: "Сіздің затыңызға реакция",
         description:
           "Өз анестетигіңізді / дәріңізді / материалыңызды әкеліңіз — аллергиялық реакцияға тексереміз. МӘМС пациенттері үшін төлемсіз.",
@@ -1155,14 +1150,18 @@ const kk: Strings = {
         name: "Алғашқы диагностика",
         description: "E иммуноглобулинінің жалпы деңгейі — аллергияға күдік туындағанда бірінші қадам.",
       },
+      {
+        code: "нРИФ · Иммуноблот",
+        name: "Аутоиммунды аурулар",
+        description:
+          "нРИФ скрининг және растайтын иммуноблот — емханадан электронды жолдама бойынша аутоиммунды ауруларды диагностикалау.",
+      },
     ],
     flow_title: "Жолдаманы қалай алу керек",
     flow_steps: [
       {
         n: "01",
         title: "Емханаңызда терапевтке немесе аллергологқа жазылыңыз",
-        body:
-          "Сіздің ҚМАЖ / DamuMed арқылы. Емхана бекітілген және ӘМСҚ-мен шартта болуы керек.",
       },
       {
         n: "02",
@@ -1174,7 +1173,7 @@ const kk: Strings = {
         n: "03",
         title: "Кез келген филиалымызға келіңіз",
         body:
-          "Жазылусыз, кезек тәртібімен. Жеке куәлік алып келіңіз (18 жасқа толмаған пациенттер үшін — ата-ананың төлқұжаты).",
+          "Жазылусыз, кезек тәртібімен. Жеке куәлік алып келіңіз (18 жасқа толмаған пациенттер ата-анасының немесе заңды өкілдерінің сүйемелдеуімен келеді).",
       },
       {
         n: "04",
@@ -1185,23 +1184,22 @@ const kk: Strings = {
     ],
     not_covered_title: "МӘМС нені жабпайды",
     not_covered_body:
-      "ALEX-300, аутоиммунды панельдер, гормондар, онкомаркерлер, жалпы клиникалық — бұл коммерциялық қызметтер, бөлек төленеді. Толық прайс — «Талдаулар мен бағалар» бетінде.",
+      "ALEX-300 және электронды жолдамасыз талдаулар прайс бойынша төленеді. Толық прайс — «Талдаулар мен бағалар» бетінде.",
     cta: "Толық тізім мен бағаларды көру →",
   },
   about_page: {
     title: "Зертхана туралы",
     lede:
-      "Аллергоскрин — аллергология және иммунология медициналық зертханасы. 2015 жылдан бері жұмыс істейміз, Қазақстанның бес қаласында филиал, меншікті imasa әдістемесі.",
+      "Аллергоскрин — аллергология және иммунология медициналық зертханасы. 2017 жылдан бері жұмыс істейміз, Қазақстанның бес қаласында филиал, меншікті IMASA әдістемесі.",
     story_title: "Біз неге осындамыз",
     story_body: [
-      "Қазақстандағы аллергологиялық зертханалардың көпшілігі тек стандартты IgE панельдерімен ғана жұмыс істейді — тозаң, негізгі тағамдар, жануарлар эпителиі. Егер пациентте нақты дәріге, материалға немесе анестетикке реакция болса — мұндай зертханалар жоқ.",
-      "Біз осы олқылықты толтыру үшін Аллергоскринді негіздедік. imasa ИФА әдістемесі сіз әкелетін КЕЗ КЕЛГЕН затқа организмнің реакциясын тексереді. Кейіннен ALEX-300 молекулалық панелі мен аутоиммунды диагностика блогын қостық — пациент бір жерде толық жолдан өте алуы үшін.",
-      "МӘМС қабылдаймыз, жазылусыз, кезек тәртібімен жұмыс істейміз. Нәтижелер — қорғалған жеке кабинет арқылы.",
+      "Қазақстандағы аллергологиялық зертханалардың көпшілігі тек стандартты IgE панельдерімен жұмыс істейді. IMASA ИФА әдістемесі организміңіздің КЕЗ КЕЛГЕН затқа реакциясын тексереді. Біз ALEX-300 молекулалық панелін, стандартты панельді және аутоиммунды диагностиканы (нРИФ, иммуноблот) қостық — пациент толық жолдан бір жерде өте алуы үшін.",
+      "МӘМС бойынша қабылдаймыз, жазылусыз, кезек тәртібімен жұмыс істейміз. Нәтижелер — қорғалған жеке кабинет арқылы.",
     ],
     tech_title: "Технологиялар",
     methods: [
       {
-        title: "imasa ИФА",
+        title: "IMASA ИФА",
         body:
           "Interact Modeling of Allergen-Specific Antibody — ИФА-ның меншікті модификациясы. Стандартты емес аллергендерде дәлдігі 95%.",
       },
@@ -1246,9 +1244,9 @@ const kk: Strings = {
   },
   patent: {
     eyebrow: "Патенттелген әдіс",
-    title: "imasa ИФА — патентпен қорғалған меншікті әзірлеме",
+    title: "IMASA ИФА — патентпен қорғалған меншікті әзірлеме",
     lede:
-      "imasa ИФА әдісі (стандартты емес аллергендерге — нативті заттарға, кез келген түрдегі дәрілік препараттарға арналған спецификалық E иммуноглобулинін зерттеу) ойлап табылған және патенттелген. «Аллергоскрин» ЖШС — Еуразиялық аймақтағы әдістің жалғыз эксклюзивті дистрибьюторы.",
+      "IMASA ИФА әдісі (стандартты емес аллергендерге — нативті заттарға, кез келген түрдегі дәрілік препараттарға арналған спецификалық E иммуноглобулинін зерттеу) ойлап табылған және патенттелген. «Аллергоскрин» ЖШС — Еуразиялық аймақтағы әдістің жалғыз эксклюзивті дистрибьюторы.",
     points: [
       {
         title: "Қазақстан Республикасының № 2632 патенті",
@@ -1263,7 +1261,7 @@ const kk: Strings = {
       {
         title: "Эксклюзивті дистрибьюция",
         body:
-          "«Аллергоскрин» ЖШС — imasa ИФА әдісінің жалғыз ресми дистрибьюторы. Еуразиялық аймақта бұл талдауды жүргізетін басқа зертханалар жоқ.",
+          "«Аллергоскрин» ЖШС — IMASA ИФА әдісінің жалғыз ресми дистрибьюторы. Еуразиялық аймақта бұл талдауды жүргізетін басқа зертханалар жоқ.",
       },
     ],
     download_label: "Дистрибьютор сертификаты",
@@ -1275,7 +1273,7 @@ const en: Strings = {
   meta: {
     title: "Allergoscreen — Allergy & Immunology Laboratory in Kazakhstan",
     description:
-      "Precise answers for complex allergies. imasa ELISA — we test your reaction to any substance you bring. IgE, ALEX-300, autoimmune panels. Karaganda, Astana, Almaty, Temirtau, Shymkent.",
+      "Precise answers for complex allergies. IMASA ELISA — we test your reaction to any substance you bring. IgE, ALEX-300, autoimmune panels. Karaganda, Astana, Almaty, Temirtau, Shymkent.",
     og_alt: "Allergoscreen — medical laboratory",
   },
   nav: {
@@ -1318,7 +1316,7 @@ const en: Strings = {
     ],
     cta: "Open patient portal",
     note:
-      "Results are delivered through the patient portal only — a secure channel required by Kazakhstan regulations. We never send results via WhatsApp, Telegram or e-mail, and never give them over the phone.",
+      "Results are delivered through the patient portal only — a secure channel required by Kazakhstan regulations.",
     help_label: "No patient code?",
     help_body: "Call your branch — we will help.",
     help_cta: "Branch contacts",
@@ -1329,13 +1327,13 @@ const en: Strings = {
     h1_accent: "complex allergies",
     h1_tail: "when standard tests give no result",
     lede:
-      "We test your reaction to ANY substance — from anaesthetics and medications to dust, food and cosmetics. imasa ELISA — our proprietary methodology, 95% accuracy.",
+      "We test your reaction to ANY substance — from anaesthetics and medications to dust, food and cosmetics. IMASA ELISA — our proprietary methodology, 95% accuracy.",
     cta_primary: "Tests & pricing",
     cta_secondary: "Ask the assistant",
     no_appointment_note: "No booking. Walk-in, first-come-first-served.",
     metrics: [
-      { value: "10+", label: "years on the market" },
-      { value: "95%", label: "imasa accuracy" },
+      { value: "2017", label: "founded" },
+      { value: "95%", label: "IMASA accuracy" },
       { value: "300", label: "ALEX allergens" },
       { value: "10,000+", label: "IgE allergens in database" },
     ],
@@ -1346,7 +1344,7 @@ const en: Strings = {
       {
         title: "We test ANY substance",
         body:
-          "Bring your anaesthetic, medication, material or sample — we test the reaction using our imasa ELISA methodology. No other lab in Kazakhstan offers this.",
+          "Bring your anaesthetic, medication, material or sample — we test the reaction using our IMASA ELISA methodology. No other lab in Kazakhstan offers this.",
       },
       {
         title: "10,000+ allergen database",
@@ -1356,7 +1354,7 @@ const en: Strings = {
       {
         title: "Free under OSMS (state insurance)",
         body:
-          "imasa ELISA, specific IgE and general IgE are covered by Kazakhstan state insurance with an electronic referral (KMIS / DamuMed).",
+          "IMASA ELISA, specific IgE, general IgE and autoimmune diagnostics — with an electronic referral from your polyclinic (KMIS / DamuMed).",
       },
       {
         title: "Autoimmune diagnostics",
@@ -1366,8 +1364,7 @@ const en: Strings = {
     ],
   },
   services_preview: {
-    eyebrow: "What we test",
-    title: "9 diagnostic areas",
+    title: "What we test",
     lede:
       "From drug allergies in dental patients to autoimmune panels for suspected lupus — we cover complex cases that general labs cannot.",
     items: [
@@ -1406,7 +1403,7 @@ const en: Strings = {
       {
         title: "Animal allergens",
         body:
-          "Cat, dog, horse epithelium, fur, bird feather. Reactions in owners and healthcare workers.",
+          "Cat, dog, horse epithelium, fur, bird feather.",
       },
       {
         title: "Autoimmune disease",
@@ -1418,11 +1415,11 @@ const en: Strings = {
   },
   tech: {
     eyebrow: "Lab technology",
-    title: "Three key methods — covering 95% of requests",
+    title: "Three key methods",
     lede:
-      "Most allergy labs work only with standard IgE panels. We add our proprietary imasa methodology and the ALEX molecular panel — which is why patients with complex cases come to us.",
+      "Most allergy labs work only with standard IgE panels. We add our proprietary IMASA methodology and the ALEX molecular panel — which is why patients with complex cases come to us.",
     imasa: {
-      title: "imasa ELISA",
+      title: "IMASA ELISA",
       tagline: "Proprietary methodology — 95% accuracy",
       body:
         "Interact Modeling of Allergen-Specific Antibody. We test your blood serum against ANY substance you bring: medication, anaesthetic, material, sample. This finds allergens not present in standard databases. 6,000–6,500 KZT per allergen.",
@@ -1442,13 +1439,14 @@ const en: Strings = {
   },
   osms_band: {
     eyebrow: "Free under OSMS",
-    title: "Three tests covered by mandatory health insurance",
+    title: "What mandatory health insurance covers",
     body:
       "With an electronic referral from your polyclinic (via KMIS or DamuMed), you receive these free of charge:",
     items: [
-      "imasa ELISA — reaction to your own substance",
+      "IMASA ELISA — reaction to your own substance",
       "Specific IgE — standard allergens",
       "General IgE — initial diagnostics",
+      "Autoimmune diagnostics — IIF, immunoblot",
     ],
     cta: "How to get a referral →",
     note: "2026 tariff. OSMS works at every location.",
@@ -1507,7 +1505,7 @@ const en: Strings = {
     cta_call: "Call the call centre",
   },
   footer: {
-    tagline: "Allergy & immunology at the highest level. Since 2015.",
+    tagline: "Allergy & immunology at the highest level. Since 2017.",
     col_company: "Laboratory",
     col_patients: "Patients",
     col_osms: "OSMS",
@@ -1559,22 +1557,17 @@ const en: Strings = {
   services_page: {
     title: "Tests & pricing",
     lede:
-      "Full list of tests with current prices by city. Karaganda and Temirtau prices are slightly lower than Astana and Almaty, Shymkent's slightly higher. Kazakhstan OSMS insurance covers imasa ELISA, specific IgE and general IgE.",
+      "Full list of tests with current prices by city. Karaganda and Temirtau prices are slightly lower than Astana and Almaty, Shymkent's slightly higher. Kazakhstan OSMS insurance covers IMASA ELISA, specific IgE, general IgE and autoimmune diagnostics.",
     filter_label: "Category",
     filters: [
       { id: "allergy", label: "Allergology" },
       { id: "autoimmune", label: "Autoimmune" },
-      { id: "hormones", label: "Hormones" },
-      { id: "oncology", label: "Oncology" },
-      { id: "general", label: "General lab" },
     ],
     table_header: { code: "Code", name: "Name", price: "Price" },
     price_unit: "KZT",
     per_allergen: "per allergen",
     osms_note: "Covered by OSMS with an electronic referral",
     anesthetic_section_title: "Anaesthetics in stock",
-    anesthetic_section_lede:
-      "These anaesthetics are available at the lab — you can come without bringing your own. We also accept any brand you bring.",
     anesthetic_list: [
       { name: "Articaine 4% with epinephrine 1:100 000", brand: "Inibsa Dental · Spain" },
       { name: "Articaine HCl 4% with epinephrine", brand: "Huons Co. Ltd. · Korea" },
@@ -1587,7 +1580,7 @@ const en: Strings = {
       { name: "Lidocaine 1% & 2% (ampoules)", brand: "Santo Khimfarm / BZMP · Kazakhstan/Belarus" },
     ],
     anesthetic_byo_note:
-      "Don't see your preparation in the list? Bring it — we'll test it with the imasa ELISA method. Standard price is 6,000–6,500 KZT per allergen.",
+      "Don't see your preparation in the list? Bring it — we'll test it with the IMASA ELISA method. Standard price is 6,000–6,500 KZT per allergen.",
   },
   locations_page: {
     title: "Locations",
@@ -1596,29 +1589,29 @@ const en: Strings = {
     detail_address: "Addresses",
     detail_hours: "Working hours",
     detail_phone: "Call centre",
+    detail_voice: "Voice assistant · 24/7",
     detail_services: "What's available here",
     detail_directions: "How to get there",
     blood_draw_label: "Blood draw",
     blood_draw_clinic: "1,000 KZT — at the clinic",
     blood_draw_home: "10,000 KZT — home visit (Astana only)",
     services_offered: [
-      "imasa ELISA (bring your own substance)",
+      "IMASA ELISA (bring your own substance)",
       "Specific IgE (standard allergens)",
       "General IgE",
       "ALEX-300 (molecular panel)",
       "Autoimmune panels (IIF, immunoblot, ELISA)",
-      "Hormones, oncology markers, general lab",
       "Consultation with allergist-immunologist (Astana only)",
     ],
   },
   osms_page: {
     title: "OSMS — Kazakhstan state health insurance",
     lede:
-      "Three key allergy tests are covered by state insurance. You only need an electronic referral from your polyclinic.",
+      "Key allergy tests and autoimmune disease diagnostics are covered by state insurance. You only need an electronic referral from your polyclinic.",
     covered_title: "What OSMS covers at Allergoscreen",
     covered_items: [
       {
-        code: "imasa ELISA",
+        code: "IMASA ELISA",
         name: "Reaction to your own substance",
         description:
           "Bring your anaesthetic / drug / material — we'll test for allergic reaction. Free for OSMS patients.",
@@ -1634,14 +1627,18 @@ const en: Strings = {
         name: "Initial diagnostics",
         description: "Overall immunoglobulin E level — the first step when allergy is suspected.",
       },
+      {
+        code: "IIF · Immunoblot",
+        name: "Autoimmune diseases",
+        description:
+          "IIF screening and confirmatory immunoblot — autoimmune disease diagnostics with an electronic referral from your polyclinic.",
+      },
     ],
     flow_title: "How to get a referral",
     flow_steps: [
       {
         n: "01",
         title: "Book an appointment with a GP or allergist at your polyclinic",
-        body:
-          "Via your KMIS / DamuMed. Your polyclinic must be registered and contracted with FSMS.",
       },
       {
         n: "02",
@@ -1653,7 +1650,7 @@ const en: Strings = {
         n: "03",
         title: "Visit any of our locations",
         body:
-          "Walk-in, first-come-first-served. Bring your ID (for patients under 18 — parent's passport).",
+          "Walk-in, first-come-first-served. Bring your ID (patients under 18 must be accompanied by a parent or legal guardian).",
       },
       {
         n: "04",
@@ -1664,23 +1661,22 @@ const en: Strings = {
     ],
     not_covered_title: "What OSMS doesn't cover",
     not_covered_body:
-      "ALEX-300, autoimmune panels, hormones, oncology markers, general lab tests — these are commercial services and are paid separately. Full pricing on the Tests & Pricing page.",
+      "ALEX-300 and tests without an electronic referral are paid per the price list. Full pricing on the Tests & Pricing page.",
     cta: "See full list and pricing →",
   },
   about_page: {
     title: "About the lab",
     lede:
-      "Allergoscreen — allergy and immunology medical laboratory. Operating since 2015, locations in five cities across Kazakhstan, proprietary imasa methodology.",
+      "Allergoscreen — allergy and immunology medical laboratory. Operating since 2017, locations in five cities across Kazakhstan, proprietary IMASA methodology.",
     story_title: "Why we exist",
     story_body: [
-      "Most allergy labs in Kazakhstan work only with standard IgE panels — pollen, common foods, animal epithelium. If a patient reacts to a specific drug, material or anaesthetic — such labs simply don't exist.",
-      "We founded Allergoscreen to close this gap. Our imasa ELISA methodology tests your body's reaction to ANY substance you bring. Later we added the ALEX-300 molecular panel and the autoimmune diagnostics block (IIF, immunoblot) — so a patient can complete the full diagnostic journey in one place.",
-      "We accept OSMS, work walk-in, first-come-first-served. Results — through a secure patient portal.",
+      "Most allergy labs in Kazakhstan work only with standard IgE panels. The IMASA ELISA method tests your body's reaction to ANY substance. We added the ALEX-300 molecular panel, the standard panel and autoimmune diagnostics (IIF, immunoblot) — so a patient can complete the whole journey in one place.",
+      "We accept OSMS referrals, work walk-in, first-come-first-served. Results — through a secure patient portal.",
     ],
     tech_title: "Technology",
     methods: [
       {
-        title: "imasa ELISA",
+        title: "IMASA ELISA",
         body:
           "Interact Modeling of Allergen-Specific Antibody — our proprietary ELISA modification. 95% accuracy on non-standard allergens.",
       },
@@ -1724,9 +1720,9 @@ const en: Strings = {
   },
   patent: {
     eyebrow: "Patented method",
-    title: "imasa ELISA — proprietary patented technology",
+    title: "IMASA ELISA — proprietary patented technology",
     lede:
-      "The imasa ELISA method (testing for IgE specific to non-standard allergens — native substances and medications in any form) is invented and patented. Allergoscreen LLP is the sole exclusive distributor of the method across the Eurasian region.",
+      "The IMASA ELISA method (testing for IgE specific to non-standard allergens — native substances and medications in any form) is invented and patented. Allergoscreen LLP is the sole exclusive distributor of the method across the Eurasian region.",
     points: [
       {
         title: "Republic of Kazakhstan Patent No. 2632",
@@ -1741,7 +1737,7 @@ const en: Strings = {
       {
         title: "Exclusive distribution",
         body:
-          "Allergoscreen LLP is the only official distributor of the imasa ELISA method. No other laboratory in the Eurasian region offers this test.",
+          "Allergoscreen LLP is the only official distributor of the IMASA ELISA method. No other laboratory in the Eurasian region offers this test.",
       },
     ],
     download_label: "Distributor certificate",
