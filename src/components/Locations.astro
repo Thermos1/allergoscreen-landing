@@ -1,5 +1,5 @@
 ---
-import { t, type Locale, VOICE_ASSISTANT_PHONE } from "../i18n/ui";
+import { t, type Locale, VOICE_ASSISTANT_PHONE, VOICE_ASSISTANT_WHATSAPP, telHref, waHref } from "../i18n/ui";
 
 interface Props {
   locale: Locale;
@@ -91,10 +91,10 @@ const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
 
               <div>
                 <div class="text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_voice}</div>
-                <a href={`tel:${VOICE_ASSISTANT_PHONE.replace(/[^+\d]/g, "")}`} class="block text-[16px] font-semibold text-ink-900 hover:text-brand-700">{VOICE_ASSISTANT_PHONE}</a>
+                <a href={telHref(VOICE_ASSISTANT_PHONE)} class="block text-[16px] font-semibold text-ink-900 hover:text-brand-700">{VOICE_ASSISTANT_PHONE}</a>
 
-                <div class="mt-4 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_phone}</div>
-                <a href={`tel:${c.phone_label.replace(/[^+\d]/g, "")}`} class="block text-[15px] font-semibold text-ink-600 hover:text-brand-700">{c.phone_label}</a>
+                <div class="mt-4 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.detail_whatsapp}</div>
+                <a href={waHref(VOICE_ASSISTANT_WHATSAPP)} target="_blank" rel="noopener" class="block text-[15px] font-semibold text-ink-600 hover:text-brand-700">{VOICE_ASSISTANT_WHATSAPP}</a>
 
                 <div class="mt-5 text-[12px] uppercase tracking-wider text-ink-400 font-semibold mb-2">{s.locations_page.blood_draw_label}</div>
                 <ul class="space-y-1 text-[14px] text-ink-600">
@@ -153,7 +153,7 @@ const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
     <p class="text-ink-600 mb-6 max-w-prose mx-auto">{s.contact_cta.body}</p>
     <div class="flex flex-wrap gap-3 justify-center">
       <button type="button" id="loc-chat" class="btn-primary">{s.contact_cta.cta_chat}</button>
-      <a href="tel:+77024786568" class="btn-ghost">{s.contact_cta.cta_call}</a>
+      <a href={telHref(VOICE_ASSISTANT_PHONE)} class="btn-ghost">{s.contact_cta.cta_call}</a>
     </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 ---
 // Homepage sections shared across all 3 locales.
-import { t, type Locale, VOICE_ASSISTANT_PHONE } from "../i18n/ui";
+import { t, type Locale, VOICE_ASSISTANT_PHONE, VOICE_ASSISTANT_WHATSAPP, telHref } from "../i18n/ui";
 import VideoTestimonials from "./VideoTestimonials.astro";
 
 interface Props {
@@ -357,8 +357,8 @@ const serviceIconKeys = [
                   </span>
                 </div>
                 <div class="text-[13px] text-ink-600 pl-6">
-                  {c.phone_label}
-                  <span class="block text-[12px] text-ink-400">{s.locations_page.detail_phone}</span>
+                  {VOICE_ASSISTANT_WHATSAPP}
+                  <span class="block text-[12px] text-ink-400">{s.locations_page.detail_whatsapp}</span>
                 </div>
               </div>
             </div>
@@ -396,7 +396,7 @@ const serviceIconKeys = [
             <span class="inline-flex h-4 w-4" set:html={icons.chat} />
             {s.contact_cta.cta_chat}
           </button>
-          <a href="tel:+77024786568" class="btn-ghost !bg-white lg:w-full justify-center">
+          <a href={telHref(VOICE_ASSISTANT_PHONE)} class="btn-ghost !bg-white lg:w-full justify-center">
             <span class="inline-flex h-4 w-4" set:html={icons.phone} />
             {s.contact_cta.cta_call}
           </a>

@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         reply:
-          "Виджет временно недоступен (конфигурация). Позвоните в колл-центр или напишите в WhatsApp.",
+          "Виджет временно недоступен (конфигурация). Позвоните голосовому помощнику +7 700 428 65 68 или напишите ему в WhatsApp +7 775 989 32 87.",
       }),
       { status: 503, headers: { "content-type": "application/json" } },
     );
@@ -45,7 +45,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         reply:
-          "Извините, ассистент сейчас недоступен. Попробуйте через минуту или позвоните в колл-центр.",
+          "Извините, ассистент сейчас недоступен. Попробуйте через минуту или позвоните голосовому помощнику +7 700 428 65 68.",
       }),
       { status: 502, headers: { "content-type": "application/json" } },
     );

@@ -8,8 +8,12 @@
 export const LOCALES = ["ru", "kk", "en"] as const;
 export type Locale = (typeof LOCALES)[number];
 
-// The AI voice assistant line — shown on every branch, the branch call centre stays as the second number.
+// The AI voice assistant: its phone line and its WhatsApp are the ONLY public contact numbers
+// (client, 19.11: branch call-centre numbers removed from the whole site).
 export const VOICE_ASSISTANT_PHONE = "+7 700 428 65 68";
+export const VOICE_ASSISTANT_WHATSAPP = "+7 775 989 32 87";
+export const telHref = (n: string) => `tel:${n.replace(/[^+\d]/g, "")}`;
+export const waHref = (n: string) => `https://wa.me/${n.replace(/\D/g, "")}`;
 
 export const LOCALE_LABELS: Record<Locale, string> = {
   ru: "Рус",
@@ -144,7 +148,6 @@ type Strings = {
       city: string;
       addresses: string[];
       hours: string;
-      phone_label: string;
     }[];
     cta: string;
   };
@@ -231,7 +234,7 @@ type Strings = {
     lede: string;
     detail_address: string;
     detail_hours: string;
-    detail_phone: string;
+    detail_whatsapp: string;
     detail_voice: string;
     detail_services: string;
     detail_directions: string;
@@ -373,9 +376,9 @@ const ru: Strings = {
     title: "Почему пациенты приходят именно к нам",
     items: [
       {
-        title: "Тестируем ЛЮБОЕ вещество",
+        title: "Тестируем ЛЮБОЕ вещество по методике IMASA ИФА",
         body:
-          "Принесите свой анестетик, лекарство, материал или образец — проверим реакцию по методике IMASA ИФА. Других лабораторий в РК с такой технологией нет.",
+          "Принесите свой анестетик, лекарство, материал или образец — проверим реакцию. Других лабораторий в РК с такой технологией нет.",
       },
       {
         title: "База 10 000+ аллергенов",
@@ -417,7 +420,7 @@ const ru: Strings = {
       {
         title: "Косметология",
         body:
-          "Мази, кремы, тушь, духи, одеколоны — всё, что наносится на кожу или вдыхается.",
+          "Мази, кремы, тушь, парфюмерия — всё, что наносится на кожу или вдыхается.",
       },
       {
         title: "Бытовые аллергены",
@@ -497,35 +500,30 @@ const ru: Strings = {
         city: "Астана",
         addresses: ["ул. Сабыра Ракымова, 22", "ул. Ахмета Байтурсынова, 6"],
         hours: "Пн–Сб 08:00–14:00",
-        phone_label: "+7 702 478 65 68",
       },
       {
         slug: "almaty",
         city: "Алматы",
-        addresses: ["ул. Кабанбай Батыра, 111 (здание Neuromed)", "ул. Прокофьева, 16 (здание МЦ ИФС)"],
+        addresses: ["ул. Кабанбай Батыра, 111 (здание Neuromed)", "просп. Райымбека, 540/7 (Ташкентский тракт), 1 этаж, кабинет 1 (LB Clinic)"],
         hours: "Пн–Пт 08:00–13:00 · Сб 09:00–13:00",
-        phone_label: "+7 775 226 65 30",
       },
       {
         slug: "karaganda",
         city: "Караганда",
         addresses: ["мкр. Степной-2, 18/1"],
         hours: "Пн–Пт 08:00–14:00 · Сб 08:00–12:00",
-        phone_label: "+7 778 941 60 36",
       },
       {
         slug: "temirtau",
         city: "Темиртау",
         addresses: ["пр. Мира, 114"],
         hours: "Пн–Сб 08:00–12:00",
-        phone_label: "+7 778 941 60 36",
       },
       {
         slug: "shymkent",
         city: "Шымкент",
-        addresses: ["ул. Акпан батыра, 42, 1 этаж", "просп. Кабанбай батыра, 26 (Park Health)", "просп. Байдибек би, 125 (Асем)", "ул. Толеметова, 69/30"],
+        addresses: ["ул. Акпан батыра, 42, 1 этаж", "просп. Кабанбай батыра, 26 (Park Health)"],
         hours: "Пн–Сб 08:00–13:00",
-        phone_label: "+7 775 226 65 30",
       },
     ],
     cta: "Подробнее о филиалах →",
@@ -536,7 +534,7 @@ const ru: Strings = {
     body:
       "Ассистент лаборатории доступен по телефону, в WhatsApp и в чате на сайте. Подскажет цену, адрес, подготовку, поможет выбрать тест. Отвечает 24/7.",
     cta_chat: "Открыть чат",
-    cta_call: "Позвонить в колл-центр",
+    cta_call: "Позвонить ассистенту",
   },
   footer: {
     tagline: "Аллергология и иммунология высшего уровня. С 2017 года.",
@@ -558,7 +556,7 @@ const ru: Strings = {
       results_portal: "Личный кабинет пациента",
       tariff: "Тарификатор ОСМС 2026",
     },
-    contacts_label_phone: "Колл-центр",
+    contacts_label_phone: "Голосовой помощник",
     contacts_label_whatsapp: "WhatsApp",
     contacts_label_telegram: "Telegram",
     contacts_label_instagram: "Instagram",
@@ -575,7 +573,7 @@ const ru: Strings = {
     teaser_title: "Я — ассистент Аллергоскрин",
     teaser_body: "Подскажу про анализы, цены и подготовку. Задайте вопрос.",
     error_network: "Ошибка сети. Проверьте подключение и попробуйте снова.",
-    error_generic: "Не удалось получить ответ. Попробуйте ещё раз или позвоните в колл-центр.",
+    error_generic: "Не удалось получить ответ. Попробуйте ещё раз или позвоните голосовому помощнику.",
     aria_open: "Открыть чат",
     aria_close: "Закрыть чат",
     aria_send: "Отправить сообщение",
@@ -622,7 +620,7 @@ const ru: Strings = {
       "Пять городов, без записи, в порядке живой очереди. Оплата наличными или картой в регистратуре, по ОСМС — по электронному направлению.",
     detail_address: "Адреса",
     detail_hours: "Часы работы",
-    detail_phone: "Колл-центр",
+    detail_whatsapp: "WhatsApp помощника · 24/7",
     detail_voice: "Голосовой помощник · 24/7",
     detail_services: "Что доступно в этом филиале",
     detail_directions: "Как добраться",
@@ -853,9 +851,9 @@ const kk: Strings = {
     title: "Пациенттер неге дәл бізге келеді",
     items: [
       {
-        title: "КЕЗ КЕЛГЕН затты тексереміз",
+        title: "IMASA ИФА әдісі бойынша КЕЗ КЕЛГЕН затты тексереміз",
         body:
-          "Өз анестетигіңізді, дәріңізді, материалыңызды әкеліңіз — IMASA ИФА әдісі бойынша реакцияны тексереміз. ҚР-да мұндай технологиясы бар басқа зертхана жоқ.",
+          "Өз анестетигіңізді, дәріңізді, материалыңызды әкеліңіз — реакцияны тексереміз. ҚР-да мұндай технологиясы бар басқа зертхана жоқ.",
       },
       {
         title: "10 000+ аллерген базасы",
@@ -896,7 +894,7 @@ const kk: Strings = {
       },
       {
         title: "Косметология",
-        body: "Майлар, кремдер, тушь, иіссулар — теріге жағатын немесе тыныс алатын барлық нәрсе.",
+        body: "Майлар, кремдер, тушь, парфюмерия — теріге жағатын немесе тыныс алатын барлық нәрсе.",
       },
       {
         title: "Тұрмыстық аллергендер",
@@ -975,35 +973,30 @@ const kk: Strings = {
         city: "Астана",
         addresses: ["Сабыр Рақымов к-сі, 22", "Ахмет Байтұрсынов к-сі, 6"],
         hours: "Дс–Сб 08:00–14:00",
-        phone_label: "+7 702 478 65 68",
       },
       {
         slug: "almaty",
         city: "Алматы",
-        addresses: ["Қабанбай Батыр к-сі, 111 (Neuromed ғимараты)", "Прокофьев к-сі, 16 (МЦ ИФС ғимараты)"],
+        addresses: ["Қабанбай Батыр к-сі, 111 (Neuromed ғимараты)", "Райымбек даң., 540/7 (Ташкент тас жолы), 1-қабат, 1-кабинет (LB Clinic)"],
         hours: "Дс–Жм 08:00–13:00 · Сб 09:00–13:00",
-        phone_label: "+7 775 226 65 30",
       },
       {
         slug: "karaganda",
         city: "Қарағанды",
         addresses: ["Степной-2 ы/а, 18/1"],
         hours: "Дс–Жм 08:00–14:00 · Сб 08:00–12:00",
-        phone_label: "+7 778 941 60 36",
       },
       {
         slug: "temirtau",
         city: "Теміртау",
         addresses: ["Бейбітшілік даң., 114"],
         hours: "Дс–Сб 08:00–12:00",
-        phone_label: "+7 778 941 60 36",
       },
       {
         slug: "shymkent",
         city: "Шымкент",
-        addresses: ["Ақпан батыр к-сі, 42, 1-қабат", "Қабанбай батыр даң., 26 (Park Health)", "Байдібек би даң., 125 (Асем)", "Төлеметов к-сі, 69/30"],
+        addresses: ["Ақпан батыр к-сі, 42, 1-қабат", "Қабанбай батыр даң., 26 (Park Health)"],
         hours: "Дс–Сб 08:00–13:00",
-        phone_label: "+7 775 226 65 30",
       },
     ],
     cta: "Филиалдар туралы толығырақ →",
@@ -1014,7 +1007,7 @@ const kk: Strings = {
     body:
       "Зертхана ассистенті телефонмен, WhatsApp-та және сайттағы чатта қол жетімді. Бағаны, мекенжайды, дайындықты айтады, тестті таңдауға көмектеседі. 24/7 жауап береді.",
     cta_chat: "Чатты ашу",
-    cta_call: "Қоңырау шалу",
+    cta_call: "Көмекшіге қоңырау шалу",
   },
   footer: {
     tagline: "Жоғары деңгейлі аллергология және иммунология. 2017 жылдан бері.",
@@ -1036,7 +1029,7 @@ const kk: Strings = {
       results_portal: "Пациенттің жеке кабинеті",
       tariff: "МӘМС тарификаторы 2026",
     },
-    contacts_label_phone: "Колл-орталық",
+    contacts_label_phone: "Дауыстық көмекші",
     contacts_label_whatsapp: "WhatsApp",
     contacts_label_telegram: "Telegram",
     contacts_label_instagram: "Instagram",
@@ -1053,7 +1046,7 @@ const kk: Strings = {
     teaser_title: "Мен Аллергоскрин ассистентімін",
     teaser_body: "Талдаулар, бағалар және дайындық туралы айтамын. Сұрағыңызды қойыңыз.",
     error_network: "Желі қатесі. Қосылымды тексеріп, қайтадан көріңіз.",
-    error_generic: "Жауап алу мүмкін болмады. Қайтадан көріңіз немесе колл-орталыққа қоңырау шалыңыз.",
+    error_generic: "Жауап алу мүмкін болмады. Қайтадан көріңіз немесе дауыстық көмекшіге қоңырау шалыңыз.",
     aria_open: "Чатты ашу",
     aria_close: "Чатты жабу",
     aria_send: "Хабарлама жіберу",
@@ -1100,7 +1093,7 @@ const kk: Strings = {
       "Бес қала, жазылусыз, тірі кезек тәртібімен. Тіркеу орнында қолма-қол ақшамен немесе картамен төлеуге болады, МӘМС бойынша — электронды жолдамамен.",
     detail_address: "Мекенжайлар",
     detail_hours: "Жұмыс уақыты",
-    detail_phone: "Колл-орталық",
+    detail_whatsapp: "Көмекшінің WhatsApp-ы · 24/7",
     detail_voice: "Дауыстық көмекші · 24/7",
     detail_services: "Бұл филиалда не қол жетімді",
     detail_directions: "Жолды қалай табу керек",
@@ -1327,9 +1320,9 @@ const en: Strings = {
     title: "Why patients come to us",
     items: [
       {
-        title: "We test ANY substance",
+        title: "We test ANY substance with the IMASA ELISA method",
         body:
-          "Bring your anaesthetic, medication, material or sample — we test the reaction using our IMASA ELISA methodology. No other lab in Kazakhstan offers this.",
+          "Bring your anaesthetic, medication, material or sample — we test your reaction to it. No other lab in Kazakhstan offers this.",
       },
       {
         title: "10,000+ allergen database",
@@ -1369,7 +1362,7 @@ const en: Strings = {
       },
       {
         title: "Cosmetics",
-        body: "Creams, lotions, mascara, perfumes — anything applied to skin or inhaled.",
+        body: "Ointments, creams, mascara, perfumery — anything applied to skin or inhaled.",
       },
       {
         title: "Household allergens",
@@ -1448,35 +1441,30 @@ const en: Strings = {
         city: "Astana",
         addresses: ["Sabyr Rakymov str., 22", "Akhmet Baitursynov str., 6"],
         hours: "Mon–Sat 08:00–14:00",
-        phone_label: "+7 702 478 65 68",
       },
       {
         slug: "almaty",
         city: "Almaty",
-        addresses: ["Kabanbay Batyr str., 111 (Neuromed building)", "Prokofiev str., 16 (MC IFS building)"],
+        addresses: ["Kabanbay Batyr str., 111 (Neuromed building)", "Raiymbek Ave., 540/7 (Tashkent Highway), 1st floor, room 1 (LB Clinic)"],
         hours: "Mon–Fri 08:00–13:00 · Sat 09:00–13:00",
-        phone_label: "+7 775 226 65 30",
       },
       {
         slug: "karaganda",
         city: "Karaganda",
         addresses: ["Stepnoy-2 microdistrict, 18/1"],
         hours: "Mon–Fri 08:00–14:00 · Sat 08:00–12:00",
-        phone_label: "+7 778 941 60 36",
       },
       {
         slug: "temirtau",
         city: "Temirtau",
         addresses: ["Mira Ave., 114"],
         hours: "Mon–Sat 08:00–12:00",
-        phone_label: "+7 778 941 60 36",
       },
       {
         slug: "shymkent",
         city: "Shymkent",
-        addresses: ["Akpan Batyr str., 42, 1st floor", "Kabanbay Batyr Ave., 26 (Park Health)", "Baidibek Bi Ave., 125 (Asem)", "Tolemetov str., 69/30"],
+        addresses: ["Akpan Batyr str., 42, 1st floor", "Kabanbay Batyr Ave., 26 (Park Health)"],
         hours: "Mon–Sat 08:00–13:00",
-        phone_label: "+7 775 226 65 30",
       },
     ],
     cta: "More about locations →",
@@ -1487,7 +1475,7 @@ const en: Strings = {
     body:
       "Our lab assistant is available by phone, WhatsApp and on-site chat. Knows pricing, addresses, preparation, helps choose the right test. Answers 24/7.",
     cta_chat: "Open chat",
-    cta_call: "Call the call centre",
+    cta_call: "Call the assistant",
   },
   footer: {
     tagline: "Allergy & immunology at the highest level. Since 2017.",
@@ -1509,7 +1497,7 @@ const en: Strings = {
       results_portal: "Patient portal",
       tariff: "OSMS 2026 tariff",
     },
-    contacts_label_phone: "Call centre",
+    contacts_label_phone: "Voice assistant",
     contacts_label_whatsapp: "WhatsApp",
     contacts_label_telegram: "Telegram",
     contacts_label_instagram: "Instagram",
@@ -1526,7 +1514,7 @@ const en: Strings = {
     teaser_title: "I'm the Allergoscreen assistant",
     teaser_body: "Ask about tests, pricing and preparation.",
     error_network: "Network error. Check your connection and try again.",
-    error_generic: "Couldn't get a reply. Please try again or call the call centre.",
+    error_generic: "Couldn't get a reply. Please try again or call our voice assistant.",
     aria_open: "Open chat",
     aria_close: "Close chat",
     aria_send: "Send message",
@@ -1573,7 +1561,7 @@ const en: Strings = {
       "Five cities, walk-in, first-come-first-served. Pay in cash or by card at the front desk, or under OSMS with an electronic referral.",
     detail_address: "Addresses",
     detail_hours: "Working hours",
-    detail_phone: "Call centre",
+    detail_whatsapp: "Assistant on WhatsApp · 24/7",
     detail_voice: "Voice assistant · 24/7",
     detail_services: "What's available here",
     detail_directions: "How to get there",
