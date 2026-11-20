@@ -22,32 +22,32 @@ function lp(target: string): string {
   </div>
 </section>
 
-<!-- STORY -->
+<!-- STORY: heading + text on top, the two photos side by side below (client, 20.11) -->
 <section class="container-x py-16 lg:py-20">
-  <div class="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 items-start">
-    <div class="reveal">
+  <div class="grid lg:grid-cols-[1fr_2fr] gap-6 lg:gap-16 items-start reveal">
+    <div>
       <div class="eyebrow mb-3">{s.about_page.story_title.toUpperCase()}</div>
-      <h2 class="mb-6 lg:mb-8">{s.about_page.story_title}</h2>
-      <div class="hidden lg:block space-y-4">
-        <img
-          src="/photos/interior-lobby-600.jpg"
-          srcset="/photos/interior-lobby-600.jpg 1x, /photos/interior-lobby-1200.jpg 2x"
-          alt="Холл лаборатории Аллергоскрин"
-          class="rounded-2xl shadow-card w-full h-auto"
-          loading="lazy"
-        />
-        <img
-          src="/photos/almaty-kabanbay-600.jpg"
-          srcset="/photos/almaty-kabanbay-600.jpg 1x, /photos/almaty-kabanbay-1200.jpg 2x"
-          alt="Филиал Аллергоскрин в Алматы, ул. Кабанбай Батыра 111 (здание Neuromed)"
-          class="rounded-2xl shadow-card w-full h-auto"
-          loading="lazy"
-        />
-      </div>
+      <h2>{s.about_page.story_title}</h2>
     </div>
-    <div class="reveal space-y-4 text-[16.5px] text-ink-600 leading-relaxed">
+    <div class="space-y-4 text-[16.5px] text-ink-600 leading-relaxed lg:pt-8">
       {s.about_page.story_body.map((p) => <p>{p}</p>)}
     </div>
+  </div>
+  <div class="grid grid-cols-2 gap-3 sm:gap-6 mt-10 lg:mt-12 reveal">
+    <img
+      src="/photos/interior-lobby-600.jpg"
+      srcset="/photos/interior-lobby-600.jpg 1x, /photos/interior-lobby-1200.jpg 2x"
+      alt="Холл лаборатории Аллергоскрин"
+      class="rounded-2xl shadow-card w-full aspect-[4/3] object-cover"
+      loading="lazy"
+    />
+    <img
+      src="/photos/almaty-kabanbay-600.jpg"
+      srcset="/photos/almaty-kabanbay-600.jpg 1x, /photos/almaty-kabanbay-1200.jpg 2x"
+      alt="Филиал Аллергоскрин в Алматы, ул. Кабанбай Батыра 111 (здание Neuromed)"
+      class="rounded-2xl shadow-card w-full aspect-[4/3] object-cover"
+      loading="lazy"
+    />
   </div>
 </section>
 
