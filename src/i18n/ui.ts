@@ -223,6 +223,8 @@ type Strings = {
     price_unit: string;
     per_allergen: string;
     osms_note: string;
+    search_placeholder: string;
+    search_empty: string;
     anesthetic_section_title: string;
     anesthetic_list: { name: string; brand: string }[];
     anesthetic_byo_note: string;
@@ -594,11 +596,19 @@ const ru: Strings = {
     filters: [
       { id: "allergy", label: "Аллергология" },
       { id: "autoimmune", label: "Аутоиммунные" },
+      { id: "blood", label: "Кровь" },
+      { id: "biochem", label: "Биохимия" },
+      { id: "hormones", label: "Гормоны" },
+      { id: "oncology", label: "Онкомаркеры" },
+      { id: "infections", label: "Инфекции" },
+      { id: "other", label: "Прочее" },
     ],
     table_header: { code: "Код", name: "Название", price: "Цена" },
     price_unit: "₸",
     per_allergen: "за аллерген",
     osms_note: "Покрывается ОСМС по электронному направлению",
+    search_placeholder: "Найти анализ: название или код",
+    search_empty: "Ничего не нашли. Спросите голосового помощника или Диму в чате — подскажут, есть ли такой анализ.",
     anesthetic_section_title: "Анестетики в наличии",
     anesthetic_list: [
       { name: "Артикаин 4% с эпинефрином 1:100 000", brand: "Inibsa Dental · Испания" },
@@ -633,7 +643,7 @@ const ru: Strings = {
       "Общий IgE",
       "ALEX-300 (молекулярная панель)",
       "Аутоиммунные панели (нРИФ, иммуноблот, ИФА)",
-      "Консультация аллерголога-иммунолога (только Астана)",
+      "Консультация аллерголога-иммунолога (онлайн; очно — в Астане)",
     ],
   },
   osms_page: {
@@ -1067,11 +1077,19 @@ const kk: Strings = {
     filters: [
       { id: "allergy", label: "Аллергология" },
       { id: "autoimmune", label: "Аутоиммунды" },
+      { id: "blood", label: "Қан" },
+      { id: "biochem", label: "Биохимия" },
+      { id: "hormones", label: "Гормондар" },
+      { id: "oncology", label: "Онкомаркерлер" },
+      { id: "infections", label: "Инфекциялар" },
+      { id: "other", label: "Басқа" },
     ],
     table_header: { code: "Код", name: "Атауы", price: "Бағасы" },
     price_unit: "₸",
     per_allergen: "аллерген үшін",
     osms_note: "Электронды жолдама бойынша МӘМС жабады",
+    search_placeholder: "Талдауды табу: атауы немесе коды",
+    search_empty: "Ештеңе табылмады. Дауыстық көмекшіден немесе чаттағы Димадан сұраңыз — мұндай талдау бар-жоғын айтады.",
     anesthetic_section_title: "Қолда бар анестетиктер",
     anesthetic_list: [
       { name: "Артикаин 4% эпинефринмен 1:100 000", brand: "Inibsa Dental · Испания" },
@@ -1106,7 +1124,7 @@ const kk: Strings = {
       "Жалпы IgE",
       "ALEX-300 (молекулалық панель)",
       "Аутоиммунды панельдер (нРИФ, иммуноблот, ИФА)",
-      "Аллерголог-иммунологтың кеңесі (тек Астана)",
+      "Аллерголог-иммунологтың кеңесі (онлайн; бетпе-бет — Астанада)",
     ],
   },
   osms_page: {
@@ -1535,11 +1553,19 @@ const en: Strings = {
     filters: [
       { id: "allergy", label: "Allergology" },
       { id: "autoimmune", label: "Autoimmune" },
+      { id: "blood", label: "Blood" },
+      { id: "biochem", label: "Biochemistry" },
+      { id: "hormones", label: "Hormones" },
+      { id: "oncology", label: "Tumour markers" },
+      { id: "infections", label: "Infections" },
+      { id: "other", label: "Other" },
     ],
     table_header: { code: "Code", name: "Name", price: "Price" },
     price_unit: "KZT",
     per_allergen: "per allergen",
     osms_note: "Covered by OSMS with an electronic referral",
+    search_placeholder: "Find a test: name or code",
+    search_empty: "Nothing found. Ask our voice assistant or Dima in the chat — they'll tell you whether we offer this test.",
     anesthetic_section_title: "Anaesthetics in stock",
     anesthetic_list: [
       { name: "Articaine 4% with epinephrine 1:100 000", brand: "Inibsa Dental · Spain" },
@@ -1574,7 +1600,7 @@ const en: Strings = {
       "General IgE",
       "ALEX-300 (molecular panel)",
       "Autoimmune panels (IIF, immunoblot, ELISA)",
-      "Consultation with allergist-immunologist (Astana only)",
+      "Consultation with allergist-immunologist (online; in person in Astana)",
     ],
   },
   osms_page: {
