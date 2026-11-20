@@ -33,7 +33,7 @@ const mapLinks: Record<string, { gis: string }> = {
 };
 
 // Real branch facade photos per city. Each has 2 sizes for retina.
-// A city without a real photo (Shymkent) gets a plain panel, never a stock image.
+// A city without a real photo gets a plain panel, never a stock image.
 const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
   astana: {
     src: "/photos/astana-baitursynova-600.jpg",
@@ -54,6 +54,11 @@ const cityPhoto: Record<string, { src: string; src2x: string; alt: string }> = {
     src: "/photos/temirtau-mira-600.jpg",
     src2x: "/photos/temirtau-mira-1200.jpg",
     alt: "Филиал Аллергоскрин в Темиртау, пр. Мира 114",
+  },
+  shymkent: {
+    src: "/photos/shymkent-akpan-600.jpg",
+    src2x: "/photos/shymkent-akpan-1200.jpg",
+    alt: "Филиал Аллергоскрин в Шымкенте, ул. Акпан батыра 42",
   },
 };
 ---
